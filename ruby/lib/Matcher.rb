@@ -14,3 +14,14 @@ end
 def duck ( *mensajes )
   return Proc.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
 end
+
+class Proc
+  def and (*matchers)
+    return Proc.new do
+    |callArgument| matchers.all? {|matcher| matcher.call(callArgument)}
+    self.call(callArgument)
+    end
+
+  end
+end
+

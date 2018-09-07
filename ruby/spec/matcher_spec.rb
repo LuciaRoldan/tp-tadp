@@ -115,3 +115,11 @@ describe 'duck' do
   end
 
 end
+
+describe 'and' do
+
+  it 'andsfdsfd' do
+    expect(duck(:+).and(type(Fixnum),val(5)).call(5)).to eq(true)
+  end
+
+end
