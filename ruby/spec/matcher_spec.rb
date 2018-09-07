@@ -134,3 +134,24 @@ describe 'and' do
     expect(type(Fixnum).and(duck(:+),val(5)).call(5)).to eq(true)
   end
 end
+
+describe 'or' do
+  it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
+    expect(duck(:+).or(type(Array),val(7)).call(5)).to eq(true)
+  end
+
+  it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
+    expect(type(Array).or(duck(:+),val(7)).call(5)).to eq(true)
+  end
+end
+
+describe 'not' do
+  it '5 es un fixnum' do
+    expect(type(Fixnum).not.call(5)).to eq(false)
+  end
+
+  it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
+    expect(type(Fixnum).and(duck(:+),val(5)).not.call(5)).to eq(false)
+  end
+end
+

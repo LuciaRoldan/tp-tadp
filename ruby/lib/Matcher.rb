@@ -21,5 +21,17 @@ class Proc
     |callArgument| matchers.all? {|matcher| matcher.call(callArgument)} && self.call(callArgument)
     end
   end
+
+  def or (*matchers)
+    return Proc.new do
+    |callArgument| matchers.any? {|matcher| matcher.call(callArgument)} || self.call(callArgument)
+    end
+  end
+
+  def not
+    return Proc.new do
+    |callArgument| !self.call(callArgument)
+    end
+  end
 end
 
