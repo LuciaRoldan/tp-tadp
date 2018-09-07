@@ -118,8 +118,19 @@ end
 
 describe 'and' do
 
-  it 'andsfdsfd' do
+  it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
     expect(duck(:+).and(type(Fixnum),val(5)).call(5)).to eq(true)
   end
 
+  it '5 es igual que string 5 y es de tipo Fixnum y entiende el +' do
+    expect(duck(:+).and(type(Fixnum),val('5')).call(5)).to eq(false)
+  end
+
+  it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
+    expect(duck(:hola).and(type(Fixnum),val(5)).call(5)).to eq(false)
+  end
+
+  it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
+    expect(type(Fixnum).and(duck(:+),val(5)).call(5)).to eq(true)
+  end
 end

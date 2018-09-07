@@ -18,10 +18,8 @@ end
 class Proc
   def and (*matchers)
     return Proc.new do
-    |callArgument| matchers.all? {|matcher| matcher.call(callArgument)}
-    self.call(callArgument)
+    |callArgument| matchers.all? {|matcher| matcher.call(callArgument)} && self.call(callArgument)
     end
-
   end
 end
 
