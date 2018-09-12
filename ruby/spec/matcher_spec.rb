@@ -1,6 +1,14 @@
+describe 'cal' do
+  let (:matcher) { Matcher.new() }
 
+  it 'siempre matchea el tipo' do
+    expect(:A.call('hola')).to eq(true)
+  end
+end
 
-describe 'val' do
+describe Matcher do
+
+  #let (:matcher) { Matcher.new() }
 
   it '5 es igual a 5' do
     expect(val(5).call(5)).to eq(true)
@@ -18,55 +26,61 @@ end
 
 describe 'type' do
 
+  let (:matcher) { Matcher.new() }
+
   it '5 es de tipo Integer' do
-    expect(type(Integer).call(5)).to eq(true)
+    expect(matcher.type(Integer).call(5)).to eq(true)
   end
 
   it 'Un string no es un simbolo' do
-    expect(type(Symbol).call("Trust me, I'm a Symbol...")).to eq(false)
+    expect(matcher.type(Symbol).call("Trust me, I'm a Symbol...")).to eq(false)
   end
 
   it 'Un simbolo es de tipo Symbol' do
-    expect(type(Symbol).call(:a_real_symbol)).to eq(true)
+    expect(matcher.type(Symbol).call(:a_real_symbol)).to eq(true)
   end
 
 end
 
 describe 'list' do
 
+  let (:matcher) { Matcher.new() }
+
   let (:an_array)  {[1, 2, 3, 4]}
 
   it 'Una lista es igual a si misma' do
-    expect(list([1, 2, 3, 4], true).call(an_array)).to eq(true)
+    expect(matcher.list([1, 2, 3, 4], true).call(an_array)).to eq(true)
   end
 
   it 'Una lista es igual a si misma' do
-    expect(list([1, 2, 3, 4], false).call(an_array)).to eq(true)
+    expect(matcher.list([1, 2, 3, 4], false).call(an_array)).to eq(true)
   end
 
   it 'Los primeros elementos de una lista son iguales a los primeros elementos de si misma' do
-    expect(list([1, 2, 3], true).call(an_array)).to eq(false)
+    expect(matcher.list([1, 2, 3], true).call(an_array)).to eq(false)
   end
 
   it 'Los primeros elementos de una lista es distinta a si misma' do
-    expect(list([1, 2, 3], false).call(an_array)).to eq(true)
+    expect(matcher.list([1, 2, 3], false).call(an_array)).to eq(true)
   end
 
   it 'La lista desordenada es distinta a la lista' do
-    expect(list([2, 1, 3, 4], true).call(an_array)).to eq(false)
+    expect(matcher.list([2, 1, 3, 4], true).call(an_array)).to eq(false)
   end
 
   it 'La lista desordenada es distinta a la lista' do
-    expect(list([2, 1, 3, 4], false).call(an_array)).to eq(false)
+    expect(matcher.list([2, 1, 3, 4], false).call(an_array)).to eq(false)
   end
 
   it 'Si no se especifica march_size se considera true' do
-    expect(list([1, 2, 3]).call(an_array)).to eq(false)
+    expect(matcher.list([1, 2, 3]).call(an_array)).to eq(false)
   end
 
 end
 
 describe 'duck' do
+
+  let (:matcher) { Matcher.new() }
 
   class Psyduck
 
@@ -93,65 +107,73 @@ describe 'duck' do
 
 
   it 'Psyduck responde a cuack y fly' do
-    expect(duck(:cuack, :fly).call(psyduck)).to eq(true)
+    expect(matcher.duck(:cuack, :fly).call(psyduck)).to eq(true)
   end
 
   it 'Psyduck responde a cuack y fly' do
-    expect(duck(:cuack, :fly).call(psyduck)).to eq(true)
+    expect(matcher.duck(:cuack, :fly).call(psyduck)).to eq(true)
   end
 
 
 
   it 'Dragon no responde a cuack y fly' do
-    expect(duck(:cuack, :fly).call(dragon)).to eq(false)
+    expect(matcher.duck(:cuack, :fly).call(dragon)).to eq(false)
   end
 
   it 'Dragon responde fly' do
-    expect(duck(:fly).call(dragon)).to eq(true)
+    expect(matcher.duck(:fly).call(dragon)).to eq(true)
   end
 
   it 'Object responde a to_s' do
-    expect(duck(:to_s).call(Object.new)).to eq(true)
+    expect(matcher.duck(:to_s).call(Object.new)).to eq(true)
   end
 
 end
 
 describe 'and' do
 
+  let (:matcher) { Matcher.new() }
+
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(duck(:+).and(type(Fixnum),val(5)).call(5)).to eq(true)
+    expect(matcher.duck(:+).and(matcher.type(Fixnum),matcher.val(5)).call(5)).to eq(true)
   end
 
   it '5 es igual que string 5 y es de tipo Fixnum y entiende el +' do
-    expect(duck(:+).and(type(Fixnum),val('5')).call(5)).to eq(false)
+    expect(matcher.duck(:+).and(matcher.type(Fixnum),matcher.val('5')).call(5)).to eq(false)
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(duck(:hola).and(type(Fixnum),val(5)).call(5)).to eq(false)
+    expect(matcher.duck(:hola).and(matcher.type(Fixnum),matcher.val(5)).call(5)).to eq(false)
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(type(Fixnum).and(duck(:+),val(5)).call(5)).to eq(true)
+    expect(matcher.type(Fixnum).and(matcher.duck(:+),matcher.val(5)).call(5)).to eq(true)
   end
 end
 
 describe 'or' do
+
+  let (:matcher) { Matcher.new() }
+
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(duck(:+).or(type(Array),val(7)).call(5)).to eq(true)
+    expect(matcher.duck(:+).or(matcher.type(Array),matcher.val(7)).call(5)).to eq(true)
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(type(Array).or(duck(:+),val(7)).call(5)).to eq(true)
+    expect(matcher.type(Array).or(matcher.duck(:+),matcher.val(7)).call(5)).to eq(true)
   end
 end
 
 describe 'not' do
+
+  let (:matcher) { Matcher.new() }
+
   it '5 es un fixnum' do
-    expect(type(Fixnum).not.call(5)).to eq(false)
+    expect(matcher.type(Fixnum).not.call(5)).to eq(false)
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(type(Fixnum).and(duck(:+),val(5)).not.call(5)).to eq(false)
+    expect(matcher.type(Fixnum).and(matcher.duck(:+),matcher.val(5)).not.call(5)).to eq(false)
   end
 end
 
