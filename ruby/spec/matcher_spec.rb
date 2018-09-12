@@ -1,4 +1,4 @@
-describe 'cal' do
+describe 'call' do
   let (:matcher) { Matcher.new() }
 
   it 'siempre matchea el tipo' do
@@ -6,20 +6,20 @@ describe 'cal' do
   end
 end
 
-describe Matcher do
+describe 'val' do
 
-  #let (:matcher) { Matcher.new() }
+  let (:matcher) { Matcher.new() }
 
   it '5 es igual a 5' do
-    expect(val(5).call(5)).to eq(true)
+    expect(matcher.val(5).call(5)).to eq(true)
   end
 
   it '5 es distinto al caracter 5' do
-    expect(val(5).call('5')).to eq(false)
+    expect(matcher.val(5).call('5')).to eq(false)
   end
 
   it '5 es distinto a 4' do
-    expect(val(5).call(4)).to eq(false)
+    expect(matcher.val(5).call(4)).to eq(false)
   end
 
 end
