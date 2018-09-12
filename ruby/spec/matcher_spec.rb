@@ -4,6 +4,12 @@ describe 'call' do
   it 'siempre matchea el tipo' do
     expect(:A.call('hola')).to eq(true)
   end
+
+  it 'siempre matchea el tipo' do
+    :A.call('hola')
+    expect('hola').to eq(:A)
+  end
+
 end
 
 describe 'val' do
@@ -174,6 +180,25 @@ describe 'not' do
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
     expect(matcher.type(Fixnum).and(matcher.duck(:+),matcher.val(5)).not.call(5)).to eq(false)
+  end
+end
+
+describe 'match' do
+
+  let (:matcher) { Matcher.new() }
+
+  it '2 no es string' do
+    expect(matches?(2)do
+
+      with(matcher.type(String)){'hola'}
+      with(:unaCosa) {'hola'}
+    end).to eq('hola')
+  end
+
+  it '2 no es un numero' do
+    expect(matches?(2)do
+      with(matcher.type(Number), duck(:+)){'hola'}
+    end).to eq('hola')
   end
 end
 

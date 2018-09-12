@@ -1,3 +1,35 @@
+class Patron
+  attr_accessor :lista_de_matchers, :bloque
+  def initialize(lista_de_matchers, bloque)
+    self.lista_de_matchers = lista_de_matchers
+    self.bloque = bloque
+  end
+  def evaluar_matchers(cosa)
+    lista_de_matchers.all? {|matcher| matcher.call(cosa)}
+  end
+end
+
+class Object
+  def with(*matchers, &bloque)
+    if(matchers.all? do |matcher| matcher.call(self) end)
+      bloque.call(self)
+      raise 'Cumplo con todas las condiciones del with!'
+    end
+  end
+
+  def matches?(foo, &bloque)
+    #matchers.each do |matcher|
+    begin
+    foo.instance_eval(&bloque)
+    end
+
+      #if(bloque.call(foo))
+       #   bloque.call
+       #   return
+      #end
+  end
+end
+
 class Matcher
 
   def val (objeto)
@@ -21,6 +53,11 @@ end
 class Symbol
 
   def call(algo)
+
+    #algo.to_sym = self
+    #self = algo
+    #algo = self
+
     return true
   end
 
