@@ -10,45 +10,53 @@ class Patron
 end
 
 class Object
+
   def with(*matchers, &bloque)
-    if(matchers.all? do |matcher| matcher.call(self) end)
+
+    if matchers.all? do |matcher| matcher.call(self) end
+
       return bloque.call(self)
-      #puts "hola2"
+
+      #self.match(bloque)
+
       raise 'Cumplo con todas las condiciones del with!'
+
+      #binding
     end
+  end
+
+  def match(bloque)
+    self.call
   end
 
   def matches?(objeto_a_evaluarse, &bloque)
-    #matchers.each do |matcher|
     begin
-      resultado = objeto_a_evaluarse.instance_eval(&bloque)
+    objeto_a_evaluarse.instance_eval(&bloque)
     rescue
-      resultado
     end
+  end
 
-      #if(bloque.call(foo))
-       #   bloque.call
-       #   return
-      #end
+  def otherwise (&bloque)
+    self.call(bloque)
   end
 end
 
-class Matcher
+class Object
 
   def val (objeto)
-    return Proc.new { |otroObjeto| objeto == otroObjeto }
+     Proc.new { |otroObjeto| objeto == otroObjeto }
   end
 
   def type (clase)
-    return Proc.new { |objeto| objeto.is_a?(clase) }
+     Proc.new { |objeto| objeto.is_a?(clase) }
   end
 
   def list (lista, match_size = true)
-    return Proc.new { |otraLista| otraLista.is_a?(Array) && (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)}
+     Proc.new { |otraLista| otraLista.is_a?(Array) && (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)}
   end
 
   def duck ( *mensajes )
-    return Proc.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
+     Proc.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
   end
 
 end

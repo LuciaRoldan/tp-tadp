@@ -190,15 +190,24 @@ describe 'match' do
   it '2 no es string' do
     expect(matches?(2)do
 
-      with(matcher.type(String)){'hola'}
-      with(:unaCosa) {'hola'}
+      with(:unaCosa){'hola'}
     end).to eq('hola')
   end
 
   it '2 no es un numero' do
     expect(matches?(2)do
-      with(matcher.type(Number), duck(:+)){'hola'}
+      with(type(Numeric), duck(:+)){'hola'}
     end).to eq('hola')
+  end
+
+
+  it 'x entiende hola' do
+    x = Object.new
+    x.send(:define_singleton_method, :hola) { 'hola' }
+    expect(matches?(x) do
+      with(duck(:hola)) { 'chau!' }
+      with(type(Object)) { 'aca no llego' }
+    end).to eq('chau!')
   end
 end
 
