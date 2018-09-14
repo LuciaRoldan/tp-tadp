@@ -15,7 +15,7 @@ class Object
 
     if matchers.all? do |matcher| matcher.call(self) end
 
-      return bloque.call(self)
+      bloque.call(self)
 
       #self.match(bloque)
 
@@ -25,17 +25,17 @@ class Object
     end
   end
 
-  def match(bloque)
-    self.call
-  end
-
   def matches?(objeto_a_evaluarse, &bloque)
     begin
     objeto_a_evaluarse.instance_eval(&bloque)
-    rescue
+    rescue => respuesta
+      respuesta
     end
   end
 
+  def match(bloque)
+    self.call
+  end
   def otherwise (&bloque)
     self.call(bloque)
   end
