@@ -12,15 +12,18 @@ end
 class Object
   def with(*matchers, &bloque)
     if(matchers.all? do |matcher| matcher.call(self) end)
-      bloque.call(self)
+      return bloque.call(self)
+      #puts "hola2"
       raise 'Cumplo con todas las condiciones del with!'
     end
   end
 
-  def matches?(foo, &bloque)
+  def matches?(objeto_a_evaluarse, &bloque)
     #matchers.each do |matcher|
     begin
-    foo.instance_eval(&bloque)
+      resultado = objeto_a_evaluarse.instance_eval(&bloque)
+    rescue
+      resultado
     end
 
       #if(bloque.call(foo))

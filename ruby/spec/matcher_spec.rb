@@ -17,7 +17,7 @@ describe 'val' do
   let (:matcher) { Matcher.new() }
 
   it '5 es igual a 5' do
-    expect(matcher.val(5).call(5)).to eq(true)
+    self.expect(matcher.instance_eval{val(5).call(5)}).to eq(true)
   end
 
   it '5 es distinto al caracter 5' do
