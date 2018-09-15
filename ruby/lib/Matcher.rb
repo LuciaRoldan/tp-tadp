@@ -10,34 +10,35 @@ class Patron
 end
 
 class Object
-
   def with(*matchers, &bloque)
-
-    if matchers.all? do |matcher| matcher.call(self) end
-
-      bloque.call(self)
-
-      #self.match(bloque)
-
-      raise 'Cumplo con todas las condiciones del with!'
-
-      #binding
+    if(matchers.all? do |matcher| matcher.call(self) end)
+      simbolos = matchers.select{|matcher| matcher.is_a?(Symbol)}
+      simbolos.each { |simbolo| bloque.instance_variable_set("@#{simbolo}", self)
+}
+      puts bloque.instance_variable_get("@a_string")
+      puts bloque.call(self)
+      raise MyError.new("Cumplo con todas las condciones!", bloque.call(self))
     end
+  end
+
+  def otherwise(&bloque)
+    raise MyError.new("Otherwise!", bloque.call(self))
   end
 
   def matches?(objeto_a_evaluarse, &bloque)
     begin
-    objeto_a_evaluarse.instance_eval(&bloque)
-    rescue => respuesta
-      respuesta
+      objeto_a_evaluarse.instance_eval(&bloque)
+    rescue => excepcion
+      excepcion.respuesta
     end
   end
+end
 
-  def match(bloque)
-    self.call
-  end
-  def otherwise (&bloque)
-    self.call(bloque)
+class MyError < StandardError
+  attr_reader :respuesta
+  def initialize(msg, respuesta)
+    @respuesta = respuesta
+    super(msg)
   end
 end
 

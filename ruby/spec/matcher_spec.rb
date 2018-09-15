@@ -209,5 +209,23 @@ describe 'match' do
       with(type(Object)) { 'aca no llego' }
     end).to eq('chau!')
   end
-end
 
+  it 'x entiende hola' do
+    x = Object.new
+    x.send(:define_singleton_method, :hola) { 'hola' }
+    expect(matches?(x) do
+      with(duck(:+)) { 'chau!' }
+      with(type(String)) { 'aca no llego' }
+      otherwise {'hola'}
+    end).to eq('hola')
+  end
+end
+describe 'binding' do
+
+  it '2 no es string' do
+    expect(matches?('2')do
+      with(type(String), :a_string) { a_string.length }
+    end).to eq(1)
+  end
+
+end
