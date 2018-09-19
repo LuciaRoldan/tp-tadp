@@ -190,7 +190,7 @@ describe 'match' do
   it '2 no es string' do
     expect(matches?(2)do
 
-      with(:unaCosa){'hola'}
+      with(type(Numeric)){'hola'}
     end).to eq('hola')
   end
 

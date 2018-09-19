@@ -1,36 +1,65 @@
 class Patron
-  attr_accessor :lista_de_matchers, :bloque
-  def initialize(lista_de_matchers, bloque)
-    self.lista_de_matchers = lista_de_matchers
+  attr_accessor :matchers, :bloque
+  def initialize(bloque, *matchers)
+    self.matchers = matchers
     self.bloque = bloque
   end
   def evaluar_matchers(cosa)
-    lista_de_matchers.all? {|matcher| matcher.call(cosa)}
+    matchers.all? {|matcher| Matcher.send(matcher).call(cosa)}
   end
 end
 
-class Object
-  def with(*matchers, &bloque)
-    if(matchers.all? do |matcher| matcher.call(self) end)
-      simbolos = matchers.select{|matcher| matcher.is_a?(Symbol)}
-      simbolos.each { |simbolo| bloque.instance_variable_set("@#{simbolo}", self)
-}
-      puts bloque.instance_variable_get("@a_string")
-      puts bloque.call(self)
-      raise MyError.new("Cumplo con todas las condciones!", bloque.call(self))
-    end
+class Evaluator
+
+  attr_accessor :patrones
+
+  def initialize
+    @patrones = []
   end
+
+  def with(*matchers, &bloque)
+    puts('antes del push')
+    @patrones.push(Patron.new(bloque, matchers))
+    puts('hice el push')
+  end
+
+  def evaluar(objeto_a_evaluarse)
+    puts('en evaluar')
+    @patrones.each do |patron|
+      puts('evaluando')
+      if(patron.evaluar_matchers(objeto_a_evaluarse))
+        puts('pase el if de evaluar')
+        patron.bloque.call(objeto_a_evaluarse)
+        puts('voy a hacer el break')
+        break
+      end
+    end
+    self.patrones = []
+  end
+
+   # if(matchers.all? do |matcher| matcher.call(self) end)
+   #  simbolos = matchers.select{|matcher| matcher.is_a?(Symbol)}
+   #   simbolos.each { |simbolo| bloque.instance_variable_set("@#{simbolo}", self)
+   #   }
+   #   puts bloque.instance_variable_get("@a_string")
+   #   puts bloque.call(self)
+   #   raise MyError.new("Cumplo con todas las condciones!", bloque.call(self))
+   # end
 
   def otherwise(&bloque)
-    raise MyError.new("Otherwise!", bloque.call(self))
+    patrones.push(Patron.new(bloque))
   end
 
+end
+
+class Object
+
   def matches?(objeto_a_evaluarse, &bloque)
-    begin
-      objeto_a_evaluarse.instance_eval(&bloque)
-    rescue => excepcion
-      excepcion.respuesta
-    end
+    evaluador = Evaluator.new
+    puts('hice el Evaluator new')
+    evaluador.instance_eval(&bloque)
+    puts('despues del instance_eval')
+    evaluador.evaluar(objeto_a_evaluarse)
   end
 end
 
@@ -42,22 +71,53 @@ class MyError < StandardError
   end
 end
 
-class Object
+class Matcher
 
   def val (objeto)
-     Proc.new { |otroObjeto| objeto == otroObjeto }
+     ProcMatcher.new { |otroObjeto| objeto == otroObjeto }
   end
 
   def type (clase)
-     Proc.new { |objeto| objeto.is_a?(clase) }
+     ProcMatcher.new { |objeto| objeto.is_a?(clase) }
   end
 
   def list (lista, match_size = true)
-     Proc.new { |otraLista| otraLista.is_a?(Array) && (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)}
+     ProcMatcher.new { |otraLista| otraLista.is_a?(Array) && (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)}
   end
 
   def duck ( *mensajes )
-     Proc.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
+     ProcMatcher.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
+  end
+end
+
+class ProcMatcher
+
+  attr_accessor :bloque
+
+  def initialize(&bloque)
+    self.bloque = bloque
+  end
+
+  def call(objeto_a_evaluarse)
+    self.bloque.call(objeto_a_evaluarse)
+  end
+
+  def and (*matchers)
+    return Proc.new do
+    |callArgument| matchers.all? {|matcher| Matcher.send(matcher).call(callArgument)} && self.bloque.call(callArgument)
+    end
+  end
+
+  def or (*matchers)
+    return Proc.new do
+    |callArgument| matchers.any? {|matcher| Matcher.send(matcher).call(callArgument)} || self.bloque.call(callArgument)
+    end
+  end
+
+  def not
+    return Proc.new do
+    |callArgument| !self.bloque.call(callArgument)
+    end
   end
 
 end
@@ -75,23 +135,4 @@ class Symbol
 
 end
 
-class Proc
-  def and (*matchers)
-    return Proc.new do
-    |callArgument| matchers.all? {|matcher| matcher.call(callArgument)} && self.call(callArgument)
-    end
-  end
-
-  def or (*matchers)
-    return Proc.new do
-    |callArgument| matchers.any? {|matcher| matcher.call(callArgument)} || self.call(callArgument)
-    end
-  end
-
-  def not
-    return Proc.new do
-    |callArgument| !self.call(callArgument)
-    end
-  end
-end
 
