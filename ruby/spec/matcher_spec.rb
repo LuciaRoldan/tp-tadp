@@ -141,15 +141,15 @@ describe 'and' do
   let (:matcher) { Evaluator.new() }
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(matcher.duck(:+).and(matcher.type(Fixnum),matcher.val(5)).call(5)).to eq(true)
+    expect(matcher.duck(:+).and(matcher.type(Fixnum), matcher.val(5)).call(5)).to eq(true)
   end
 
   it '5 es igual que string 5 y es de tipo Fixnum y entiende el +' do
-    expect(matcher.duck(:+).and(matcher.type(Fixnum),matcher.val('5')).call(5)).to eq(false)
+    expect(matcher.duck(:+).and(matcher.type(Fixnum), matcher.val('5')).call(5)).to eq(false)
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(matcher.duck(:hola).and(matcher.type(Fixnum),matcher.val(5)).call(5)).to eq(false)
+    expect(matcher.duck(:hola).and(matcher.type(Fixnum), matcher.val(5)).call(5)).to eq(false)
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
