@@ -1,5 +1,5 @@
 describe 'call' do
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it 'siempre matchea el tipo' do
     expect(:A.call('hola')).to eq(true)
@@ -14,7 +14,7 @@ end
 
 describe 'val' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it '5 es igual a 5' do
     self.expect(matcher.instance_eval{val(5).call(5)}).to eq(true)
@@ -32,7 +32,7 @@ end
 
 describe 'type' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it '5 es de tipo Integer' do
     expect(matcher.type(Integer).call(5)).to eq(true)
@@ -50,7 +50,7 @@ end
 
 describe 'list' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   let (:an_array)  {[1, 2, 3, 4]}
 
@@ -86,7 +86,7 @@ end
 
 describe 'duck' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   class Psyduck
 
@@ -138,7 +138,7 @@ end
 
 describe 'and' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
     expect(matcher.duck(:+).and(matcher.type(Fixnum),matcher.val(5)).call(5)).to eq(true)
@@ -159,7 +159,7 @@ end
 
 describe 'or' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
     expect(matcher.duck(:+).or(matcher.type(Array),matcher.val(7)).call(5)).to eq(true)
@@ -172,7 +172,7 @@ end
 
 describe 'not' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it '5 es un fixnum' do
     expect(matcher.type(Fixnum).not.call(5)).to eq(false)
@@ -185,7 +185,7 @@ end
 
 describe 'match' do
 
-  let (:matcher) { Matcher.new() }
+  let (:matcher) { Evaluator.new() }
 
   it '2 no es string' do
     expect(matches?(2)do

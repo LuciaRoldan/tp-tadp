@@ -5,7 +5,7 @@ class Patron
     self.bloque = bloque
   end
   def evaluar_matchers(cosa)
-    matchers.all? {|matcher| Matcher.send(matcher).call(cosa)}
+    matchers.all? {|matcher| Evaluator.send(matcher).call(cosa)}
   end
 end
 
@@ -71,7 +71,7 @@ class MyError < StandardError
   end
 end
 
-class Matcher
+class Evaluator
 
   def val (objeto)
      ProcMatcher.new { |otroObjeto| objeto == otroObjeto }
@@ -104,13 +104,13 @@ class ProcMatcher
 
   def and (*matchers)
     return Proc.new do
-    |callArgument| matchers.all? {|matcher| Matcher.send(matcher).call(callArgument)} && self.bloque.call(callArgument)
+    |callArgument| matchers.all? {|matcher| Evaluator.send(matcher).call(callArgument)} && self.bloque.call(callArgument)
     end
   end
 
   def or (*matchers)
     return Proc.new do
-    |callArgument| matchers.any? {|matcher| Matcher.send(matcher).call(callArgument)} || self.bloque.call(callArgument)
+    |callArgument| matchers.any? {|matcher| Evaluator.send(matcher).call(callArgument)} || self.bloque.call(callArgument)
     end
   end
 
