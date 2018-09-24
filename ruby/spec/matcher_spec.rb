@@ -1,3 +1,5 @@
+
+
 describe 'call' do
   let (:matcher) { Evaluator.new() }
 
@@ -191,7 +193,6 @@ describe 'match' do
 
   it '2 no es string' do
     expect(matches?(2)do
-
       with(type(Numeric)){'hola'}
     end).to eq('hola')
   end
