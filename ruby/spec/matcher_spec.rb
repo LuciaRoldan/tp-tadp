@@ -1,5 +1,4 @@
 
-
 describe 'call' do
   let (:matcher) { Evaluator.new() }
 
@@ -191,18 +190,18 @@ describe 'match' do
 
   let (:matcher) { Evaluator.new() }
 
-  it '2 no es string' do
+  it '2 es Numeric' do
     expect(matches?(2)do
+      with(type(String)){'2 es String'}
       with(type(Numeric)){'hola'}
     end).to eq('hola')
   end
 
-  it '2 no es un numero' do
+  it '2 es Numeric y sabe sumar' do
     expect(matches?(2)do
       with(type(Numeric), duck(:+)){'hola'}
     end).to eq('hola')
   end
-
 
   it 'x entiende hola' do
     x = Object.new
@@ -213,10 +212,10 @@ describe 'match' do
     end).to eq('chau!')
   end
 
-  it 'x entiende hola' do
-    x = Object.new
-    x.send(:define_singleton_method, :hola) { 'hola' }
-    expect(matches?(x) do
+  it 'y entiende hola' do
+    y = Object.new
+    y.send(:define_singleton_method, :hola) { 'hola' }
+    expect(matches?(y) do
       with(duck(:+)) { 'chau!' }
       with(type(String)) { 'aca no llego' }
       otherwise {'hola'}
