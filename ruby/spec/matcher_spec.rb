@@ -20,6 +20,10 @@ describe 'val' do
     self.expect(matcher.instance_eval{val(5).call(5)}).to eq(true)
   end
 
+  it '5 es igual a 5' do
+    self.expect(matcher.val(5).call(5)).to eq(true)
+  end
+
   it '5 es distinto al caracter 5' do
     expect(matcher.val(5).call('5')).to eq(false)
   end
@@ -120,8 +124,6 @@ describe 'duck' do
     expect(matcher.duck(:cuack, :fly).call(psyduck)).to eq(true)
   end
 
-
-
   it 'Dragon no responde a cuack y fly' do
     expect(matcher.duck(:cuack, :fly).call(dragon)).to eq(false)
   end
@@ -179,7 +181,7 @@ describe 'not' do
   end
 
   it '5 es igual que 5 y es de tipo Fixnum y entiende el +' do
-    expect(matcher.type(Fixnum).and(matcher.duck(:+),matcher.val(5)).not.call(5)).to eq(false)
+    expect(matcher.type(Fixnum).and(matcher.duck(:+), matcher.val(5)).not.call(5)).to eq(false)
   end
 end
 

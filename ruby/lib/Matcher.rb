@@ -82,7 +82,9 @@ class Evaluator
   end
 
   def list (lista, match_size = true)
-     ProcMatcher.new { |otraLista| otraLista.is_a?(Array) && (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)}
+     ProcMatcher.new do |otraLista| otraLista.is_a?(Array) &&
+         (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)
+     end
   end
 
   def duck ( *mensajes )
@@ -103,19 +105,19 @@ class ProcMatcher
   end
 
   def and (*matchers)
-    return Proc.new do
-    |callArgument| matchers.all? {|matcher| Evaluator.send(matcher).call(callArgument)} && self.bloque.call(callArgument)
+    return ProcMatcher.new do
+    |callArgument| matchers.all? {|matcher| matcher.call(callArgument)} && self.bloque.call(callArgument)
     end
   end
 
   def or (*matchers)
-    return Proc.new do
-    |callArgument| matchers.any? {|matcher| Evaluator.send(matcher).call(callArgument)} || self.bloque.call(callArgument)
+    return ProcMatcher.new do
+    |callArgument| matchers.any? {|matcher| matcher.call(callArgument)} || self.bloque.call(callArgument)
     end
   end
 
   def not
-    return Proc.new do
+    return ProcMatcher.new do
     |callArgument| !self.bloque.call(callArgument)
     end
   end
