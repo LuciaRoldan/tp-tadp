@@ -3,13 +3,13 @@ describe 'call' do
   let (:matcher) { Evaluator.new() }
 
   it 'siempre matchea el tipo' do
-    expect(:A.call('hola')).to eq(true)
+    expect(:a_variable_name.call('anything')).to eq(true)
   end
 
-  it 'siempre matchea el tipo' do
-    :A.call('hola')
-    expect('hola').to eq(:A)
-  end
+#  it 'siempre matchea el tipo' do
+ #   :A.call('hola')
+ #   expect('hola').to eq(:A)
+ # end
 
 end
 
@@ -225,9 +225,9 @@ end
 describe 'binding' do
 
   it '2 no es string' do
-    expect(matches?('2')do
+    expect(matches?('Hola')do
       with(type(String), :a_string) { a_string.length }
-    end).to eq(1)
+    end).to eq(4)
   end
 
 end

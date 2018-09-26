@@ -13,6 +13,10 @@ class Patron
 
   def evaluar_matchers(cosa)
     @matchers.all? do |matcher|
+      if(matcher.is_a? Symbol)
+        Evaluator.define_method(matcher) {cosa}
+      end
+    else
     matcher.call(cosa)
     end
   end
