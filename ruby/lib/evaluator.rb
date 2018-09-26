@@ -11,23 +11,19 @@ class Evaluator
   end
 
   def evaluar(objeto_a_evaluarse)
+    resultado = 0
     @patrones.each do |patron|
+      puts('lol')
+      puts(patron)
       if(patron.evaluar_matchers(objeto_a_evaluarse))
-        patron.ejecutar_bloque(objeto_a_evaluarse)
+        puts('hoo')
+        resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
+        puts(resultado)
         break
       end
     end
     self.patrones = []
-  end
-
-  def ro_evaluar(objeto_a_evaluarse)
-    @el_match = @patrones.find { |patron|
-      patron.evaluar_matchers(objeto_a_evaluarse)
-    }
-  end
-
-  def ro_ejecutar_matcheo(objeto_a_evaluarse)
-    @el_match.ejecutar_bloque(objeto_a_evaluarse)
+    resultado
   end
 
   # if(matchers.all? do |matcher| matcher.call(self) end)

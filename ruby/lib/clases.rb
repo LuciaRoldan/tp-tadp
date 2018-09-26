@@ -4,8 +4,7 @@ class Object
     evaluador = Evaluator.new
     evaluador.instance_eval(&bloque)
 
-    evaluador.ro_evaluar(objeto_a_evaluarse)
-    evaluador.ro_ejecutar_matcheo(objeto_a_evaluarse)
+    evaluador.evaluar(objeto_a_evaluarse)
   end
 end
 
