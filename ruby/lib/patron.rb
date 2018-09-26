@@ -1,7 +1,7 @@
 class Patron
 
   attr_accessor :matchers, :bloque
-  def initialize( matchers, &bloque)
+  def initialize(matchers, bloque)
     @matchers = matchers
     #matchers.each do |matcher| self.matchers.push(matcher) end
     @bloque = bloque

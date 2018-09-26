@@ -9,7 +9,7 @@ class Evaluator
   def with(*matchers, &bloque)
     puts('antes del push')
     puts(matchers.length())
-    @patrones.push(Patron.new(matchers, &bloque))
+    @patrones.push(Patron.new(matchers, bloque))
     puts('hice el push')
   end
 
@@ -44,7 +44,7 @@ class Evaluator
   # end
 
   def otherwise(&bloque)
-    patrones.push(Patron.new(bloque))
+    patrones.push(Patron.new([],bloque))
   end
 
 
