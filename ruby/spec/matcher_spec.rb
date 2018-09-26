@@ -212,9 +212,9 @@ end
 describe 'binding' do
 
   it '2 no es string' do
-    expect(matches?('2')do
+    expect(matches?('Hola')do
       with(type(String), :a_string) { a_string.length }
-    end).to eq(1)
+    end).to eq(4)
   end
 
 end
