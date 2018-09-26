@@ -3,7 +3,9 @@ class Object
   def matches?(objeto_a_evaluarse, &bloque)
     evaluador = Evaluator.new
     evaluador.instance_eval(&bloque)
-    evaluador.evaluar(objeto_a_evaluarse)
+
+    evaluador.ro_evaluar(objeto_a_evaluarse)
+    evaluador.ro_ejecutar_matcheo(objeto_a_evaluarse)
   end
 end
 

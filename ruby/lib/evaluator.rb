@@ -1,6 +1,6 @@
 class Evaluator
 
-  attr_accessor :patrones
+  attr_accessor :patrones, :el_match
 
   def initialize
     @patrones = []
@@ -8,7 +8,8 @@ class Evaluator
 
   def with(*matchers, &bloque)
     puts('antes del push')
-    @patrones.push(Patron.new(bloque, matchers))
+    puts(matchers.length())
+    @patrones.push(Patron.new(matchers, &bloque))
     puts('hice el push')
   end
 
@@ -20,7 +21,17 @@ class Evaluator
         break
       end
     end
-    self.patrones = []
+    #self.patrones = []
+  end
+
+  def ro_evaluar(objeto_a_evaluarse)
+    @el_match = @patrones.find { |patron|
+      patron.evaluar_matchers(objeto_a_evaluarse)
+    }
+  end
+
+  def ro_ejecutar_matcheo(objeto_a_evaluarse)
+    @el_match.ejecutar_bloque(objeto_a_evaluarse)
   end
 
   # if(matchers.all? do |matcher| matcher.call(self) end)
