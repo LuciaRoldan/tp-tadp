@@ -7,21 +7,17 @@ class Evaluator
   end
 
   def with(*matchers, &bloque)
-    puts('antes del push')
-    puts(matchers.length())
     @patrones.push(Patron.new(matchers, bloque))
-    puts('hice el push')
   end
 
   def evaluar(objeto_a_evaluarse)
     @patrones.each do |patron|
       if(patron.evaluar_matchers(objeto_a_evaluarse))
-        puts('pase el if de evaluar')
         patron.ejecutar_bloque(objeto_a_evaluarse)
         break
       end
     end
-    #self.patrones = []
+    self.patrones = []
   end
 
   def ro_evaluar(objeto_a_evaluarse)
