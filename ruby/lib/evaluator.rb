@@ -53,7 +53,17 @@ class Evaluator
   end
 
   def list (lista, match_size = true)
-    ProcMatcher.new do |otraLista| otraLista.is_a?(Array) &&
+        
+    ProcMatcher.new do |otraLista|
+
+      lista.each_with_index do
+      |elemento, index|
+        if elemento.is_a? Symbol
+          Evaluator.define_method(elemento) do otraLista[index] end
+        end
+      end
+
+      otraLista.is_a?(Array) &&
         (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)
     end
   end

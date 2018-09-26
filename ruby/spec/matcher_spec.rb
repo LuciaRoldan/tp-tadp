@@ -230,4 +230,10 @@ describe 'binding' do
     end).to eq(4)
   end
 
+  it 'Se bindean los elementos de la lista' do
+    expect(matches?([1,2])do
+      with(list [:a, :b]) { a + b }
+    end).to eq(3)
+  end
+
 end
