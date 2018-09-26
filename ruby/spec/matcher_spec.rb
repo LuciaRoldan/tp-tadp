@@ -1,17 +1,4 @@
 
-describe 'call' do
-  let (:matcher) { Evaluator.new() }
-
-  it 'siempre matchea el tipo' do
-    expect(:a_variable_name.call('anything')).to eq(true)
-  end
-
-#  it 'siempre matchea el tipo' do
- #   :A.call('hola')
- #   expect('hola').to eq(:A)
- # end
-
-end
 
 describe 'val' do
 
