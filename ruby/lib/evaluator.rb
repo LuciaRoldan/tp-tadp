@@ -12,6 +12,9 @@ class Evaluator
 
   def evaluar(objeto_a_evaluarse)
     resultado = false
+    if(@patrones.none? do |patron| patron.evaluar_matchers(objeto_a_evaluarse) end)
+      raise 'Ningun patron matchea. Agregar un otherwise'
+    end
     @patrones.each do |patron|
       if(patron.evaluar_matchers(objeto_a_evaluarse))
         resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
@@ -45,10 +48,11 @@ class Evaluator
       tuplas.all? do |a, b|
         puts('a:', a)
         puts('b: ', b)
-        (a == b || a.is_a?(Symbol) ||
-            a.instance_exec(b, &a.bloque) if (a.is_a?(ProcMatcher))) &&
-        otraLista.is_a?(Array) &&
-        (match_size)? otraLista.length < lista.length: true
+        (   a == b ||
+            a.is_a?(Symbol) ||
+            if (a.is_a?(ProcMatcher))
+              a.instance_exec(b, &a.bloque) end
+        ) && otraLista.is_a?(Array) && (match_size)? otraLista.length < lista.length: true
       end
     end
   end

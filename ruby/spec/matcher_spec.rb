@@ -210,6 +210,14 @@ describe 'match' do
   end
 end
 
+describe 'ninguno matchea' do
+  it '[lol] no es un Numeric ni un String' do
+    expect(matches?(['lol'])do
+      with(type(Numeric)) { 'soy Numeric' }
+      with(type(String)) {'soy String'}
+    end).to raise_error()
+  end
+end
 
 describe 'binding' do
 
