@@ -209,11 +209,25 @@ describe 'match' do
     end).to eq('hola')
   end
 end
+
+
 describe 'binding' do
 
   it '2 no es string' do
     expect(matches?('Hola')do
       with(type(String), :a_string) { a_string.length }
+    end).to eq(4)
+  end
+
+  it 'Bindeo de array' do
+    expect(matches?([1,2])do
+      with(type(Array), list([:a, :b], false)) { a + b }
+    end).to eq(3)
+  end
+
+  it 'Bindeo de array y verificaciones' do
+    expect(matches?([1, 2, 4, 'hola', Object.new])do
+      with(type(Array), list([:a, 2, :b, type(String), duck(:is_a?)], false)) { a * b }
     end).to eq(4)
   end
 

@@ -11,14 +11,10 @@ class Evaluator
   end
 
   def evaluar(objeto_a_evaluarse)
-    resultado = 0
+    resultado = false
     @patrones.each do |patron|
-      puts('lol')
-      puts(patron)
       if(patron.evaluar_matchers(objeto_a_evaluarse))
-        puts('hoo')
         resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
-        puts(resultado)
         break
       end
     end
@@ -26,31 +22,34 @@ class Evaluator
     resultado
   end
 
-  # if(matchers.all? do |matcher| matcher.call(self) end)
-  #  simbolos = matchers.select{|matcher| matcher.is_a?(Symbol)}
-  #   simbolos.each { |simbolo| bloque.instance_variable_set("@#{simbolo}", self)
-  #   }
-  #   puts bloque.instance_variable_get("@a_string")
-  #   puts bloque.call(self)
-  #   raise MyError.new("Cumplo con todas las condciones!", bloque.call(self))
-  # end
-
   def otherwise(&bloque)
     patrones.push(Patron.new([],bloque))
   end
 
 
-  def val (objeto)
+  def val(objeto)
     ProcMatcher.new { |otroObjeto| objeto == otroObjeto }
   end
 
-  def type (clase)
+  def type(clase)
     ProcMatcher.new { |objeto| objeto.is_a?(clase) }
   end
 
-  def list (lista, match_size = true)
-    ProcMatcher.new do |otraLista| otraLista.is_a?(Array) &&
-        (match_size)? (lista == otraLista) : (otraLista.first(lista.length) == lista)
+  def list(lista, match_size = true)
+    ProcMatcher.new do |otraLista|
+
+      tuplas = lista.zip(otraLista)
+      hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
+      agregarBindings(Hash[hashes])
+
+      tuplas.all? do |a, b|
+        puts('a:', a)
+        puts('b: ', b)
+        (a == b || a.is_a?(Symbol) ||
+            a.instance_exec(b, &a.bloque) if (a.is_a?(ProcMatcher))) &&
+        otraLista.is_a?(Array) &&
+        (match_size)? otraLista.length < lista.length: true
+      end
     end
   end
 
