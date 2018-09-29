@@ -43,13 +43,8 @@ class Evaluator
       agregarBindings(Hash[hashes])
 
       tuplas.all? do |a, b|
-        puts('a:', a)
-        puts('b: ', b)
-        (a == b || a.is_a?(Symbol) ||
-            a.instance_exec(b, &a.bloque) if (a.is_a?(ProcMatcher))) &&
-        otraLista.is_a?(Array) &&
-        (match_size)? otraLista.length < lista.length: true
-      end
+        (a == b || a.is_a?(Symbol) || (a.is_a?(ProcMatcher)? a.instance_exec(b, &a.bloque): false ))
+      end && otraLista.is_a?(Array) && ((match_size)? (otraLista.length == lista.length) : true )
     end
   end
 
