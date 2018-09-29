@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f9a3160-90c0-4dec-a477-0a3ee446f191" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ruby/spec/matcher_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/spec/matcher_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ruby/lib/evaluator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/evaluator.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +13,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@val_5_es_igual_a_5__grupo4_2018_2c.rcov" NAME="val 5 es igual a 5: grupo4-2018-2c Coverage Results" MODIFIED="1538005133630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
-    <SUITE FILE_PATH="coverage/grupo4_2018_2c@Run_spec__matcher_spec___grupo4_2018_2c.rcov" NAME="Run spec 'matcher_spec': grupo4-2018-2c Coverage Results" MODIFIED="1538179820636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
+    <SUITE FILE_PATH="coverage/grupo4_2018_2c@Run_spec__matcher_spec___grupo4_2018_2c.rcov" NAME="Run spec 'matcher_spec': grupo4-2018-2c Coverage Results" MODIFIED="1538186643994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@binding_Bindeo_de_array__grupo4_2018_2c.rcov" NAME="binding Bindeo de array: grupo4-2018-2c Coverage Results" MODIFIED="1538012614463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@binding_Bindeo_de_array_y_verificaciones__grupo4_2018_2c.rcov" NAME="binding Bindeo de array y verificaciones: grupo4-2018-2c Coverage Results" MODIFIED="1538015149936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@match__grupo4_2018_2c.rcov" NAME="match: grupo4-2018-2c Coverage Results" MODIFIED="1538011116674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
@@ -50,28 +51,55 @@
     <session id="-1884722913">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="rb" value="193" />
+          <entry key="txt" value="38" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="38" />
+          <entry key="Ruby" value="193" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Ruby" value="98" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="rb" value="98" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.actions.runAnything" />
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruby/spec/matcher_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="713">
+              <caret line="57" column="69" lean-forward="true" selection-start-line="57" selection-start-column="69" selection-end-line="57" selection-end-column="69" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ruby/lib/evaluator.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="331">
+              <caret line="56" column="9" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="56" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -88,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="6" selection-start-column="6" selection-end-column="6" />
+            <state relative-caret-position="294">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -125,37 +153,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="grupo4-2018-2c" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grupo4-2018-2c" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grupo4-2018-2c" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grupo4-2018-2c" type="462c0819:PsiDirectoryNode" />
-              <item name="ruby" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grupo4-2018-2c" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grupo4-2018-2c" type="462c0819:PsiDirectoryNode" />
-              <item name="ruby" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grupo4-2018-2c" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grupo4-2018-2c" type="462c0819:PsiDirectoryNode" />
-              <item name="ruby" type="462c0819:PsiDirectoryNode" />
-              <item name="spec" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -371,55 +369,66 @@
       <option name="presentableId" value="Default" />
       <updated>1538004753650</updated>
       <workItem from="1538004755133" duration="9104000" />
-      <workItem from="1538179809946" duration="9000" />
+      <workItem from="1538179809946" duration="1101000" />
+      <workItem from="1538182634685" duration="4022000" />
     </task>
+    <task id="LOCAL-00001" summary="Arreglado el test &quot;ninguno matchea&quot;">
+      <created>1538179982305</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1538179982305</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 20m 57s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 22h 51m 13s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 21m 00s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 22h 52m 51s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 21m 46s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 22h 53m 50s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array__grupo4-2018-2c - 2018.09.26 at 23h 21m 46s.xml">
-      <configuration name="binding Bindeo de array: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 22h 59m 13s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 21m 57s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 23h 01m 02s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 22m 48s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 23h 02m 03s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 24m 20s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 23h 02m 50s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 25m 43s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 23h 03m 15s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_de_array_y_verificaciones__grupo4-2018-2c - 2018.09.26 at 23h 25m 50s.xml">
-      <configuration name="binding Bindeo de array y verificaciones: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 23h 03m 55s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.26 at 23h 27m 07s.xml">
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.09.28 at 23h 04m 05s.xml">
       <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9113000" />
+    <option name="totallyTimeSpent" value="14227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25302014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32900432" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39935064" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.328125" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39914772" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -427,7 +436,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32900432" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32954547" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -440,16 +449,9 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/ruby/lib/patron.rb</url>
-          <line>14</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Arreglado el test &quot;ninguno matchea&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglado el test &quot;ninguno matchea&quot;" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -461,9 +463,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ruby/lib/patron.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ruby/lib/Matcher.rb" />
     <entry file="file://$PROJECT_DIR$/ruby/spec/test_spec.rb">
       <provider selected="true" editor-type-id="text-editor" />
@@ -473,17 +472,17 @@
     </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.2.10/gems/rspec-support-3.8.0/lib/rspec/support.rb" />
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.2.10/gems/rspec-core-3.8.0/lib/rspec/core/example.rb" />
-    <entry file="file://$PROJECT_DIR$/ruby/spec/matcher_spec.rb">
+    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs25/hash.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="184">
+          <caret line="864" column="26" selection-start-line="864" selection-start-column="26" selection-end-line="864" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/lib/evaluator.rb">
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core/memoized_helpers.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        <state relative-caret-position="132">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
         </state>
       </provider>
     </entry>
@@ -496,8 +495,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
+        <state relative-caret-position="294">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core/reporter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="218" selection-start-line="218" selection-end-line="218" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core/metadata.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-support-3.7.1/lib/rspec/support.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core/configuration.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="1503" selection-start-line="1503" selection-end-line="1503" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core/example.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/rspec-core-3.7.1/lib/rspec/core/example_group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="590" selection-start-line="590" selection-end-line="590" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/spec/matcher_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="57" column="69" lean-forward="true" selection-start-line="57" selection-start-column="69" selection-end-line="57" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/evaluator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="56" column="9" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="56" selection-end-column="9" />
         </state>
       </provider>
     </entry>

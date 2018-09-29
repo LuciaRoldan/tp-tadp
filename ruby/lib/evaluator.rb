@@ -43,7 +43,7 @@ class Evaluator
 
       tuplas = lista.zip(otraLista)
       hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
-      agregarBindings(Hash[hashes])
+      agregarBindings(Hash[hashes]) if self.is_a? (ProcMatcher)
 
       tuplas.all? do |a, b|
         puts('a:', a)
@@ -51,7 +51,8 @@ class Evaluator
         (   a == b ||
             a.is_a?(Symbol) ||
             if (a.is_a?(ProcMatcher))
-              a.instance_exec(b, &a.bloque) end
+              a.instance_exec(b, &a.bloque)
+            end
         ) && otraLista.is_a?(Array) && (match_size)? otraLista.length < lista.length: true
       end
     end
