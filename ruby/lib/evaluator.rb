@@ -12,6 +12,9 @@ class Evaluator
 
   def evaluar(objeto_a_evaluarse)
     resultado = false
+    if(@patrones.none? do |patron| patron.evaluar_matchers(objeto_a_evaluarse) end)
+      raise 'Ningun patron matchea. Agregar un otherwise'
+    end
     @patrones.each do |patron|
       if(patron.evaluar_matchers(objeto_a_evaluarse))
         resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
@@ -40,7 +43,7 @@ class Evaluator
 
       tuplas = lista.zip(otraLista)
       hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
-      agregarBindings(Hash[hashes])
+      agregarBindings(Hash[hashes]) if self.is_a? (ProcMatcher)
 
       tuplas.all? do |a, b|
         (a == b || a.is_a?(Symbol) || (a.is_a?(ProcMatcher)? a.instance_exec(b, &a.bloque): false ))
