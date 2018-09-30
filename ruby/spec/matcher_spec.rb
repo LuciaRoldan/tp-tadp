@@ -93,21 +93,25 @@ describe 'duck' do
 
 
   it 'Psyduck responde a cuack y fly' do
-    expect(duck([:cuack, :fly]).call(psyduck)).to eq(true)
+    expect(duck(:cuack, :fly).call(psyduck)).to eq(true)
   end
 
+  it 'Psyduck responde a cuack y fly' do
+    expect(duck(:cuack, :fly).call(psyduck)).to eq(true)
+  end
+
+
+
   it 'Dragon no responde a cuack y fly' do
-    expect(duck([:cuack, :fly]).call(dragon)).to eq(false)
+    expect(duck(:cuack, :fly).call(dragon)).to eq(false)
   end
 
   it 'Dragon responde fly' do
-    expect(duck([:fly]).call(dragon)).to eq(true)
+    expect(duck(:fly).call(dragon)).to eq(true)
   end
 
   it 'Object responde a to_s' do
-    expect(duck([:to_s]).call(Object.new)).to eq(true)
+    expect(duck(:to_s).call(Object.new)).to eq(true)
   end
 
 end
-
-
