@@ -1,7 +1,6 @@
 class Evaluator
 
-  attr_accessor :patrones, :el_match
-
+  attr_accessor :patrones
   def initialize
     @patrones = []
   end
@@ -10,18 +9,30 @@ class Evaluator
     @patrones.push(Patron.new(matchers, bloque))
   end
 
+#  def evaluar(objeto_a_evaluarse)
+#  resultado = false
+#    if(@patrones.none? do |patron| patron.evaluar_matchers(objeto_a_evaluarse) end)
+#      raise 'Ningun patron matchea. Agregar un otherwise'
+#    end
+#    @patrones.each do |patron|
+#      if(patron.evaluar_matchers(objeto_a_evaluarse))
+#        resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
+#        break
+#      end
+#    end
+#    resultado
+#  end
+
   def evaluar(objeto_a_evaluarse)
-    resultado = false
-    if(@patrones.none? do |patron| patron.evaluar_matchers(objeto_a_evaluarse) end)
+    resultado = 'lol'
+    unless
+      (patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
+        if (patron != nil)
+          patron.agregar_bindings(objeto_a_evaluarse)
+          resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
+      end)
       raise 'Ningun patron matchea. Agregar un otherwise'
     end
-    @patrones.each do |patron|
-      if(patron.evaluar_matchers(objeto_a_evaluarse))
-        resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
-        break
-      end
-    end
-    self.patrones = []
     resultado
   end
 
@@ -38,16 +49,37 @@ class Evaluator
     ProcMatcher.new { |objeto| objeto.is_a?(clase) }
   end
 
+#  def list(lista, match_size = true)
+#    ProcMatcher.new do |otraLista|
+#
+#      tuplas = lista.zip(otraLista)
+#      hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
+#      agregarBindings(Hash[hashes])
+#
+#      tuplas.all? do |a, b|
+#        (a == b || a.is_a?(Symbol) || (a.is_a?(ProcMatcher)? a.instance_exec(b, &a.bloque): false ))
+#      end && otraLista.is_a?(Array) && ((match_size)? (otraLista.length == lista.length) : true )
+#    end
+#  end
+
+  def agregar_bindings_lista(objeto_a_evaluarse, bloque)
+    tuplas = lista.zip(otraLista)
+    hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
+    agregar_bindings(Hash[hashes])
+  end
+
   def list(lista, match_size = true)
-    ProcMatcher.new do |otraLista|
-
+    pm = ProcMatcher.new do |otraLista|
+      pm.lista = lista
       tuplas = lista.zip(otraLista)
-      hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
-      agregarBindings(Hash[hashes]) if self.is_a? (ProcMatcher)
-
+      puts('hol', tuplas)
       tuplas.all? do |a, b|
-        (a == b || a.is_a?(Symbol) || (a.is_a?(ProcMatcher)? a.instance_exec(b, &a.bloque): false ))
-      end && otraLista.is_a?(Array) && ((match_size)? (otraLista.length == lista.length) : true )
+        (a == b ||
+            a.is_a?(Symbol) ||
+            (a.is_a?(ProcMatcher)? a.instance_exec(b, &a.bloque): false ))
+        end &&
+        otraLista.is_a?(Array) &&
+        ((match_size)? (otraLista.length == lista.length) : true )
     end
   end
 

@@ -1,14 +1,27 @@
 class ProcMatcher
 
-  attr_accessor :bloque, :bindings
+  attr_accessor :bloque, :bindings, :lista
 
   def initialize(&bloque)
     @bloque = bloque
+    @lista = []
     @bindings = Hash.new
   end
 
-  def agregarBindings(bindings)
+#  def agregarBindings(bindings)
+#    @bindings = @bindings.merge(bindings)
+#  end
+
+  def agregar_bindings(bindings)
     @bindings = @bindings.merge(bindings)
+  end
+
+  def bind(objeto_a_evaluarse)
+      if(@lista != [])
+        tuplas = @lista.zip(objeto_a_evaluarse)
+        hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
+        agregar_bindings(Hash[hashes])
+      end
   end
 
   def call(objeto_a_evaluarse)

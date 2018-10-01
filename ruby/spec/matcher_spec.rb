@@ -229,9 +229,9 @@ end
 describe 'binding' do
 
   it '2 no es string' do
-    expect(matches?('Hola')do
-      with(type(String), :a_string) { a_string.length }
-    end).to eq(4)
+    expect(matches?([1, 2])do
+      with(:a_list, list([:a, :b])) { a_list + [a, b] }
+    end).to eq([1,2,1,2])
   end
 
   it 'Bindeo de array' do
