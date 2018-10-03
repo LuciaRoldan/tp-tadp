@@ -6,7 +6,7 @@ class Evaluator
   end
 
   def with(*matchers, &bloque)
-    @patrones.push(Patron.new(matchers, bloque))
+    @patrones.push(Patron.new(matchers, &bloque) )
   end
 
   def evaluar(objeto_a_evaluarse)
@@ -23,7 +23,7 @@ class Evaluator
   end
 
   def otherwise(&bloque)
-    patrones.push(Patron.new([],bloque))
+    patrones.push(Patron.new([],&bloque))
   end
 
 

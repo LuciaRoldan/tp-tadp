@@ -1,14 +1,14 @@
 class Patron
 
   attr_accessor :matchers, :bloque
-  def initialize(matchers, bloque)
+  def initialize(matchers, &bloque)
     @matchers = matchers
-    @bloque = Bloque.new(&bloque)
+    @bloque = bloque
   end
 
   def ejecutar_bloque(objeto_a_evaluarse)
-    puts('Lo que devuelve el bloque es: ', bloque.instance_eval(&bloque.bloque))
-    bloque.instance_eval(&bloque.bloque)
+    #puts('Lo que devuelve el bloque es: ', bloque.instance_eval(&bloque.bloque))
+    bloque.instance_eval( &bloque )
   end
 
   def agregar_bindings(objeto_a_evaluarse)
