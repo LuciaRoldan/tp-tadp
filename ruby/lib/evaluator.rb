@@ -10,17 +10,17 @@ class Evaluator
   end
 
   def evaluar(objeto_a_evaluarse)
-    resultado = 'lol'
-    unless
-    (patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
-    if (patron != nil)
-      patron.agregar_bindings(objeto_a_evaluarse)
-      resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
-    end)
-      raise 'Ningun patron matchea. Agregar un otherwise'
-    end
-    resultado
+
+    patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
+
+      if (patron != nil)
+        patron.agregar_bindings(objeto_a_evaluarse)
+        return resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
+      end
+
+    raise 'Ningun patron matchea. Agregar un otherwise'
   end
+
 
   def otherwise(&bloque)
     patrones.push(Patron.new([],&bloque))
