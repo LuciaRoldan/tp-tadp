@@ -5,27 +5,25 @@ class Evaluator
     @patrones = []
   end
 
-  def with(*matchers, &bloque)
-    @patrones.push(Patron.new(matchers, &bloque) )
-  end
-
   def evaluar(objeto_a_evaluarse)
 
     patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
 
-      if (patron != nil)
-        patron.agregar_bindings(objeto_a_evaluarse)
-        return resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
-      end
+    if (patron != nil)
+      patron.agregar_bindings(objeto_a_evaluarse)
+      return resultado = patron.ejecutar_bloque(objeto_a_evaluarse)
+    end
 
     raise 'Ningun patron matchea. Agregar un otherwise'
   end
 
+  def with(*matchers, &bloque)
+    @patrones.push(Patron.new(matchers, &bloque) )
+  end
 
   def otherwise(&bloque)
     patrones.push(Patron.new([],&bloque))
   end
-
 
 
   def val(objeto)
@@ -36,11 +34,6 @@ class Evaluator
     ProcMatcher.new { |objeto| objeto.is_a?(clase) }
   end
 
-  def agregar_bindings_lista(objeto_a_evaluarse, bloque)
-    tuplas = lista.zip(otraLista)
-    hashes = Hash[tuplas.select{ |tupla| tupla[0].is_a?(Symbol) }]
-    agregar_bindings(Hash[hashes])
-  end
 
   def list(lista, match_size = true)
     pm = ProcMatcher.new do |otraLista|
