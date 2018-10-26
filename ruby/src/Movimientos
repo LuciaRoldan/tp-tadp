@@ -1,0 +1,5 @@
+sealed trait Movimiento
+
+case object comerSemilla extends Movimiento
+case object dejarseFajar extends Movimiento
+case object cargarKi extends Movimiento
