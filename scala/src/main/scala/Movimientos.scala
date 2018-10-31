@@ -6,9 +6,9 @@ object cargarKi extends Movimiento {
   def apply(contrincantes: Contrincantes) : Contrincantes = {
     val (atacante, atacado) = contrincantes
      atacante match {
-        case _ : Sayajin => (atacante.copy(ki= atacante.ki + atacante.nivelSS * 150), atacado)
+        case atacante : Sayajin => (atacante.disminuirKi(atacante.ki + atacante.nivelSS * 150), atacado)
         case _ : Androide => contrincantes
-        case atacante => (atacante.copy(ki= atacante.ki + 100), atacado)
+        case atacante : Guerrero => (atacante.disminuirKi(atacante.ki + 100), atacado)
     }
   }
 }

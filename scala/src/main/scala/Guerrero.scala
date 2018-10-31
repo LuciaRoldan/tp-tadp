@@ -1,4 +1,3 @@
-import Hola.Movimiento
 
 object Guerrero{
   type Contrincantes = (Guerrero, Guerrero)
@@ -34,19 +33,21 @@ object Guerrero{
 
   }
 
-
+  case abstract class Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero{
+    def disminuirKi(cantidad: Int) = { this.copy(ki= this.ki - cantidad)}
+  }
 
   case class Androide(estado: Estado, ki: Int, nombre: String, inventario: List[Item], bateria: Int) extends Guerrero
 
-  case class Sayajin(estado: Estado, ki: Int, nombre: String, inventario: List[Item], nivelSS: Int) extends Guerrero
+  case class Sayajin(estado: Estado, ki: Int, nombre: String, inventario: List[Item], nivelSS: Int) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
-  case class Humano(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero
+  case class Humano(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
-  case class Fusionado (estado: Estado, ki: Int, nombre: String, inventario: List[Item], guerreroOriginal: Guerrero) extends Guerrero
+  case class Fusionado (estado: Estado, ki: Int, nombre: String, inventario: List[Item], guerreroOriginal: Guerrero) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
-  case class Namekusein (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero
+  case class Namekusein (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
-  case class Monstruo (ki: Int, nombre: String, inventario: List[Item]) extends Guerrero
+  case class Monstruo (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
 
 }
