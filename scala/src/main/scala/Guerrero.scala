@@ -49,6 +49,8 @@ object Guerrero{
 
   case class Monstruo (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
+  case class Mono (estado: Estado, ki: Int, nombre: String, inventario: List[Item], sayayin: Sayajin) extends Guerrero
+
 
 }
 
