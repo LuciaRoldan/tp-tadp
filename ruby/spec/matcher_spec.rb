@@ -47,31 +47,38 @@ describe 'list' do
   let (:an_array)  {[1, 2, 3, 4]}
 
   it 'Una lista es igual a si misma' do
-    expect(matcher.list([1, 2, 3, 4], true).call(an_array)).to eq(true)
+    proc = matcher.list([1, 2, 3, 4], true)
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(true)
   end
 
   it 'Una lista es igual a si misma' do
-    expect(matcher.list([1, 2, 3, 4], false).call(an_array)).to eq(true)
+    proc = matcher.list([1, 2, 3, 4], false)
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(true)
   end
 
   it 'Los primeros elementos de una lista son iguales a los primeros elementos de si misma' do
-    expect(matcher.list([1, 2, 3], true).call(an_array)).to eq(false)
+    proc = matcher.list([1, 2, 3], true)
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
   end
 
   it 'Los primeros elementos de una lista es distinta a si misma' do
-    expect(matcher.list([1, 2, 3], false).call(an_array)).to eq(true)
+    proc = matcher.list([1, 2, 3], false)
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(true)
   end
 
   it 'La lista desordenada es distinta a la lista' do
-    expect(matcher.list([2, 1, 3, 4], true).call(an_array)).to eq(false)
+    proc = matcher.list([2, 1, 3, 4], true)
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
   end
 
   it 'La lista desordenada es distinta a la lista' do
-    expect(matcher.list([2, 1, 3, 4], false).call(an_array)).to eq(false)
+    proc = matcher.list([2, 1, 3, 4], false)
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
   end
 
   it 'Si no se especifica march_size se considera true' do
-    expect(matcher.list([1, 2, 3]).call(an_array)).to eq(false)
+    proc = matcher.list([1, 2, 3])
+    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
   end
 
 end
@@ -209,11 +216,33 @@ describe 'match' do
     end).to eq('hola')
   end
 end
+
+describe 'ninguno matchea' do
+  it '[lol] no es un Numeric ni un String' do
+    expect{matches?(['lol'])do
+      with(type(Numeric)) { 'soy Numeric' }
+      with(type(String)) {'soy String'}
+    end}.to raise_error('Ningun patron matchea. Agregar un otherwise')
+  end
+end
+
 describe 'binding' do
 
   it '2 no es string' do
-    expect(matches?('Hola')do
-      with(type(String), :a_string) { a_string.length }
+    expect(matches?([1, 2])do
+      with(:a_list, list([:a, :b])) { a_list + [a, b] }
+    end).to eq([1,2,1,2])
+  end
+
+  it 'Bindeo de array' do
+    expect(matches?([1,2])do
+      with(type(Array), list([:a, :b], false)) { a + b }
+    end).to eq(3)
+  end
+
+  it 'Bindeo de array y verificaciones' do
+    expect(matches?([1, 2, 4, 'hola', Object.new])do
+      with(type(Array), list([:a, 2, :b, type(String), duck(:is_a?)], false)) { a * b }
     end).to eq(4)
   end
 
