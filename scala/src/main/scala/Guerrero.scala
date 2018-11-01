@@ -1,3 +1,5 @@
+import Movimientos._
+import Item._
 
 object Guerrero{
   type Contrincantes = (Guerrero, Guerrero)
@@ -6,7 +8,6 @@ object Guerrero{
   abstract class Guerrero {
 
     var estado: Estado
-    var ki: Int
     var nombre: String
     var inventario: List[Item]
 
@@ -34,10 +35,12 @@ object Guerrero{
   }
 
   case abstract class Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero{
-    def disminuirKi(cantidad: Int) = { this.copy(ki= this.ki - cantidad)}
+    def disminuirKi(cantidad: Int):Biologico = { this.copy(ki= this.ki - cantidad)}
+
+    def cambiarKi(cantidad: Int):Biologico = { this.copy(ki= cantidad)}
   }
 
-  case class Androide(estado: Estado, ki: Int, nombre: String, inventario: List[Item], bateria: Int) extends Guerrero
+  case class Androide(estado: Estado, nombre: String, inventario: List[Item], bateria: Int) extends Guerrero
 
   case class Sayajin(estado: Estado, ki: Int, nombre: String, inventario: List[Item], nivelSS: Int) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
@@ -49,7 +52,7 @@ object Guerrero{
 
   case class Monstruo (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
-  case class Mono (estado: Estado, ki: Int, nombre: String, inventario: List[Item], sayayin: Sayajin) extends Guerrero
+  case class Mono (estado: Estado, ki: Int, nombre: String, inventario: List[Item], sayayin: Sayajin) extends Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item])
 
 
 }
