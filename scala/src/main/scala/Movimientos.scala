@@ -11,9 +11,9 @@ object cargarKi {
   def apply(contrincantes: Contrincantes): Contrincantes = {
     val (atacante, atacado) = contrincantes
     atacante match {
-      case atacante: Sayajin => (atacante.copy(ki= atacante.ki + atacante.nivelSS * 150), atacado)
+      case atacante: Sayajin => (atacante.cambiarKi(atacante.ki + atacante.nivelSS * 150),atacado)
       case _: Androide => contrincantes
-      case atacante: Guerrero => (atacante.copy(atacante.ki + 100), atacado)
+      case atacante: Biologico => (atacante.cambiarKi(atacante.ki + 100), atacado)
     }
   }
 }

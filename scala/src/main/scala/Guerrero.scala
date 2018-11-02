@@ -3,23 +3,19 @@ package DragonBall
 import DragonBall.Guerrero.Guerrero
 import Movimiento._
 
-trait Ki{
-  val ki: Int
-
-}
 
 object Guerrero{
   type Contrincantes = (Guerrero, Guerrero)
   type PlanDeAtaque = List[Movimiento]
 
-   class Guerrero (val ki: Int, val estado: Estado, val nombre: String, val inventario: List[Item]){
+   class Guerrero ( var estado: Estado, var nombre: String, var inventario: List[Item]){
     def tieneItem(item: Item): Boolean = ???
 
     def contraatacar(enemigo: Guerrero): Contrincantes = ???
 
-    def copy(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Guerrero ={
+    /*def copy(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Guerrero ={
       new Guerrero(ki= nuevoKi, estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
-    }
+    }*/
 
     def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque): Unit ={
       plan.foldLeft((this, oponente)) {
@@ -44,25 +40,55 @@ object Guerrero{
 
   }
 
-  //case class Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero{
-  //  def disminuirKi(cantidad: Int):Biologico = { this.copy(ki= this.ki - cantidad)}
+  class Biologico(var ki:Int, override var estado: Estado, nombre: String, inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
 
-  //  def cambiarKi(cantidad: Int):Biologico = { this.copy(ki= cantidad)}
-  //}
+   def cambiarKi(cantidad: Int):Biologico = { this.copear(ki= cantidad)}
 
-  case class Androide(override val estado: Estado, override val ki: Int, override val nombre: String, override val inventario: List[Item], bateria: Int) extends Guerrero(ki :Int,estado :Estado, nombre: String, inventario: List[Item])
+    def copear(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Biologico ={
+      new Biologico(ki= nuevoKi, estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
+    }
 
-  case class Sayajin(estado: Estado, ki: Int, nombre: String, inventario: List[Item], nivelSS: Int) extends Guerrero with Ki
 
-  case class Humano(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero with Ki
+  }
 
-  case class Fusionado (estado: Estado, ki: Int, nombre: String, inventario: List[Item], guerreroOriginal: Guerrero) extends Guerrero with Ki
+  case class Androide(override val estado: Estado, override val nombre: String, override val inventario: List[Item], bateria: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
 
-  case class Namekusein (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero with Ki
+  case class Sayajin(override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], nivelSS: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
 
-  case class Monstruo (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero with Ki
+    def cambiarKi(cantidad: Int): Sayajin ={
+      this.copy(ki = cantidad)
+    }
+  }
 
-  case class Mono (estado: Estado, ki: Int, nombre: String, inventario: List[Item], sayayin: Sayajin) extends Guerrero with Ki
+  case class Humano(override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], nivelSS: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+    def cambiarKi(cantidad: Int): Humano ={
+      this.copy(ki = cantidad)
+    }
+  }
+
+  case class Fusionado (override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], nivelSS: Int, guerreroOriginal: Guerrero) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+    def cambiarKi(cantidad: Int): Fusionado ={
+      this.copy(ki = cantidad)
+    }
+  }
+
+  case class Namekusein (override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], nivelSS: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+    def cambiarKi(cantidad: Int): Namekusein ={
+      this.copy(ki = cantidad)
+    }
+  }
+
+  case class Monstruo (override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], nivelSS: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+    def cambiarKi(cantidad: Int)  ={
+      this.copy(ki = cantidad)
+    }
+  }
+
+  case class Mono (override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], sayayin: Sayajin) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+    def cambiarKi(cantidad: Int) ={
+      this.copy(ki = cantidad)
+    }
+  }
 
 
 }
