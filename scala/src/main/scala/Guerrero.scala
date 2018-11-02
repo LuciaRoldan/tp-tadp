@@ -3,23 +3,29 @@ package DragonBall
 import DragonBall.Guerrero.Guerrero
 import Movimiento._
 
-trait Ki{
-  val ki: Int
-
-}
-
 object Guerrero{
   type Contrincantes = (Guerrero, Guerrero)
   type PlanDeAtaque = List[Movimiento]
 
-   class Guerrero (val ki: Int, val estado: Estado, val nombre: String, val inventario: List[Item]){
-    def tieneItem(item: Item): Boolean = ???
+   case class Guerrero (val raza: Raza, val estado: Estado, val nombre: String, val inventario: List[Item]){
+
+     def cargarKi(): Guerrero = ???
+
+     def tieneMunicion: Boolean = ???
+
+     //no olvidar agregar ki maximo
+
+     def tieneItem(item: Item): Boolean = ???
 
     def contraatacar(enemigo: Guerrero): Contrincantes = ???
 
-    def copy(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Guerrero ={
-      new Guerrero(ki= nuevoKi, estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
+    /*def copy( nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Guerrero ={
+      new Guerrero( estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
     }
+
+     def cargarKi(): Unit ={
+       this.raza.aumentarEnergia()
+     }*/
 
     def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque): Unit ={
       plan.foldLeft((this, oponente)) {
@@ -44,26 +50,52 @@ object Guerrero{
 
   }
 
-  //case class Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero{
-  //  def disminuirKi(cantidad: Int):Biologico = { this.copy(ki= this.ki - cantidad)}
+  /*class Biologico(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+    def copy(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Biologico ={
+      new Biologico(ki= nuevoKi, estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
+    }
 
-  //  def cambiarKi(cantidad: Int):Biologico = { this.copy(ki= cantidad)}
-  //}
+    def disminuirKi(cantidad: Int):Biologico = { this.copy()}
 
-  case class Androide(override val estado: Estado, override val ki: Int, override val nombre: String, override val inventario: List[Item], bateria: Int) extends Guerrero(ki :Int,estado :Estado, nombre: String, inventario: List[Item])
+    def cambiarKi(cantidad: Int):Biologico = { this.copy(ki= cantidad)}
 
-  case class Sayajin(estado: Estado, ki: Int, nombre: String, inventario: List[Item], nivelSS: Int) extends Guerrero with Ki
 
-  case class Humano(estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero with Ki
+  }*/
 
-  case class Fusionado (estado: Estado, ki: Int, nombre: String, inventario: List[Item], guerreroOriginal: Guerrero) extends Guerrero with Ki
+  class Raza
 
-  case class Namekusein (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero with Ki
+   class Biologico(val ki :Int) extends Raza {
+    def cargarKi(): Biologico = this.copy(ki = this.ki+100)
+  }
 
-  case class Monstruo (estado: Estado, ki: Int, nombre: String, inventario: List[Item]) extends Guerrero with Ki
 
-  case class Mono (estado: Estado, ki: Int, nombre: String, inventario: List[Item], sayayin: Sayajin) extends Guerrero with Ki
+  case class Androide(val bateria: Int) extends Raza{
+    def aumentarEnergia ={
+    }
+  }
 
+  case class Sayajin(val nivelSS: Int, val ki: Int) extends Biologico(ki :Int)
+
+  case class Humano(val ki: Int) extends Biologico(ki :Int)
+
+  case class Fusionado (val ki: Int) extends Biologico(ki :Int)
+
+  case class Namekusein(val ki: Int) extends Biologico(ki :Int)
+
+  case class Monstruo(val ki: Int) extends Biologico(ki :Int)
+
+  case class Mono(val ki: Int, sayajin: Guerrero) extends Biologico(ki :Int)
+
+  /*case class Humano(override val estado: Estado, override val nombre: String, override val inventario: List[Item]) extends Guerrero (estado :Estado, nombre: String, inventario: List[Item])
+
+  case class Fusionado (override val estado: Estado, override val nombre: String, override val inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
+
+  case class Namekusein (override val estado: Estado, override val nombre: String, override val inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
+
+  case class Monstruo (override val estado: Estado, override val nombre: String, override val inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
+
+  case class Mono (override val estado: Estado, override val nombre: String, override val inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
+*/
 
 }
 
