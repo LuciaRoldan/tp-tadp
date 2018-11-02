@@ -1,3 +1,5 @@
+package DragonBall
+
 import Movimiento._
 
 
@@ -6,6 +8,8 @@ object Guerrero{
   type PlanDeAtaque = List[Movimiento]
 
   abstract class Guerrero {
+    def tieneItem(item: Item): Boolean = ???
+
     def contraatacar(enemigo: Guerrero): Contrincantes = ???
 
 

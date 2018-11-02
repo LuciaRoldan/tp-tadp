@@ -1,23 +1,25 @@
+package DragonBall
+
+
+import DragonBall._
+import DragonBall.Guerrero.Sayajin
+import DragonBall.Estado
+import DragonBall.Movimiento._
+
 import org.scalatest.{FreeSpec, Matchers}
 
-import Estado._
-import main.scala.Guerrero._
-import Item._
-import Movimientos._
 
 
-
-class DragonBallSpec extends FlatSpec with Matchers {
+class DragonBallSpec extends FreeSpec with Matchers {
   "Un pokemon" should "realizar actividad descansar y recuperar su energia" in {
-    val pokemon = Pokemon(Especies.charmander, energia = 20, energiaMaxima = 100)
+    val goku = Sayajin(estado = Normal, ki = 100, nombre = "GOKU", inventario = List(), nivelSS = 1)
 
-    //    pokemon.descansar
-    //    descansar(pokemon)
-    //    realizarActividad(descansar, pokemon)
+    val vegeta = Sayajin(estado = Normal, ki = 100, nombre = "VEGETA", inventario = List(), nivelSS = 1)
 
-    val pokemonDescansado = pokemon.realizarActividad(descansar)
 
-    pokemonDescansado.energia should be(pokemon.energiaMaxima)
+    val gokuKiCargado = cargarKi(goku, vegeta)
+
+    gokuKiCargado._1.ki should be(250)
   }
 
 }

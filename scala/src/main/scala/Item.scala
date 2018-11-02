@@ -1,3 +1,5 @@
+package DragonBall
+
 sealed class Item
 
 sealed class Arma extends Item
