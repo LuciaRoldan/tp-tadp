@@ -5,16 +5,18 @@ import Guerrero._
 
 object Movimiento {
   type Movimiento = Contrincantes => Contrincantes
+  //type ContrincantesBiologicos = (Biologico, Biologico)
 
-object cargarKi extends Movimiento {
-  def apply(contrincantes: Contrincantes) : Contrincantes = {
+object cargarKi {
+  def apply(contrincantes: Contrincantes): Contrincantes = {
     val (atacante, atacado) = contrincantes
-     atacante match {
-        case atacante : Sayajin => (atacante.disminuirKi(atacante.ki + atacante.nivelSS * 150), atacado)
-        case _ : Androide => contrincantes
-        case atacante : Biologico => (atacante.cambiarKi(atacante.ki + 100), atacado)
+    atacante match {
+      case atacante: Sayajin => (atacante.copy(ki= atacante.ki + atacante.nivelSS * 150), atacado)
+      case _: Androide => contrincantes
+      case atacante: Guerrero => (atacante.copy(atacante.ki + 100), atacado)
     }
   }
+}
 
   class usarItem(item: Item) extends Movimiento {
     def apply(contrincantes: Contrincantes): Contrincantes = {

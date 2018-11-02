@@ -11,15 +11,15 @@ import org.scalatest.{FreeSpec, Matchers}
 
 
 class DragonBallSpec extends FreeSpec with Matchers {
-  "Un pokemon" should "realizar actividad descansar y recuperar su energia" in {
-    val goku = Sayajin(estado = Normal, ki = 100, nombre = "GOKU", inventario = List(), nivelSS = 1)
+  ("Goku" should "Cargar su ki y quedar en 250").in({
+      val goku = Sayajin(estado = Normal, ki = 100, nombre = "GOKU", inventario = List(), nivelSS = 1)
 
-    val vegeta = Sayajin(estado = Normal, ki = 100, nombre = "VEGETA", inventario = List(), nivelSS = 1)
+      val vegeta = Sayajin(estado = Normal, ki = 100, nombre = "VEGETA", inventario = List(), nivelSS = 1)
 
 
-    val gokuKiCargado = cargarKi(goku, vegeta)
+      val gokuKiCargado = cargarKi(goku, vegeta)
 
-    gokuKiCargado._1.ki should be(250)
-  }
+      gokuKiCargado._1.ki should be(250)
+    })
 
 }
