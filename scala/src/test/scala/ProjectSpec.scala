@@ -1,14 +1,23 @@
 import org.scalatest.{FreeSpec, Matchers}
 
-class ProjectSpec extends FreeSpec with Matchers {
+import Estado._
+import main.scala.Guerrero._
+import Item._
+import Movimientos._
 
-  "Este proyecto" - {
 
-    "cuando está correctamente configurado" - {
-      "debería resolver las dependencias y pasar este test" in {
-        "tadp" shouldBe "tadp"
-      }
-    }
+
+class DragonBallSpec extends FlatSpec with Matchers {
+  "Un pokemon" should "realizar actividad descansar y recuperar su energia" in {
+    val pokemon = Pokemon(Especies.charmander, energia = 20, energiaMaxima = 100)
+
+    //    pokemon.descansar
+    //    descansar(pokemon)
+    //    realizarActividad(descansar, pokemon)
+
+    val pokemonDescansado = pokemon.realizarActividad(descansar)
+
+    pokemonDescansado.energia should be(pokemon.energiaMaxima)
   }
 
 }

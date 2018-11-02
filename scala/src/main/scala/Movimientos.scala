@@ -1,5 +1,5 @@
 import Guerrero._
-import Item._
+
 
 object Movimiento {
   type Movimiento = Contrincantes => Contrincantes
@@ -10,7 +10,7 @@ object cargarKi extends Movimiento {
      atacante match {
         case atacante : Sayajin => (atacante.disminuirKi(atacante.ki + atacante.nivelSS * 150), atacado)
         case _ : Androide => contrincantes
-        case atacante : Guerrero => (atacante.disminuirKi(atacante.ki + 100), atacado)
+        case atacante : Biologico => (atacante.cambiarKi(atacante.ki + 100), atacado)
     }
   }
 
