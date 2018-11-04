@@ -17,7 +17,7 @@ class DragonBallSpec extends FreeSpec with Matchers {
       val vegeta = Sayajin(estado = Normal, ki = 100, nombre = "VEGETA", inventario = List(), nivelSS = 1)
 
 
-      val gokuKiCargado = cargarKi(goku, vegeta)
+      val gokuKiCargado: (Sayajin, Sayajin) = cargarKi(goku, vegeta)
 
       gokuKiCargado._1.ki should be(250)
     })

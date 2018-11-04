@@ -1,15 +1,14 @@
 package DragonBall
 
-import DragonBall.Guerrero.Guerrero
+
 import Movimiento._
 
 
-object Guerrero{
-  type Contrincantes = (Guerrero, Guerrero)
-  type PlanDeAtaque = List[Movimiento]
-
    class Guerrero ( var estado: Estado, var nombre: String, var inventario: List[Item]){
-    def tieneItem(item: Item): Boolean = ???
+     type Contrincantes = (Guerrero, Guerrero)
+     type PlanDeAtaque = List[Movimiento]
+
+     def tieneItem(item: Item): Boolean = ???
 
     def contraatacar(enemigo: Guerrero): Contrincantes = ???
 
@@ -42,7 +41,7 @@ object Guerrero{
 
   class Biologico(var ki:Int, override var estado: Estado, nombre: String, inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
 
-   def cambiarKi(cantidad: Int):Biologico = { this.copear(ki= cantidad)}
+   def cambiarKi(cantidad: Int):Biologico = { this.copear(ki = cantidad :Int)}
 
     def copear(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Biologico ={
       new Biologico(ki= nuevoKi, estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
@@ -91,5 +90,5 @@ object Guerrero{
   }
 
 
-}
+
 

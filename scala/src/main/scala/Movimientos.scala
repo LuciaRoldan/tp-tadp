@@ -1,9 +1,12 @@
 package DragonBall
 
-import Guerrero._
+import DragonBall.Guerrero
 
 
 object Movimiento {
+
+  type Contrincantes = (Guerrero, Guerrero)
+  type PlanDeAtaque = List[Movimiento]
   type Movimiento = Contrincantes => Contrincantes
   //type ContrincantesBiologicos = (Biologico, Biologico)
 
