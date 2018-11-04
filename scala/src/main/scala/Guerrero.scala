@@ -5,8 +5,14 @@ import Movimiento._
 
 
    class Guerrero ( var estado: Estado, var nombre: String, var inventario: List[Item]){
+     def perderMunicion():Guerrero = ???
+
+     def tieneMunicion: Boolean = ???
+
      type Contrincantes = (Guerrero, Guerrero)
      type PlanDeAtaque = List[Movimiento]
+
+     def cambiarEstado(nuevoEstado: Estado):Guerrero = ???
 
      def tieneItem(item: Item): Boolean = ???
 
@@ -39,9 +45,9 @@ import Movimiento._
 
   }
 
-  class Biologico(var ki:Int, override var estado: Estado, nombre: String, inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+  class Biologico(val ki:Int, estado: Estado, nombre: String, inventario: List[Item]) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
 
-   def cambiarKi(cantidad: Int):Biologico = this.copear(cantidad)
+    def cambiarKi(cantidad: Int):Biologico = this.copear(cantidad)
 
     def copear(nuevoKi :Int = ki, nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Biologico =
       new Biologico(ki = nuevoKi, estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario)
@@ -49,9 +55,13 @@ import Movimiento._
   }
 //case class Biologico (override var ki :Int, override var estado : Estado, override var nombre :String, override var inventario : List[Item]) extends Biologico(ki :Int, estado : Estado, nombre :String, inventario : List[Item])
 
-  case class Androide(override val estado: Estado, override val nombre: String, override val inventario: List[Item], bateria: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
+  case class Androide(override var estado: Estado, override var nombre: String, override var inventario: List[Item], val bateria: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item])
 
   case class Sayajin(override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], nivelSS: Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+
+    def perderCola :Sayajin = ???
+
+    def tieneCola: Boolean = ???
 
     def cambiarKi(cantidad: Int): Sayajin ={
       this.copy(ki = cantidad)
@@ -83,6 +93,9 @@ import Movimiento._
   }
 
   case class Mono (override var estado: Estado,  var ki: Int, override var nombre: String, override var inventario: List[Item], sayayin: Sayajin) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item]){
+
+    def getSayajin :Sayajin = sayayin
+
     def cambiarKi(cantidad: Int) ={
       this.copy(ki = cantidad)
     }
