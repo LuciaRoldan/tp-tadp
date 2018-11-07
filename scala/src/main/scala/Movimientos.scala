@@ -21,7 +21,7 @@ object Movimiento {
     kiDespues
   }
 
-  object cargarKi {
+  object cargarKi extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
       atacante match {
