@@ -32,7 +32,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
     def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque) ={
       plan.foldLeft((this, oponente)) {
-        case((atacante, atacado), movimiento) if (atacante.estado == Muerto || atacado.estado == Muerto) => atacante.pelearRound(movimiento, atacado)
+        case((atacante, atacado), movimiento)/* if (atacante.estado == Muerto || atacado.estado == Muerto)*/ => atacante.pelearRound(movimiento, atacado)
       }
     }
 
@@ -94,7 +94,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
       new Sayajin(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, nivelSS = nivelSS, tieneCola = tieneCola, listaDeMovimientos = listaDeMovimientos)
   }
 
-  case class Humano(override val estado: Estado,  override val ki: Int, override val nombre: String, override val inventario: List[Item], nivelSS: Int, listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
+  case class Humano(override val estado: Estado,  override val ki: Int, override val nombre: String, override val inventario: List[Item], listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
     override def cambiarKi(cantidad: Int): Humano ={
       this.copy(ki = cantidad)
     }

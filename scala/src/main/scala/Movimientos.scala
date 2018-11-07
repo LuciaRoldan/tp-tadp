@@ -32,6 +32,10 @@ object Movimiento {
     }
   }
 
+  object dejarseFajar extends Movimiento{
+    def apply(contrincantes: Contrincantes): Contrincantes = {contrincantes}
+  }
+
   class usarItem(item: Item) extends Movimiento {
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
