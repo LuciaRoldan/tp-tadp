@@ -3,7 +3,7 @@ package DragonBall
 
 object Movimiento {
 
-  type Criterio = Contrincantes => Int
+  type Criterio = (Contrincantes, Contrincantes) => Int
 
   class NoTieneItemException extends Exception
 
@@ -20,7 +20,7 @@ object Movimiento {
     }
   }
 
-  object cargarKi {
+  object cargarKi extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
       atacante match {
