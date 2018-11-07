@@ -4,9 +4,9 @@ sealed class Item
 
 sealed class Arma extends Item
 
-case object armaFilosa extends Arma
-case object armaRoma extends Arma
-case object armaDeFuego extends Arma
+case object ArmaFilosa extends Arma
+case object ArmaRoma extends Arma
+case object ArmaDeFuego extends Arma
 
-case object esfera extends Item
-case object semilla extends Item
+case object Esfera extends Item
+case object Semilla extends Item
