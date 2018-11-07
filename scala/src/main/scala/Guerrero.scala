@@ -17,7 +17,11 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
      def tieneItem(item: Item): Boolean = inventario.contains(item)
 
-    def contraatacar(enemigo: Guerrero): Contrincantes = (enemigo, this)
+    def contraatacar(enemigo: Guerrero): Contrincantes = {
+      val movimiento: Movimiento = this.movimientoMasEfectivoContra(enemigo)(diferenciaKiAtacante)
+      val (yoModificado, enemigoModificado) = this.hacerMovimiento(movimiento, (this,enemigo))
+      (enemigoModificado, yoModificado)
+    }
 
      def copear(nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Guerrero
 
@@ -28,8 +32,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
     def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque) ={
       plan.foldLeft((this, oponente)) {
-        case((atacante, atacado), movimiento) =>
-          atacante.pelearRound(movimiento, atacado)
+        case((atacante, atacado), movimiento) if (atacante.estado == Muerto || atacado.estado == Muerto) => atacante.pelearRound(movimiento, atacado)
       }
     }
 

@@ -3,7 +3,7 @@ package DragonBall
 
 object Movimiento {
 
-  type Criterio = Contrincantes => Int
+  type Criterio = (Contrincantes, Contrincantes) => Int
 
   class NoTieneItemException extends Exception
 
@@ -12,12 +12,13 @@ object Movimiento {
   type Movimiento = Contrincantes => Contrincantes
   //type ContrincantesBiologicos = (Biologico, Biologico)
 
-  val diferenciaKiAtacante = (contAntes: Contrincantes, contDespues: Contrincantes) => {
+  val diferenciaKiAtacante: Criterio = (contAntes: Contrincantes, contDespues: Contrincantes) => {
     val (atacanteAntes, atacanteDespues) = (contAntes._1, contDespues._1)
     val kiDespues = (atacanteAntes, atacanteDespues) match {
       case _: (Androide, Androide) => 0
       case guerreros: (Biologico, Biologico) => guerreros._2.ki - guerreros._1.ki
     }
+    kiDespues
   }
 
   object cargarKi {
