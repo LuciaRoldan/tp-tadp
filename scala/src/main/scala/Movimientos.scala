@@ -68,6 +68,10 @@ object Movimiento {
     }
   }
 
+  case object ComerSemilla extends Movimiento {
+    override def apply(v1: (Guerrero, Guerrero)): (Guerrero, Guerrero) = ???
+  }
+
 }
 
 

@@ -44,7 +44,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
     def hacerMovimiento(movimiento: Movimiento, contrincantes: Contrincantes): Contrincantes ={
       (movimiento, contrincantes._1.estado) match{
-        case(comerSemilla,_) => movimiento(contrincantes)
+        case(ComerSemilla,_) => movimiento(contrincantes)
         case(_,Muerto) => contrincantes
         case(_,Inconsciente) => contrincantes
         case(_,_) => movimiento(contrincantes)
@@ -94,8 +94,14 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item]): Sayajin =
       new Sayajin(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, nivelSS = nivelSS, tieneCola = tieneCola, listaDeMovimientos = listaDeMovimientos)
 
-    def convertirseEnMono(): Mono ={
-      new Mono(this.estado, this.ki, this.nombre, this.inventario, this, this.listaDeMovimientos)
+    def convertirseEnMono(): Guerrero ={
+      if(this.pudeConvertirseEnMono){
+        new Mono(this.estado, this.ki, this.nombre, this.inventario, this, this.listaDeMovimientos)
+      } else {this}
+    }
+
+    def pudeConvertirseEnMono() ={
+      inventario.contains(FotoDeLaLuna) && this.tieneCola && this.nivelSS <= 1
     }
   }
 

@@ -10,3 +10,5 @@ case object ArmaDeFuego extends Arma
 
 case object Esfera extends Item
 case object Semilla extends Item
+
+case object FotoDeLaLuna extends Item

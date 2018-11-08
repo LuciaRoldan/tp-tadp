@@ -5,7 +5,7 @@ import org.scalatest.FunSuite
 class DragonBallTest extends FunSuite {
 
   val goku = Sayajin(estado = Normal, ki = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego)))
-  val vegeta = Sayajin(estado = Normal, ki = 100, nombre = "VEGETA", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
+  val vegeta = Sayajin(estado = Normal, ki = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
   val krillin = Humano(estado = Normal, ki = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(dejarseFajar))
 
   test("Goku carga su ki") {
