@@ -3,6 +3,11 @@ package DragonBall
 
 import Movimiento._
 
+trait Fusionable{
+  def fusionar(atacante: Biologico, amigo: Biologico) =
+    new Fusionado(estado = Normal, ki = atacante.ki + amigo.ki, kiMaximo = atacante.kiMaximo + amigo.kiMaximo, "FUSION",
+      inventario = atacante.inventario ++ amigo.inventario, guerreroOriginal = atacante, listaDeMovimientos = atacante.listaDeMovimientos ++ amigo.listaDeMovimientos)
+}
 
 abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: List[Item], val listaDeMovimientos: PlanDeAtaque) {
 
@@ -82,7 +87,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
   }
 
-  case class Sayajin(override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], nivelSS: Int, tieneCola: Boolean, override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki: Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
+  case class Sayajin(override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], nivelSS: Int, tieneCola: Boolean, override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki: Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque) with Fusionable{
 
     def perderCola :Sayajin = {this.copy(tieneCola = false)}
 
@@ -114,7 +119,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     }
   }
 
-  case class Humano(override val estado: Estado,  override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
+  case class Humano(override val estado: Estado,  override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque) with Fusionable{
     override def cambiarKi(cantidad: Int): Humano ={
       this.copy(ki = cantidad)
     }
@@ -133,7 +138,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
   }
 
-  case class Namekusein (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
+  case class Namekusein (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque) with Fusionable{
     override def cambiarKi(cantidad: Int): Namekusein ={
       this.copy(ki = cantidad)
     }

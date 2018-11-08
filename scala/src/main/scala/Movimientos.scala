@@ -82,6 +82,18 @@ object Movimiento {
     }
   }
 
+  class fusionarse(amigo: Fusionable) extends Movimiento{
+    override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      if(amigo.asInstanceOf[Guerrero].estado == Normal){
+        atacante match{
+          case atacante: Fusionable => (atacante.fusionar(atacante.asInstanceOf[Biologico], amigo.asInstanceOf[Biologico]), atacado)
+          case _ => (atacante, atacado)
+        }
+      } else { contrincantes }
+    }
+  }
+
 }
 
 

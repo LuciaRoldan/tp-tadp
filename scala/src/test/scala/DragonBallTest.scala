@@ -1,4 +1,4 @@
-import DragonBall.Movimiento.{cargarKi, convertirseEnMono, dejarseFajar, usarItem}
+import DragonBall.Movimiento._
 import DragonBall._
 import org.scalatest.FunSuite
 
@@ -33,5 +33,10 @@ class DragonBallTest extends FunSuite {
     val vegetaTransformado = vegeta.aumentarNivelSS()
 
     assert(vegetaTransformado.nivelSS == 2)
+  }
+  test("Goku y Vegeta se fusionan"){
+    val gogeta = goku.hacerMovimiento(new fusionarse(vegeta), (goku,krillin))._1
+
+    assert(gogeta.isInstanceOf[Fusionado])
   }
 }
