@@ -58,6 +58,10 @@ object Movimiento {
     }
   }
 
+  object convertirseEnMono extends Movimiento {
+    override def apply(v1: (Guerrero, Guerrero)): (Guerrero, Guerrero) = ???
+  }
+
 }
 
 

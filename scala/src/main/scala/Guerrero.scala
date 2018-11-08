@@ -32,7 +32,8 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
     def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque) ={
       plan.foldLeft((this, oponente)) {
-        case((atacante, atacado), movimiento)/* if (atacante.estado == Muerto || atacado.estado == Muerto)*/ => atacante.pelearRound(movimiento, atacado)
+        case((atacante, atacado), movimiento) if (atacante.estado == Muerto || atacado.estado == Muerto) => (atacante, atacado)
+        case((atacante, atacado), movimiento) => atacante.pelearRound(movimiento, atacado)
       }
     }
 
