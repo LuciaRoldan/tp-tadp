@@ -1,4 +1,4 @@
-import DragonBall.Movimiento.{cargarKi, dejarseFajar, usarItem}
+import DragonBall.Movimiento.{cargarKi, convertirseEnMono, dejarseFajar, usarItem}
 import DragonBall._
 import org.scalatest.FunSuite
 
@@ -22,5 +22,10 @@ class DragonBallTest extends FunSuite {
     val krillinNuevo = goku.pelearContra(krillin)(List(new usarItem(ArmaFilosa), cargarKi))._2
 
     assert(krillin.ki > krillinNuevo.asInstanceOf[Humano].ki)
+  }
+  test("Vegeta se convierte en un mono"){
+    val vegetaTransformado = vegeta.pelearRound(convertirseEnMono, krillin)._1
+
+    assert(vegetaTransformado.isInstanceOf[Mono])
   }
 }

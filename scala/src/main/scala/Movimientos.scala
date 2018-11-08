@@ -15,8 +15,8 @@ object Movimiento {
   val diferenciaKiAtacante: Criterio = (contAntes: Contrincantes, contDespues: Contrincantes) => {
     val (atacanteAntes, atacanteDespues) = (contAntes._1, contDespues._1)
     val kiDespues = (atacanteAntes, atacanteDespues) match {
-      case _: (Androide, Androide) => 0
-      case guerreros: (Biologico, Biologico) => guerreros._2.ki - guerreros._1.ki
+      case (_: Androide, _: Androide) => 0
+      case (antes: Biologico, despues: Biologico) => antes.ki.-(despues.ki)
     }
     kiDespues
   }
@@ -59,7 +59,13 @@ object Movimiento {
   }
 
   object convertirseEnMono extends Movimiento {
-    override def apply(v1: (Guerrero, Guerrero)): (Guerrero, Guerrero) = ???
+    override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      atacante match {
+        case atacante: Sayajin => (atacante.convertirseEnMono, atacado)
+        case _ => (atacante, atacado)
+      }
+    }
   }
 
 }
