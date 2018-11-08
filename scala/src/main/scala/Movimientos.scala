@@ -76,8 +76,7 @@ object Movimiento {
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
       atacante match{
-        case atacante: Mono => ???
-        case atacante: Sayajin => ???
+        case atacante: Sayajin => (atacante.aumentarNivelSS(), atacado)
         case _ => (atacante, atacado)
       }
     }

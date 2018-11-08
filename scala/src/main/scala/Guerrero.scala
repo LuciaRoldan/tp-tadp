@@ -102,6 +102,10 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def pudeConvertirseEnMono() ={
       inventario.contains(FotoDeLaLuna) && this.tieneCola && this.nivelSS <= 1
     }
+
+    def aumentarNivelSS(): Sayajin = {
+      this.copy(nivelSS = nivelSS + 1, kiMaximo = kiMaximo * (nivelSS + 1))
+    }
   }
 
   case class Humano(override val estado: Estado,  override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
