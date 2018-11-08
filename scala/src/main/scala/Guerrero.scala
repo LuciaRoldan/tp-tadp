@@ -104,7 +104,13 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     }
 
     def aumentarNivelSS(): Sayajin = {
-      this.copy(nivelSS = nivelSS + 1, kiMaximo = kiMaximo * (nivelSS + 1))
+      if(this.puedeAumentarNivelSS()){
+        this.copy(nivelSS = nivelSS + 1, kiMaximo = kiMaximo * (nivelSS + 1))
+      } else {this}
+    }
+
+    def puedeAumentarNivelSS(): Boolean ={
+      ki >= kiMaximo/2
     }
   }
 
