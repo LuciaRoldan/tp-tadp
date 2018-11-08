@@ -72,6 +72,17 @@ object Movimiento {
     override def apply(v1: (Guerrero, Guerrero)): (Guerrero, Guerrero) = ???
   }
 
+  object convertirseEnSuperSayajin extends Movimiento{
+    override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      atacante match{
+        case atacante: Mono => ???
+        case atacante: Sayajin => ???
+        case _ => (atacante, atacado)
+      }
+    }
+  }
+
 }
 
 
