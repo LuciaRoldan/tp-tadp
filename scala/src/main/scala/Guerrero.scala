@@ -1,6 +1,6 @@
 package DragonBall
 
-
+import DragonBall.FormaDeComer.FormaDeComer
 import Movimiento._
 
 trait Fusionable{
@@ -70,7 +70,6 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
         case((atacante, atacado), movimiento) => atacante.pelearRound(movimiento, atacado)
       }
     }
-
   }
 
 
@@ -153,12 +152,14 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
   }
 
 
-  case class Monstruo (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item],  override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
+  case class Monstruo (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item],  override val listaDeMovimientos: PlanDeAtaque, val movimientosAdquiridos: PlanDeAtaque, val formaDeComer: FormaDeComer) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
     override def cambiarKi(cantidad: Int)  ={
       this.copy(ki = cantidad)
     }
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item]): Guerrero =
-      new Monstruo(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, listaDeMovimientos = listaDeMovimientos)
+      new Monstruo(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, listaDeMovimientos = listaDeMovimientos, movimientosAdquiridos = movimientosAdquiridos, formaDeComer = formaDeComer)
+
+    def cambiarMovimientosAdquiridos(nuevosMovimientos: PlanDeAtaque) = {this.copy(movimientosAdquiridos = nuevosMovimientos)}
   }
 
 

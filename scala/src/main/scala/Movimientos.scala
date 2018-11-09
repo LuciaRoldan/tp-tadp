@@ -177,6 +177,16 @@ object Movimiento {
       }
     }
   }
+
+  class comerseA(enemgigo: Biologico) extends Movimiento{
+    override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      atacante match {
+        case atacante: Monstruo => atacante.formaDeComer(contrincantes)
+        case _ => contrincantes
+      }
+    }
+  }
 }
 
 
