@@ -21,7 +21,7 @@ object Movimiento {
     kiDespues
   }
 
-  object cambiarVida {
+  /*object cambiarVida {
     def apply(guerrero: Guerrero, vida: Int): Guerrero ={
       guerrero match{
         case guerrero: Biologico => guerrero.cambiarKi(vida)
@@ -37,7 +37,7 @@ object Movimiento {
         case guerrero: Androide => guerrero.bateria
       }
     }
-  }
+  }*/
 
   object cargarKi extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
@@ -150,22 +150,22 @@ object Movimiento {
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
       (ataque, atacante, atacado) match {
-        case (MuchosGolpesNinja, atacante: Humano, atacado: Androide) => (atacante.cambiarKi(-10), atacado)
-        case (MuchosGolpesNinja, atacante, atacado) => if (getVida(atacado) < getVida(atacante)) {(atacante, cambiarVida(atacado, getVida(atacado) - 20))}
-              else {(cambiarVida(atacante, getVida(atacante) - 20), atacado)}
+        case (MuchosGolpesNinja, atacante: Humano, atacado: Androide) => (atacante.cambiarVida(atacante.getVida - 10), atacado)
+        case (MuchosGolpesNinja, atacante, atacado) => if (atacado.getVida < atacante.getVida) {(atacante, atacado.cambiarVida(atacado.getVida - 20))}
+              else {(atacante.cambiarVida(atacante.getVida - 10 ), atacado)}
 
-        case (Explotar, atacante: Monstruo, atacado: Namekusein) => (atacante.cambiarKi(0), atacado.cambiarKi(math.max(atacado.ki - atacante.ki * 2, 1)))
-        case (Explotar, atacante: Monstruo, atacado) => (atacante.cambiarKi(0), cambiarVida(atacado, getVida(atacado) - getVida(atacante) * 2))
-        case (Explotar, atacante: Androide, atacado: Namekusein) => (atacante.cambiarBateria(0), atacado.cambiarKi(math.max(atacado.ki - atacante.bateria * 3, 1)))
-        case (Explotar, atacante: Androide, atacado) => (atacante.cambiarBateria(0), cambiarVida(atacado, getVida(atacado) - getVida(atacante) * 3))
+        case (Explotar, atacante: Monstruo, atacado: Namekusein) => (atacante.cambiarVida(0), atacado.cambiarVida(math.max(atacado.getVida - atacante.getVida * 2, 1)))
+        case (Explotar, atacante: Monstruo, atacado) => (atacante.cambiarVida(0), atacado.cambiarVida(atacado.getVida - atacante.getVida * 2))
+        case (Explotar, atacante: Androide, atacado: Namekusein) => (atacante.cambiarVida(0), atacado.cambiarVida(math.max(atacado.getVida - atacante.getVida * 3, 1)))
+        case (Explotar, atacante: Androide, atacado) => (atacante.cambiarVida(0), atacado.cambiarVida(atacado.getVida - atacante.getVida * 3))
 
-        case (Onda(energia), atacante, _) => if (getVida(atacante) < energia) {
+        case (Onda(energia), atacante, _) => if (atacante.getVida() < energia) {
           (atacante, atacado)
         } else {
           (ataque, atacante, atacado) match {
-            case (Onda(energia), atacante, atacado: Monstruo) => {(cambiarVida(atacante, getVida(atacante) - energia), atacado.cambiarKi(atacado.ki - energia / 2))}
-            case (Onda(energia), atacante, atacado: Androide) => {(cambiarVida(atacante, getVida(atacante) - energia), atacado.cambiarBateria(atacado.bateria + energia * 2))}
-            case (Onda(energia), atacante, atacado) => {(cambiarVida(atacante, getVida(atacante) - energia), cambiarVida(atacado, getVida(atacado) - energia * 2))}
+            case (Onda(energia), atacante, atacado: Monstruo) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida - energia / 2))}
+            case (Onda(energia), atacante, atacado: Androide) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida + energia * 2))}
+            case (Onda(energia), atacante, atacado) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida - energia * 2))}
           }
         }
         //case Genkidama{}

@@ -41,14 +41,16 @@ class DragonBallTest extends FunSuite {
   }
 
   test("Mi objeto bizarro anda"){
-    val vidaGoku = getVida(goku)
+    val vidaGoku = goku.getVida()
 
     assert(vidaGoku.equals(100))
   }
 
   test("Mi objeto bizarro anda pt2"){
-    val androide18ConVidaNueva = cambiarVida(androide18, getVida(androide18) - 15)
-    val vidaNuevaAndroide18 = getVida(androide18ConVidaNueva)
+    val androide18ConVidaNueva = androide18.cambiarVida(85)
+    val vidaNuevaAndroide18 = androide18ConVidaNueva.getVida()
+
+    printf(vidaNuevaAndroide18.toString)
 
     assert(vidaNuevaAndroide18.equals(85))
   }
