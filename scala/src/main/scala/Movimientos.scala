@@ -64,7 +64,7 @@ object Movimiento {
       if (atacante.tieneItem(item)) {
         (item, atacante, atacado) match {
           case (ArmaRoma, _ :Androide, _) => (atacante, atacado)
-          case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente))
+          case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente(0)))
           case (ArmaRoma, _, _) => (atacante, atacado)
           case (ArmaFilosa, _, atacado :Sayajin) if atacado.tieneCola =>  (atacante, atacado.perderCola.cambiarKi(1))
           case (ArmaFilosa, _, atacado :Mono) => (atacante, atacado.getSayajin.perderCola.cambiarKi(1))

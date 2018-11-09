@@ -5,7 +5,7 @@ import Movimiento._
 
 trait Fusionable{
   def fusionar(atacante: Biologico, amigo: Biologico) =
-    new Fusionado(estado = Normal, ki = atacante.ki + amigo.ki, kiMaximo = atacante.kiMaximo + amigo.kiMaximo, "FUSION",
+    new Fusionado(estado = Normal(0), ki = atacante.ki + amigo.ki, kiMaximo = atacante.kiMaximo + amigo.kiMaximo, "FUSION",
       inventario = atacante.inventario ++ amigo.inventario, guerreroOriginal = atacante, listaDeMovimientos = atacante.listaDeMovimientos ++ amigo.listaDeMovimientos)
 }
 
