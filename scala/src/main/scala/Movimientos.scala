@@ -64,7 +64,7 @@ object Movimiento {
       if (atacante.tieneItem(item)) {
         (item, atacante, atacado) match {
           case (ArmaRoma, _ :Androide, _) => (atacante, atacado)
-          case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente(0)))
+          case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente(atacado.estado.roundsFajado)))
           case (ArmaRoma, _, _) => (atacante, atacado)
           case (ArmaFilosa, _, atacado :Sayajin) if atacado.tieneCola =>  (atacante, atacado.perderCola.cambiarKi(1))
           case (ArmaFilosa, _, atacado :Mono) => (atacante, atacado.getSayajin.perderCola.cambiarKi(1))
@@ -107,7 +107,7 @@ object Movimiento {
   class fusionarse(amigo: Fusionable) extends Movimiento{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
-      if(amigo.asInstanceOf[Guerrero].estado == Normal){
+      if(amigo.asInstanceOf[Guerrero].estado.isInstanceOf[Normal]){
         atacante match{
           case atacante: Fusionable => (atacante.fusionar(atacante.asInstanceOf[Biologico], amigo.asInstanceOf[Biologico]), atacado)
           case _ => (atacante, atacado)

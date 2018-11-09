@@ -1,6 +1,6 @@
 package DragonBall
 
-abstract class Estado(roundsFajado: Int) {
+abstract class Estado(val roundsFajado: Int) {
  def dejarseFajar: Estado
 }
 

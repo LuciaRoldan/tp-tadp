@@ -4,10 +4,10 @@ import org.scalatest.FunSuite
 
 class DragonBallTest extends FunSuite {
 
-  val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego)))
-  val vegeta = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
-  val krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(dejarseFajar))
-  val androide18 = Androide(estado = Normal, nombre = "ANDROIDE 18", inventario = List(), bateria = 100, listaDeMovimientos = List())
+  val goku = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego)))
+  val vegeta = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
+  val krillin = Humano(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(dejarseFajar))
+  val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(), bateria = 100, listaDeMovimientos = List())
 
   test("Goku carga su ki") {
     val gokuKiCargado = cargarKi(goku, vegeta)._1
@@ -40,13 +40,13 @@ class DragonBallTest extends FunSuite {
     assert(gogeta.isInstanceOf[Fusionado])
   }
 
-  test("Mi objeto bizarro anda"){
+  test("Test de get vida"){
     val vidaGoku = goku.getVida()
 
     assert(vidaGoku.equals(100))
   }
 
-  test("Mi objeto bizarro anda pt2"){
+  test("Test de cambiar vida"){
     val androide18ConVidaNueva = androide18.cambiarVida(85)
     val vidaNuevaAndroide18 = androide18ConVidaNueva.getVida()
 
@@ -56,7 +56,7 @@ class DragonBallTest extends FunSuite {
   }
 
   test("setters de los estados"){
-    val estado = Inconsciente
+    val estado = new Inconsciente(5)
 
     assert(estado.roundsFajado.equals(5))
   }
