@@ -84,6 +84,9 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
   case class Androide(override val estado: Estado, override val nombre: String, override val inventario: List[Item], bateria: Int , override val listaDeMovimientos: PlanDeAtaque) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item]): Androide =
       new Androide(estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario, bateria = bateria, listaDeMovimientos = listaDeMovimientos)
+    def cambiarBateria(cantidad: Int): Androide={
+      this.copy(bateria = cantidad);
+    }
 
   }
 

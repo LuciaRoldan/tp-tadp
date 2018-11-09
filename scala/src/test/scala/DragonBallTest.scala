@@ -39,4 +39,17 @@ class DragonBallTest extends FunSuite {
 
     assert(gogeta.isInstanceOf[Fusionado])
   }
+
+  test("Mi objeto bizarro anda"){
+    val vidaGoku = getVida(goku)
+
+    assert(vidaGoku.equals(100))
+  }
+
+  test("Mi objeto bizarro anda pt2"){
+    val androide18ConVidaNueva = cambiarVida(androide18, getVida(androide18) - 15)
+    val vidaNuevaAndroide18 = getVida(androide18ConVidaNueva)
+
+    assert(vidaNuevaAndroide18.equals(85))
+  }
 }
