@@ -1,5 +1,7 @@
 package DragonBall
 
+import DragonBall.Magia.Magia
+
 
 object Movimiento {
 
@@ -180,13 +182,26 @@ object Movimiento {
 
   class comerseA(enemgigo: Biologico) extends Movimiento{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
-      val (atacante, atacado) = contrincantes
+      val atacante = contrincantes._1
       atacante match {
         case atacante: Monstruo => atacante.formaDeComer(contrincantes)
         case _ => contrincantes
       }
     }
   }
+
+  class hacerMagia(truco: Magia) extends Movimiento {
+    override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      atacante match {
+        case _: Monstruo => truco(contrincantes)
+        case _: Namekusein => truco(contrincantes)
+        case atacante if atacante.tiene7Esferas() => truco(atacante.copear(nuevoInventario = atacante.inventario.filter(_ != new EsferasDelDragon(7))), atacado)
+        case _ => contrincantes
+      }
+    }
+  }
+
 }
 
 

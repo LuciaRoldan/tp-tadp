@@ -1,15 +1,17 @@
 import DragonBall.FormaDeComer.FormaDeComerDeMajinBuu
+import DragonBall.Magia.{aumentarVidaPropiaYDisminuirLaDelEnemigo, vaciarInventarioEnemigo}
 import DragonBall.Movimiento._
 import DragonBall._
 import org.scalatest.FunSuite
 
 class DragonBallTest extends FunSuite {
 
-  val goku = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego)))
+  val goku = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego), new hacerMagia(vaciarInventarioEnemigo)))
   val vegeta = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
   val krillin = Humano(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(dejarseFajar))
-  val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(), bateria = 100, listaDeMovimientos = List())
+  val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, listaDeMovimientos = List())
   val majinBuu = Monstruo(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseA(krillin)), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu)
+  val piccolo = Namekusein(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))))
 
   test("Goku carga su ki") {
     val gokuKiCargado = cargarKi(goku, vegeta)._1
@@ -67,6 +69,18 @@ class DragonBallTest extends FunSuite {
     val (buuModificado: Monstruo, krillinModificado) = majinBuu.hacerMovimiento(new comerseA(krillin), (majinBuu,krillin))
 
     assert(buuModificado.movimientosAdquiridos.contains(dejarseFajar) &&  krillinModificado.estado == new Muerto(0))
+  }
+
+  test("Goku puede hacer magia porque tiene 7 esferas del dragon"){
+    val(gokuModificado, androideModificado) = goku.hacerMovimiento(new hacerMagia(vaciarInventarioEnemigo), (goku, androide18))
+
+    assert(!gokuModificado.inventario.contains(new EsferasDelDragon(7)) && androideModificado.inventario.isEmpty)
+  }
+
+  test("Piccolo puede hacer magia") {
+    val(piccoloModificado, majinBuuModificado) = piccolo.hacerMovimiento(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30)), (piccolo, majinBuu))
+
+    assert(majinBuuModificado.getVida() == majinBuu.getVida() - 30)
   }
 
 }

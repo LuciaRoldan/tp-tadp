@@ -12,3 +12,5 @@ case object Esfera extends Item
 case object Semilla extends Item
 
 case object FotoDeLaLuna extends Item
+
+case class EsferasDelDragon(cantidad: Int) extends Item

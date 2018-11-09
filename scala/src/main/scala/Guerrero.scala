@@ -70,6 +70,10 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
         case((atacante, atacado), movimiento) => atacante.pelearRound(movimiento, atacado)
       }
     }
+
+     def tiene7Esferas() ={
+       this.inventario.contains(new EsferasDelDragon(7))
+     }
   }
 
 
