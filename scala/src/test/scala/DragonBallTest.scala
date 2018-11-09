@@ -54,4 +54,11 @@ class DragonBallTest extends FunSuite {
 
     assert(vidaNuevaAndroide18.equals(85))
   }
+
+  test("setters de los estados"){
+    val estado = Inconsciente
+
+    assert(estado.roundsFajado.equals(5))
+  }
+
 }

@@ -41,8 +41,8 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def hacerMovimiento(movimiento: Movimiento, contrincantes: Contrincantes): Contrincantes ={
       (movimiento, contrincantes._1.estado) match{
         case(ComerSemilla,_) => movimiento(contrincantes)
-        case(_,Muerto) => contrincantes
-        case(_,Inconsciente) => contrincantes
+        case(_,estado: Muerto) => contrincantes
+        case(_,estado: Inconsciente) => contrincantes
         case(_,_) => movimiento(contrincantes)
       }
     }
