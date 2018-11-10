@@ -115,6 +115,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
   case class Sayajin(override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], nivelSS: Int, tieneCola: Boolean, override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki: Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque) with Fusionable{
 
     def perderCola :Sayajin = {this.copy(tieneCola = false)}
+
     override def cambiarKi(cantidad: Int): Sayajin ={
       this.copy(ki = cantidad)
     }
@@ -180,6 +181,9 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
   case class Mono (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], val sayajin: Sayajin, override val listaDeMovimientos: PlanDeAtaque) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
     def getSayajin :Sayajin = sayajin
+
+    def perderCola :Sayajin = sayajin
+
     override def cambiarKi(cantidad: Int) ={
       this.copy(ki = cantidad)
     }
