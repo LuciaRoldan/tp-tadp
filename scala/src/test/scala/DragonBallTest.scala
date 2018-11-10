@@ -30,14 +30,14 @@ class DragonBallTest extends FunSuite {
     assert(krillin.ki > krillinNuevo.asInstanceOf[Humano].ki)
   }
 
-  /*test("Goku pelea contra Krillin y Krillin se deja fajar"){
+  test("Goku pelea contra Krillin y Krillin se deja fajar"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
     val gokuNuevo = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))._2
 
-    printf(gokuNuevo.getVida.toString)
-    assert(gokuNuevo.getVida.equals(400))
-  }*/
+    //printf(gokuNuevo.getVida.toString)
+    assert(gokuNuevo.getVida == 400)
+  }
 
 
   test("Vegeta se convierte en un mono"){

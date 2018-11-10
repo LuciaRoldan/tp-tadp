@@ -183,7 +183,7 @@ object Movimiento {
         }
 
         case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + 10^atacado.estado.roundsFajado))}
-        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - 10^atacado.estado.roundsFajado))}
+        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - scala.math.pow(10, atacado.estado.roundsFajado).toInt))}
 
         case (_, _, _) => throw new NoPuedeHacerEseAtaqueException
       }
