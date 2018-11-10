@@ -10,4 +10,4 @@ case object MuchosGolpesNinja extends AtaqueFisico
 case object Explotar extends AtaqueFisico
 
 case class Onda(energia: Int) extends AtaqueDeEnergia
-case class Genkidama(energia: Int) extends AtaqueDeEnergia
+case object Genkidama extends AtaqueDeEnergia

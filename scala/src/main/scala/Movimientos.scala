@@ -14,6 +14,7 @@ object Movimiento {
   class NoTieneItemException extends Exception
   class NoPuedeHacerEseAtaqueException extends Exception
 
+  //los criterios deben retornar <0 si no se cumplen
   val diferenciaKiAtacante: Criterio = (contAntes: Contrincantes, contDespues: Contrincantes) => {
     val (atacanteAntes, atacanteDespues) = (contAntes._1, contDespues._1)
     val kiDespues = (atacanteAntes, atacanteDespues) match {
@@ -21,6 +22,11 @@ object Movimiento {
       case (antes: Biologico, despues: Biologico) => antes.ki.-(despues.ki)
     }
     kiDespues
+  }
+
+  val noMeMata: Criterio = (contAntes: Contrincantes, contDespues: Contrincantes) => {
+    if (contDespues._1.getVida() > 0) { 1 }
+    else -1
   }
 
   /*object cambiarVida {
@@ -56,6 +62,7 @@ object Movimiento {
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
       val atacanteFajado = atacante.cambiarEstado(atacante.estado.dejarseFajar)
+      printf("me deje fajar")
       (atacanteFajado, atacado)
     }
   }
@@ -175,8 +182,8 @@ object Movimiento {
           }
         }
 
-        case (Genkidama(energia), atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + 10^atacado.estado.roundsFajado))}
-        case (Genkidama(energia), atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - 10^atacado.estado.roundsFajado))}
+        case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + 10^atacado.estado.roundsFajado))}
+        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - 10^atacado.estado.roundsFajado))}
 
         case (_, _, _) => throw new NoPuedeHacerEseAtaqueException
       }

@@ -7,6 +7,7 @@ abstract class Estado(val roundsFajado: Int) {
 
 case class Normal(override val roundsFajado: Int) extends Estado(roundsFajado: Int){
   override def dejarseFajar ={
+    printf((roundsFajado+1).toString)
     this.copy(roundsFajado = roundsFajado+1)
   }
   override def resetear ={

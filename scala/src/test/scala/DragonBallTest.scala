@@ -7,6 +7,7 @@ import org.scalatest.FunSuite
 class DragonBallTest extends FunSuite {
 
   val goku = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego), new hacerMagia(vaciarInventarioEnemigo)))
+  val gokuConSoloFilosa = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar))
   val vegeta = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
   val krillin = Humano(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar))
   val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, listaDeMovimientos = List())
@@ -28,6 +29,17 @@ class DragonBallTest extends FunSuite {
 
     assert(krillin.ki > krillinNuevo.asInstanceOf[Humano].ki)
   }
+
+  /*test("Goku pelea contra Krillin y Krillin se deja fajar"){
+    val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
+    val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
+    val gokuNuevo = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))._2
+
+    printf(gokuNuevo.getVida.toString)
+    assert(gokuNuevo.getVida.equals(400))
+  }*/
+
+
   test("Vegeta se convierte en un mono"){
     val vegetaTransformado = vegeta.pelearRound(convertirseEnMono, krillin)._1
 

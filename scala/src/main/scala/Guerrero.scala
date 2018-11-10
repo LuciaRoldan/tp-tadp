@@ -26,6 +26,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def contraatacar(enemigo: Guerrero): Contrincantes = {
       val movimiento: Movimiento = this.movimientoMasEfectivoContra(enemigo)(diferenciaKiAtacante)
       val (yoModificado, enemigoModificado) = this.hacerMovimiento(movimiento, (this, enemigo))
+      printf("contraatacando")
       (enemigoModificado, yoModificado)
     }
 
@@ -53,7 +54,11 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     }
 
      def movimientoMasEfectivoContra(atacado: Guerrero) (criterio: Criterio) : Movimiento = {
-       this.listaDeMovimientos.maxBy( movimiento => criterio((this, atacado), hacerMovimiento(movimiento, (this,atacado))))
+       var movMasEfectivo = this.listaDeMovimientos.maxBy(movimiento => criterio((this, atacado), hacerMovimiento(movimiento, (this, atacado))))
+       if (criterio((this, atacado), hacerMovimiento(movMasEfectivo, (this, atacado))) < 0){
+         movMasEfectivo = this.movimientoMasEfectivoContra(atacado)(diferenciaKiAtacante)
+       }
+       movMasEfectivo
      }
 
      def planDeAtaqueContra(atacado :Guerrero, cantidadDeRounds :Int) (criterio: Criterio): PlanDeAtaque ={
