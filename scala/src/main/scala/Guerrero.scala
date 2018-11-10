@@ -120,13 +120,14 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     }
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item]): Sayajin =
       new Sayajin(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, nivelSS = nivelSS, tieneCola = tieneCola, listaDeMovimientos = listaDeMovimientos)
+
     def convertirseEnMono(): Guerrero ={
-      if(this.pudeConvertirseEnMono){
-        new Mono(estado = this.estado, ki = this.kiMaximo*3, kiMaximo = this.kiMaximo*3, nombre = this.nombre, inventario = this.inventario, this, listaDeMovimientos = this.listaDeMovimientos)
+      if(this.puedeConvertirseEnMono){
+        new Mono(estado = this.estado, ki = this.kiMaximo*3, kiMaximo = this.kiMaximo*3, nombre = this.nombre, inventario = this.inventario, this.copy(nivelSS = 0), listaDeMovimientos = this.listaDeMovimientos) // si el guerrero se transforma en mono el estado de SS se pierde
       } else {this}
     }
-    def pudeConvertirseEnMono() ={
-      inventario.contains(FotoDeLaLuna) && this.tieneCola && this.nivelSS <= 1
+    def puedeConvertirseEnMono() ={
+      inventario.contains(FotoDeLaLuna) && this.tieneCola //&& this.nivelSS <= 1 Los SS se pueden convertir en mono, pero al volver a su estado normal pierden su nivel SS
     }
     def aumentarNivelSS(): Sayajin = {
       if(this.puedeAumentarNivelSS()){
