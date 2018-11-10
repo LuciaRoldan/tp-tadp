@@ -55,7 +55,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
      def movimientoMasEfectivoContra(atacado: Guerrero) (criterio: Criterio) : Movimiento = {
        var movMasEfectivo = this.listaDeMovimientos.maxBy(movimiento => criterio((this, atacado), hacerMovimiento(movimiento, (this, atacado))))
-       if (criterio((this, atacado), hacerMovimiento(movMasEfectivo, (this, atacado))) < 0){
+       if (criterio((this, atacado), hacerMovimiento(movMasEfectivo, (this, atacado))) < 0 && criterio != diferenciaKiAtacante){
          movMasEfectivo = this.movimientoMasEfectivoContra(atacado)(diferenciaKiAtacante)
        }
        movMasEfectivo
