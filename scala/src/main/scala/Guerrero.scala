@@ -20,6 +20,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def cambiarEstado(nuevoEstado: Estado):Guerrero = this.copear(nuevoEstado)
     def tieneItem(item: Item): Boolean = inventario.contains(item)
     def getVida(): Int
+    def getVidaMaxima() :Int
     def cambiarVida(nuevaVida: Int): Guerrero
     def copear(nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario) :Guerrero
 
@@ -95,11 +96,13 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def getVida(): Int ={
       this.ki
     }
+
+    def getVidaMaxima() :Int = this.kiMaximo
   }
 
-  case class Androide(override val estado: Estado, override val nombre: String, override val inventario: List[Item], bateria: Int , override val listaDeMovimientos: PlanDeAtaque) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
+  case class Androide(override val estado: Estado, override val nombre: String, override val inventario: List[Item], bateria: Int , bateriaMaxima :Int , override val listaDeMovimientos: PlanDeAtaque) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque){
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item]): Androide =
-      new Androide(estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario, bateria = bateria, listaDeMovimientos = listaDeMovimientos)
+      new Androide(estado= nuevoEstado, nombre= nuevoNombre, inventario= nuevoInventario, bateria = bateria, bateriaMaxima = bateriaMaxima, listaDeMovimientos = listaDeMovimientos)
     def cambiarBateria(cantidad: Int): Androide={
       this.copy(bateria = cantidad);
     }
@@ -109,6 +112,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def getVida(): Int ={
       this.bateria
     }
+    def getVidaMaxima() :Int = this.bateriaMaxima
   }
 
 

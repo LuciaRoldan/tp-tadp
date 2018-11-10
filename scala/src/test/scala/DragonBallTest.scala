@@ -10,7 +10,7 @@ class DragonBallTest extends FunSuite {
   val gokuConSoloFilosa = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar))
   val vegeta = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
   val krillin = Humano(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar))
-  val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, listaDeMovimientos = List())
+  val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List())
   val majinBuu = Monstruo(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu)
   val piccolo = Namekusein(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))))
 
@@ -54,6 +54,10 @@ class DragonBallTest extends FunSuite {
     val gogeta = goku.hacerMovimiento(new fusionarse(vegeta), (goku,krillin))._1
 
     assert(gogeta.isInstanceOf[Fusionado])
+    assert(gogeta.listaDeMovimientos == goku.listaDeMovimientos ::: vegeta.listaDeMovimientos)
+    assert(gogeta.getVida() == goku.getVida() + vegeta.getVida())
+    assert(gogeta.getVidaMaxima() == goku.getVidaMaxima() + vegeta.getVidaMaxima())
+
   }
 
   test("Test de get vida"){
