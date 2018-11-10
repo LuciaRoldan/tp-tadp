@@ -8,7 +8,7 @@ object FormaDeComer{
   object FormaDeComerDeMajinBuu extends FormaDeComer {
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante: Monstruo, atacado) = contrincantes
-      return (atacante.cambiarMovimientosAdquiridos(atacado.listaDeMovimientos),atacado.cambiarEstado(new Muerto(0)))
+      return (atacante.cambiarMovimientosAdquiridos(atacado.listaDeMovimientos),atacado.cambiarEstado(Muerto))
     }
   }
 
@@ -16,7 +16,7 @@ object FormaDeComer{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante: Monstruo, atacado) = contrincantes
       return (atacante.cambiarMovimientosAdquiridos(atacado.listaDeMovimientos ++ atacante.movimientosAdquiridos)
-        ,atacado.cambiarEstado(new Muerto(0)))
+        ,atacado.cambiarEstado(Muerto))
     }
   }
 }

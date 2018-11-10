@@ -6,13 +6,13 @@ import org.scalatest.FunSuite
 
 class DragonBallTest extends FunSuite {
 
-  val goku = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego), new hacerMagia(vaciarInventarioEnemigo)))
-  val gokuConSoloFilosa = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar))
-  val vegeta = Sayajin(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)))
-  val krillin = Humano(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar))
-  val androide18 = Androide(estado = new Normal(0), nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List())
-  val majinBuu = Monstruo(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu)
-  val piccolo = Namekusein(estado = new Normal(0), ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))))
+  val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+  val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val vegeta = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)), roundsFajado = 0)
+  val krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val androide18 = Androide(estado = Normal, nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(), roundsFajado = 0)
+  val majinBuu = Monstruo(estado = Normal, ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu, roundsFajado = 0)
+  val piccolo = Namekusein(estado = Normal, ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))), roundsFajado = 0)
 
   test("Goku carga su ki") {
     val gokuKiCargado = cargarKi(goku, vegeta)._1
@@ -75,16 +75,11 @@ class DragonBallTest extends FunSuite {
     assert(vidaNuevaAndroide18.equals(85))
   }
 
-  test("setters de los estados"){
-    val estado = new Inconsciente(5)
-
-    assert(estado.roundsFajado.equals(5))
-  }
 
   test("Majin Boo se come a Krillin"){
     val (buuModificado: Monstruo, krillinModificado) = majinBuu.hacerMovimiento(new comerseAlOponente(), (majinBuu,krillin))
 
-    assert(buuModificado.movimientosAdquiridos.contains(DejarseFajar) &&  krillinModificado.estado == new Muerto(0))
+    assert(buuModificado.movimientosAdquiridos == List(DejarseFajar) &&  krillinModificado.estado == Muerto)
   }
 
   test("Goku puede hacer magia porque tiene 7 esferas del dragon"){

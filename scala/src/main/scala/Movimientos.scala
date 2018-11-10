@@ -61,7 +61,7 @@ object Movimiento {
   case object DejarseFajar extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
-      val atacanteFajado = atacante.cambiarEstado(atacante.estado.dejarseFajar)
+      val atacanteFajado = atacante.dejarseFajar()
       printf("me deje fajar")
       (atacanteFajado, atacado)
     }
@@ -73,7 +73,7 @@ object Movimiento {
       if (atacante.tieneItem(item)) {
         (item, atacante, atacado) match {
           case (ArmaRoma, _ :Androide, _) => (atacante, atacado)
-          case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente(atacado.estado.roundsFajado)))
+          case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente))
           case (ArmaRoma, _, _) => (atacante, atacado)
           case (ArmaFilosa, _, atacado :Sayajin) if atacado.tieneCola =>  (atacante, atacado.perderCola.cambiarKi(1))
           case (ArmaFilosa, _, atacado :Mono) => (atacante, atacado.getSayajin.perderCola.cambiarKi(1))
@@ -113,12 +113,12 @@ object Movimiento {
     }
   }
 
-  class fusionarse(amigo: Fusionable) extends Movimiento{
+  class fusionarse(amigo: Guerrero) extends Movimiento{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
-      if(amigo.asInstanceOf[Guerrero].estado.isInstanceOf[Normal]){
-        atacante match{
-          case atacante: Fusionable => (atacante.fusionar(atacante.asInstanceOf[Biologico], amigo.asInstanceOf[Biologico]), atacado)
+      if(amigo.isInstanceOf[Fusionable] && atacante.isInstanceOf[Fusionable] && atacado.isInstanceOf[Fusionable] && amigo.estado == Normal){
+        (atacante, atacado) match{
+          case (atacante: Fusionable, atacado :Biologico) => (atacante.fusionar(atacante.asInstanceOf[Biologico], amigo.asInstanceOf[Biologico]), atacado)
           case _ => (atacante, atacado)
         }
       } else { contrincantes }
@@ -182,8 +182,8 @@ object Movimiento {
           }
         }
 
-        case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + 10^atacado.estado.roundsFajado))}
-        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - scala.math.pow(10, atacado.estado.roundsFajado).toInt))}
+        case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + 10^atacado.roundsFajado))}
+        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - scala.math.pow(10, atacado.roundsFajado).toInt))}
 
         case (_, _, _) => throw new NoPuedeHacerEseAtaqueException
       }

@@ -8,7 +8,7 @@ object Magia{
   object dejarInconcienteAlOponente extends Magia {
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
-      return (atacante,atacado.cambiarEstado(new Inconsciente(0)))
+      return (atacante,atacado.cambiarEstado(Inconsciente))
     }
   }
 
