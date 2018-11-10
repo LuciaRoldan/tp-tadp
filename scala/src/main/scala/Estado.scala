@@ -1,23 +1,23 @@
 package DragonBall
 
 abstract class Estado(val roundsFajado: Int) {
- def dejarseFajar: Estado
+  def dejarseFajar: Estado
+  def resetear: Estado
 }
 
-case class Normal(override val roundsFajado: Int) extends Estado(roundsFajado: Int) {
-  override def dejarseFajar(): Estado ={
-    this.copy(roundsFajado = roundsFajado + 1);
+case class Normal(override val roundsFajado: Int) extends Estado(roundsFajado: Int){
+  override def dejarseFajar ={
+    this.copy(roundsFajado = roundsFajado+1)
   }
-}
-
-
-case class Muerto(override val roundsFajado: Int) extends Estado(roundsFajado: Int){
-  override def dejarseFajar(): Estado ={
+  override def resetear ={
     this.copy(roundsFajado = 0)
   }
+}
+case class Muerto(override val roundsFajado: Int) extends Estado(roundsFajado: Int){
+  override def dejarseFajar ={this.copy()}
+  override def resetear ={this.copy()}
 }
 case class Inconsciente(override val roundsFajado: Int) extends Estado(roundsFajado: Int){
-  override def dejarseFajar(): Estado ={
-    this.copy(roundsFajado = 0)
-  }
+  override def dejarseFajar ={this.copy()}
+  override def resetear ={this.copy()}
 }

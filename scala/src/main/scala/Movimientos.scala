@@ -52,7 +52,7 @@ object Movimiento {
     }
   }
 
-  object dejarseFajar extends Movimiento{
+  case object DejarseFajar extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
       val atacanteFajado = atacante.cambiarEstado(atacante.estado.dejarseFajar)
@@ -174,7 +174,10 @@ object Movimiento {
             case (Onda(energia), atacante, atacado) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida - energia * 2))}
           }
         }
-        //case Genkidama{}
+
+        case (Genkidama(energia), atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + 10^atacado.estado.roundsFajado))}
+        case (Genkidama(energia), atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - 10^atacado.estado.roundsFajado))}
+
         case (_, _, _) => throw new NoPuedeHacerEseAtaqueException
       }
     }
