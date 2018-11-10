@@ -190,7 +190,7 @@ object Movimiento {
     }
   }
 
-  class comerseA(enemgigo: Biologico) extends Movimiento{
+  class comerseAlOponente() extends Movimiento{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val atacante = contrincantes._1
       atacante match {
