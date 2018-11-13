@@ -158,7 +158,7 @@ case class Humano(override val estado: Estado, override val ki: Int, override va
   }
 
 
-case class Fusionado (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], val guerreroOriginal: Guerrero, override val listaDeMovimientos: PlanDeAtaque, override val roundsFajado :Int) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int){
+case class Fusionado (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], val guerreroOriginal: Guerrero, override val listaDeMovimientos: PlanDeAtaque, override val roundsFajado :Int) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int)with Fusionable{
    override def cambiarKi(cantidad: Int): Fusionado ={
       this.copy(ki = cantidad)
     }
