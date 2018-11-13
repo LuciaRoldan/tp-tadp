@@ -3,8 +3,8 @@ package DragonBall
 import DragonBall.FormaDeComer.FormaDeComer
 import Movimiento._
 
-trait Fusionable{
-  def fusionar(atacante: Biologico, amigo: Biologico) =
+trait Fusionable extends Biologico{
+  def fusionar(atacante: Fusionable, amigo: Fusionable) =
     new Fusionado(estado = Normal, ki = atacante.ki + amigo.ki, kiMaximo = atacante.kiMaximo + amigo.kiMaximo, "FUSION",
       inventario = atacante.inventario ++ amigo.inventario, guerreroOriginal = atacante, listaDeMovimientos = atacante.listaDeMovimientos ++ amigo.listaDeMovimientos, roundsFajado = atacante.roundsFajado + amigo.roundsFajado)
 }

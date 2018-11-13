@@ -113,12 +113,12 @@ object Movimiento {
     }
   }
 
-  class fusionarse(amigo: Guerrero) extends Movimiento{
+  class fusionarse(amigo: Fusionable) extends Movimiento{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
-      if(amigo.isInstanceOf[Fusionable] && atacante.isInstanceOf[Fusionable] && atacado.isInstanceOf[Fusionable] && amigo.estado == Normal){
+      if(amigo.isInstanceOf[Fusionable] && atacante.isInstanceOf[Fusionable] /*&& atacado.isInstanceOf[Fusionable]*/ && amigo.estado == Normal){ //Porque el atacado tiene que ser fusionable?
         (atacante, atacado) match{
-          case (atacante: Fusionable, atacado :Biologico) => (atacante.fusionar(atacante.asInstanceOf[Biologico], amigo.asInstanceOf[Biologico]), atacado)
+          case (atacante: Fusionable, atacado :Biologico) => (atacante.fusionar(atacante, amigo), atacado)
           case _ => (atacante, atacado)
         }
       } else { contrincantes }
