@@ -101,7 +101,7 @@ object Movimiento {
   }
 
   case object ComerSemilla extends Movimiento {
-    override def apply(v1: (Guerrero, Guerrero)): (Guerrero, Guerrero) = ???
+    override def apply(contrincantes: Contrincantes): Contrincantes = ( contrincantes._1.cambiarVida(contrincantes._1.getVidaMaxima()), contrincantes._2)
   }
 
   object convertirseEnSuperSayajin extends Movimiento{
@@ -117,12 +117,10 @@ object Movimiento {
   class fusionarse(amigo: Fusionable) extends Movimiento{
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
-      if(amigo.isInstanceOf[Fusionable] && atacante.isInstanceOf[Fusionable] /*&& atacado.isInstanceOf[Fusionable]*/ && amigo.estado == Normal){ //Porque el atacado tiene que ser fusionable?
-        (atacante, atacado) match{
-          case (atacante: Fusionable, atacado :Biologico) => (atacante.fusionar(atacante, amigo), atacado)
+      (atacante, atacado) match{
+          case (atacante: Fusionable, atacado :Fusionable) => if(atacante.estado == Normal && atacado.estado == Normal) {(atacante.fusionar(atacante, amigo), atacado)} else {contrincantes}
           case _ => (atacante, atacado)
         }
-      } else { contrincantes }
     }
   }
 

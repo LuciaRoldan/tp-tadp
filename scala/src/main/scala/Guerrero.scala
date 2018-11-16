@@ -129,6 +129,13 @@ case class Sayajin(override val estado: Estado, override val ki: Int, override v
     override def cambiarKi(cantidad: Int): Sayajin ={
       this.copy(ki = cantidad)
     }
+    override def cambiarEstado(nuevoEstado: Estado):Guerrero = {
+       nuevoEstado match{
+         case Inconsciente => this.perderCola.copy(estado = nuevoEstado, nivelSS = 1)
+         case _ => this.copear(nuevoEstado)
+       }
+    }
+      
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item], nuevosRoundsFajado :Int): Sayajin =
       new Sayajin(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, nivelSS = nivelSS, tieneCola = tieneCola, listaDeMovimientos = listaDeMovimientos, roundsFajado= nuevosRoundsFajado)
 
