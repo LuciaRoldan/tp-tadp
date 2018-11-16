@@ -76,12 +76,13 @@ object Movimiento {
           case (ArmaRoma, _, atacado :Biologico) if atacado.ki < 300 =>(atacante, atacado.cambiarEstado(Inconsciente))
           case (ArmaRoma, _, _) => (atacante, atacado)
           case (ArmaFilosa, _, atacado :Sayajin) if atacado.tieneCola =>  (atacante, atacado.perderCola.cambiarKi(1))
-          case (ArmaFilosa, _, atacado :Mono) => (atacante, atacado.getSayajin.perderCola.cambiarKi(1))
+          case (ArmaFilosa, _, atacado :Mono) => (atacante, atacado.getSayajin.perderCola.cambiarKi(1).cambiarEstado(Inconsciente))
           case (ArmaFilosa, _, _ :Androide) => (atacante, atacado)
           case (ArmaFilosa, atacante :Biologico, atacado :Biologico) => (atacante, atacado.cambiarKi(atacado.ki - atacante.ki/100))
-          case (ArmaDeFuego, atacante :Biologico, atacado :Humano) => if(atacante.tieneMunicion) {(atacante.perderMunicion(), atacado.cambiarKi(atacado.ki - 20))}
+          case (ArmaDeFuego(municion), atacante :Biologico, atacado :Humano) => if(municion > 0) {(atacante.perderMunicion(item, municion), atacado.cambiarKi(atacado.ki - 20))}
                                       else (atacante, atacado)
-          case (ArmaDeFuego, atacante, atacado :Namekusein) => if(atacante.tieneMunicion) {(atacante.perderMunicion(), atacado.cambiarKi(atacado.ki - 10))}
+          case (ArmaDeFuego(municion), atacante, atacado :Namekusein) => if(municion > 0 && atacado.estado == Inconsciente) 
+                                                                      {(atacante.perderMunicion(item, municion), atacado.cambiarKi(atacado.ki - 10))}
                                             else (atacante, atacado)
         }
       }

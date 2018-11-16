@@ -11,6 +11,7 @@ trait Fusionable extends Biologico{
 
 abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: List[Item], val listaDeMovimientos: PlanDeAtaque, val roundsFajado :Int) {
 
+  def copear(nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario, nuevosRoundsFajado :Int = roundsFajado) :Guerrero
   def dejarseFajar():Guerrero = this.copear(nuevosRoundsFajado = this.roundsFajado +1)
 
   def resetearFajamiento():Guerrero = this.copear(nuevosRoundsFajado = 0)
@@ -18,7 +19,8 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
   type Contrincantes = (Guerrero, Guerrero)
     type PlanDeAtaque = List[Movimiento]
 
-    def perderMunicion():Guerrero = ???
+    def perderMunicion(item: Item, municion: Int):Guerrero = 
+      this.copear( nuevoInventario = this.inventario.filter(_ != item) :+ new ArmaDeFuego(municion -1))
     def tieneMunicion: Boolean = ???
 
     def cambiarEstado(nuevoEstado: Estado):Guerrero = this.copear(nuevoEstado)
@@ -26,7 +28,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     def getVida(): Int
     def getVidaMaxima() :Int
     def cambiarVida(nuevaVida: Int): Guerrero
-    def copear(nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario, nuevosRoundsFajado :Int = roundsFajado) :Guerrero
+    
 
     def contraatacar(enemigo: Guerrero): Contrincantes = {
       val movimiento: Movimiento = this.movimientoMasEfectivoContra(enemigo)(diferenciaKiAtacante)
