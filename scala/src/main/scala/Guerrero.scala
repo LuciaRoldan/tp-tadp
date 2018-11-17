@@ -20,13 +20,23 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     type PlanDeAtaque = List[Movimiento]
 
     def perderMunicion(item: ArmaDeFuego):Guerrero =
-      this.copear( nuevoInventario = this.inventario.filter(_ != item) :+ new ArmaDeFuego(item.municion-1))
+      this.copear( nuevoInventario = this.inventario.filter(_ != item) :+ ArmaDeFuego(item.municion-1))
 
     def cambiarEstado(nuevoEstado: Estado):Guerrero = this.copear(nuevoEstado)
     def tieneItem(item: Item): Boolean = inventario.contains(item)
     def getVida(): Int
     def getVidaMaxima() :Int
-    def cambiarVida(nuevaVida: Int): Guerrero
+    def cambiarVida(nuevaVida: Int): Guerrero = {
+      val nuevoGuerrero = if(nuevaVida==0) {
+        this.cambiarEstado(Muerto)
+      }
+      else {
+        this
+      }
+      nuevoGuerrero.setVida(nuevaVida)
+    }
+
+    def setVida(nuevaVida: Int): Guerrero
     
 
     def contraatacar(enemigo: Guerrero): Contrincantes = {
@@ -96,7 +106,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 abstract class Biologico(val ki: Int, val kiMaximo: Int, estado: Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int) {
   def copear(nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario, nuevosRoundsFajado :Int = roundsFajado) :Biologico
   def cambiarKi(cantidad: Int): Biologico
-  def cambiarVida(nuevaVida: Int): Guerrero ={
+  def setVida(nuevaVida: Int): Guerrero ={
     this.cambiarKi(nuevaVida)
   }
   def getVida(): Int ={
@@ -112,7 +122,7 @@ case class Androide(override val estado: Estado, override val nombre: String, ov
     def cambiarBateria(cantidad: Int): Androide={
       this.copy(bateria = cantidad);
     }
-    def cambiarVida(nuevaVida: Int): Guerrero ={
+    def setVida(nuevaVida: Int): Guerrero ={
       this.cambiarBateria(nuevaVida);
     }
     def getVida(): Int ={
@@ -129,14 +139,8 @@ case class Sayajin(override val estado: Estado, override val ki: Int, override v
 
     def perderCola :Sayajin = {this.copy(tieneCola = false)}
 
-    override def cambiarKi(cantidad: Int): Sayajin ={
-      if(cantidad == 0){
-        this.cambiarEstado(Muerto)
-      }else{
-        this.copy(ki = cantidad)
-      }
+    override def cambiarKi(cantidad: Int): Sayajin = this.copy(ki = cantidad)
 
-    }
     override def cambiarEstado(nuevoEstado: Estado):Sayajin = {
        nuevoEstado match{
          case Inconsciente => this.perderCola.copy(estado = nuevoEstado, nivelSS = 1)
@@ -148,7 +152,7 @@ case class Sayajin(override val estado: Estado, override val ki: Int, override v
       new Sayajin(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, nivelSS = nivelSS, tieneCola = tieneCola, listaDeMovimientos = listaDeMovimientos, roundsFajado= nuevosRoundsFajado)
 
     def convertirseEnMono(): Guerrero ={
-      if(this.puedeConvertirseEnMono){
+        if(this.puedeConvertirseEnMono){
         new Mono(estado = this.estado, ki = this.kiMaximo*3, kiMaximo = this.kiMaximo*3, nombre = this.nombre, inventario = this.inventario, this.copy(nivelSS = 0), listaDeMovimientos = this.listaDeMovimientos, roundsFajado = this.roundsFajado) // si el guerrero se transforma en mono el estado de SS se pierde
       } else {this}
     }
@@ -167,13 +171,7 @@ case class Sayajin(override val estado: Estado, override val ki: Int, override v
 
 
 case class Humano(override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque, override val roundsFajado :Int) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int) with Fusionable{
-    override def cambiarKi(cantidad: Int): Humano ={
-      if(cantidad == 0){
-        this.cambiarEstado(Muerto)
-      }else{
-        this.copy(ki = cantidad)
-      }
-    }
+    override def cambiarKi(cantidad: Int): Humano = this.copy(ki = cantidad)
   override def cambiarEstado(nuevoEstado: Estado):Humano = {
     this.copy(nuevoEstado)
   }

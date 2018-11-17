@@ -95,7 +95,7 @@ class DragonBallTest extends FunSuite {
   }
 
   test("Un guerrero puede comer una semilla aunque este muerto") {
-    val(piccoloModificado, majinBuuModificado) = piccolo.copy(estado=Muerto).cambiarVida(10).hacerMovimiento(ComerSemilla, (piccolo, majinBuu))
+    val(piccoloModificado, majinBuuModificado) = piccolo.copy(estado=Muerto).cambiarVida(5).hacerMovimiento(ComerSemilla, (piccolo, majinBuu))
 
     assert(piccoloModificado.getVida() == piccoloModificado.getVidaMaxima()
     )
