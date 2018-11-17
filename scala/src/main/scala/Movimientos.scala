@@ -79,11 +79,11 @@ object Movimiento {
           case (ArmaFilosa, _, atacado :Mono) => (atacante, atacado.getSayajin.perderCola.cambiarKi(1).cambiarEstado(Inconsciente))
           case (ArmaFilosa, _, _ :Androide) => (atacante, atacado)
           case (ArmaFilosa, atacante :Biologico, atacado :Biologico) => (atacante, atacado.cambiarKi(atacado.ki - atacante.ki/100))
-          case (ArmaDeFuego(municion), atacante :Biologico, atacado :Humano) => if(municion > 0) {(atacante.perderMunicion(item, municion), atacado.cambiarKi(atacado.ki - 20))}
+          case (arma: ArmaDeFuego,atacante: Biologico ,atacado: Humano)=> if(arma.municion > 0) {(atacante.perderMunicion(arma), atacado.cambiarKi(atacado.ki - 20))}
                                       else (atacante, atacado)
-          case (ArmaDeFuego(municion), atacante, atacado :Namekusein) => if(municion > 0 && atacado.estado == Inconsciente) 
-                                                                      {(atacante.perderMunicion(item, municion), atacado.cambiarKi(atacado.ki - 10))}
-                                            else (atacante, atacado)
+          case (arma: ArmaDeFuego,atacante ,atacado :Namekusein) => if(arma.municion > 0 && atacado.estado == Inconsciente)
+                                                                      {(atacante.perderMunicion(arma), atacado.cambiarKi(atacado.ki - 10))}
+                                                                      else (atacante, atacado)
         }
       }
       else throw new NoTieneItemException
@@ -101,7 +101,7 @@ object Movimiento {
   }
 
   case object ComerSemilla extends Movimiento {
-    override def apply(contrincantes: Contrincantes): Contrincantes = ( contrincantes._1.cambiarVida(contrincantes._1.getVidaMaxima()), contrincantes._2)
+    override def apply(contrincantes: Contrincantes): Contrincantes = ( contrincantes._1.cambiarVida(contrincantes._1.getVidaMaxima()).cambiarEstado(Normal), contrincantes._2)
   }
 
   object convertirseEnSuperSayajin extends Movimiento{

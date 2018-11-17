@@ -6,7 +6,7 @@ import org.scalatest.FunSuite
 
 class DragonBallTest extends FunSuite {
 
-  val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa, ArmaDeFuego, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(ArmaDeFuego), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+  val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa,new ArmaDeFuego(10), new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(new ArmaDeFuego(10)), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
   val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val vegeta = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)), roundsFajado = 0)
   val krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
@@ -92,6 +92,13 @@ class DragonBallTest extends FunSuite {
     val(piccoloModificado, majinBuuModificado) = piccolo.hacerMovimiento(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30)), (piccolo, majinBuu))
 
     assert(majinBuuModificado.getVida() == majinBuu.getVida() - 30)
+  }
+
+  test("Un guerrero puede comer una semilla aunque este muerto") {
+    val(piccoloModificado, majinBuuModificado) = piccolo.copy(estado=Muerto).cambiarVida(10).hacerMovimiento(ComerSemilla, (piccolo, majinBuu))
+
+    assert(piccoloModificado.getVida() == piccoloModificado.getVidaMaxima()
+    )
   }
 
 }
