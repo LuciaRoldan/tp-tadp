@@ -21,7 +21,6 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
     def perderMunicion(item: ArmaDeFuego):Guerrero =
       this.copear( nuevoInventario = this.inventario.filter(_ != item) :+ new ArmaDeFuego(item.municion-1))
-    def tieneMunicion: Boolean = ???
 
     def cambiarEstado(nuevoEstado: Estado):Guerrero = this.copear(nuevoEstado)
     def tieneItem(item: Item): Boolean = inventario.contains(item)
