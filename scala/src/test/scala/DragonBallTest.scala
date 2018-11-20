@@ -1,18 +1,43 @@
 import DragonBall.FormaDeComer.FormaDeComerDeMajinBuu
-import DragonBall.Magia.{aumentarVidaPropiaYDisminuirLaDelEnemigo, vaciarInventarioEnemigo}
+import DragonBall.Magia._
 import DragonBall.Movimiento._
 import DragonBall._
 import org.scalatest.FunSuite
 
 class DragonBallTest extends FunSuite {
-
+////////////PERSONAJES
   val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa,new ArmaDeFuego(10), new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(new ArmaDeFuego(10)), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
   val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val vegeta = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)), roundsFajado = 0)
-  val krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val   krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val androide18 = Androide(estado = Normal, nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(), roundsFajado = 0)
   val majinBuu = Monstruo(estado = Normal, ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu, roundsFajado = 0)
   val piccolo = Namekusein(estado = Normal, ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))), roundsFajado = 0)
+
+  ////////////MAGIAS
+
+  object dejarInconcienteAlOponente extends Magia {
+    def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      return (atacante,atacado.cambiarEstado(Inconsciente))
+    }
+  }
+
+  class aumentarVidaPropiaYDisminuirLaDelEnemigo(vida: Int) extends Magia {
+    def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      return (atacante.cambiarVida(atacante.getVida() + vida), atacado.cambiarVida(atacado.getVida() - vida))
+    }
+  }
+
+  object vaciarInventarioEnemigo extends Magia {
+    def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
+      val (atacante, atacado) = contrincantes
+      return (atacante, atacado.copear(nuevoInventario = List()))
+    }
+  }
+
+  ////////////TESTS
 
   test("Goku carga su ki") {
     val gokuKiCargado = cargarKi(goku, vegeta)._1
@@ -30,13 +55,22 @@ class DragonBallTest extends FunSuite {
     assert(krillin.ki > krillinNuevo.asInstanceOf[Humano].ki)
   }
 
-  test("Goku pelea contra Krillin y Krillin se deja fajar"){
+  test("Krillin se deja fajar 2 rounds y luego tira un genkidama a goku"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
     val gokuNuevo = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))._2
 
     //printf(gokuNuevo.getVida.toString)
     assert(gokuNuevo.getVida == 400)
+  }
+
+  test("Krillin se deja fajar 2 rounds y luego tira un genkidama a un androide"){
+    val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
+    val androide18SuperEnergico = androide18.copy(bateriaMaxima = 1000)
+    val androideNuevo = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))._2
+
+    //printf(gokuNuevo.getVida.toString)
+    assert(androideNuevo.getVida == 200)
   }
 
 
