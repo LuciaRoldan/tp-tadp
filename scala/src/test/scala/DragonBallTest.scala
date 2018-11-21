@@ -6,13 +6,13 @@ import org.scalatest.FunSuite
 
 class DragonBallTest extends FunSuite {
 ////////////PERSONAJES
-  val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa,new ArmaDeFuego(10), new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(new ArmaDeFuego(10)), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
-  val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaFilosa,new ArmaDeFuego(10), new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(new ArmaDeFuego(10)), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+  val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val vegeta = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)), roundsFajado = 0)
-  val   krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
-  val androide18 = Androide(estado = Normal, nombre = "ANDROIDE 18", inventario = List(ArmaFilosa), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val   krillin = Humano(estado = Normal, ki  = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val androide18 = Androide(estado = Normal,nombre = "ANDROIDE 18", inventario = List(ArmaFilosa), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val majinBuu = Monstruo(estado = Normal, ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu, roundsFajado = 0)
-  val piccolo = Namekusein(estado = Normal, ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))), roundsFajado = 0)
+  val piccolo = Namekusein(estado = Normal, ki = 100, kiMaximo = 1000, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))), roundsFajado = 0)
 
 
   ////////////ARMAS
@@ -47,7 +47,7 @@ class DragonBallTest extends FunSuite {
 
     assert(gokuKiCargado == goku.copy(ki = 250))
   }
-  test("Goku y Vegeta pelean un round") {
+  test("Goku y Vegeta pelean un round, goku usa arma filosa y le corta la cola a vegeta") {
     val nuevoVegeta = goku.pelearRound(new usarItem(ArmaFilosa), vegeta)._2
 
     assert(!nuevoVegeta.asInstanceOf[Sayajin].tieneCola)
