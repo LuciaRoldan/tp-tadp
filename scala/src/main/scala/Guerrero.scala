@@ -19,8 +19,15 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
   type Contrincantes = (Guerrero, Guerrero)
     type PlanDeAtaque = List[Movimiento]
 
-    def perderMunicion(item: ArmaDeFuego):Guerrero =
-      this.copear( nuevoInventario = this.inventario.filter(_ != item) :+ ArmaDeFuego(item.municion-1))
+    def perderMunicion(arma: ArmaDeFuego):Guerrero =
+      this.copear( nuevoInventario = this.inventario.filter{itemLista => filtrarArma(itemLista, arma)} :+ ArmaDeFuego(arma.municion-1, arma.tipo))
+
+    def filtrarArma (itemLista :Item, arma: ArmaDeFuego) :Boolean ={
+      itemLista match {
+        case itemLista : ArmaDeFuego => itemLista.tipo != arma.tipo
+        case _ => true
+      }
+    }
 
     def cambiarEstado(nuevoEstado: Estado):Guerrero = this.copear(nuevoEstado)
     def tieneItem(item: Item): Boolean = inventario.contains(item)
