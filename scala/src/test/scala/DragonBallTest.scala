@@ -10,10 +10,13 @@ class DragonBallTest extends FunSuite {
   val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val vegeta = Sayajin(estado = Normal, ki = 100, kiMaximo = 100, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)), roundsFajado = 0)
   val   krillin = Humano(estado = Normal, ki = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
-  val androide18 = Androide(estado = Normal, nombre = "ANDROIDE 18", inventario = List(ArmaRoma), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(), roundsFajado = 0)
+  val androide18 = Androide(estado = Normal, nombre = "ANDROIDE 18", inventario = List(ArmaFilosa), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val majinBuu = Monstruo(estado = Normal, ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu, roundsFajado = 0)
   val piccolo = Namekusein(estado = Normal, ki = 100, kiMaximo = 100, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))), roundsFajado = 0)
 
+
+  ////////////ARMAS
+  val armaDeFuegoAndroide= new ArmaDeFuego(10)
   ////////////MAGIAS
 
   object dejarInconcienteAlOponente extends Magia {
@@ -67,9 +70,9 @@ class DragonBallTest extends FunSuite {
   test("Krillin se deja fajar 2 rounds y luego tira un genkidama a un androide"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val androide18SuperEnergico = androide18.copy(bateriaMaxima = 1000)
-    val androideNuevo = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))._2
+    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))
+    val androideNuevo = resultado._2
 
-    //printf(gokuNuevo.getVida.toString)
     assert(androideNuevo.getVida == 200)
   }
 

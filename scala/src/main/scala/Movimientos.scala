@@ -62,7 +62,6 @@ object Movimiento {
     def apply(contrincantes: Contrincantes): Contrincantes = {
       val (atacante, atacado) = contrincantes
       val atacanteFajado = atacante.dejarseFajar()
-      printf("me deje fajar")
       (atacanteFajado, atacado)
     }
   }
@@ -181,8 +180,8 @@ object Movimiento {
           }
         }
 
-        case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + scala.math.pow(10, atacado.roundsFajado).toInt))}
-        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - scala.math.pow(10, atacado.roundsFajado).toInt))}
+        case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + scala.math.pow(10, atacante.roundsFajado).toInt))}
+        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - scala.math.pow(10, atacante.roundsFajado).toInt))}
 
         case (_, _, _) => throw new NoPuedeHacerEseAtaqueException
       }
