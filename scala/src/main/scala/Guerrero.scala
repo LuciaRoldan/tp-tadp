@@ -82,7 +82,8 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
          case ((lista, contrincantes), _) =>
            (
              lista :+ movimientoMasEfectivoContra(atacado)(criterio),
-             hacerMovimiento(this.movimientoMasEfectivoContra(atacado)(criterio), contrincantes)
+             contrincantes._1.pelearRound(this.movimientoMasEfectivoContra(atacado)(criterio),contrincantes._2)
+             //hacerMovimiento(this.movimientoMasEfectivoContra(atacado)(criterio), contrincantes)
            )
          // en cada iteracion se suma el mejor movimiento a la lista vacia inicial de movimientos
          // y se calcula el estado de los guerreros despues de aplicar el mejor movimiento
