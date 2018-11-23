@@ -160,31 +160,7 @@ object Movimiento {
   class hacerAtaqueTurbina(ataque: Ataque) extends Movimiento {
     override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
       val (atacante, atacado) = contrincantes
-      (ataque, atacante, atacado) match {
-        case (MuchosGolpesNinja, atacante: Humano, atacado: Androide) => (atacante.cambiarVida(atacante.getVida - 10), atacado)
-        case (MuchosGolpesNinja, atacante, atacado) => if (atacado.getVida < atacante.getVida) {(atacante, atacado.cambiarVida(atacado.getVida - 20))}
-              else {(atacante.cambiarVida(atacante.getVida - 10 ), atacado)}
-
-        case (Explotar, atacante: Monstruo, atacado: Namekusein) => (atacante.cambiarVida(0), atacado.cambiarVida(math.max(atacado.getVida - atacante.getVida * 2, 1)))
-        case (Explotar, atacante: Monstruo, atacado) => (atacante.cambiarVida(0), atacado.cambiarVida(atacado.getVida - atacante.getVida * 2))
-        case (Explotar, atacante: Androide, atacado: Namekusein) => (atacante.cambiarVida(0), atacado.cambiarVida(math.max(atacado.getVida - atacante.getVida * 3, 1)))
-        case (Explotar, atacante: Androide, atacado) => (atacante.cambiarVida(0), atacado.cambiarVida(atacado.getVida - atacante.getVida * 3))
-
-        case (Onda(energia), atacante, _) => if (atacante.getVida() < energia) {
-          (atacante, atacado)
-        } else {
-          (ataque, atacante, atacado) match {
-            case (Onda(energia), atacante, atacado: Monstruo) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida - energia / 2))}
-            case (Onda(energia), atacante, atacado: Androide) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida + energia * 2))}
-            case (Onda(energia), atacante, atacado) => {(atacante.cambiarVida(atacante.getVida - energia), atacado.cambiarVida(atacado.getVida - energia * 2))}
-          }
-        }
-
-        case (Genkidama, atacante, atacado: Androide) => {(atacante, atacado.cambiarVida(atacado.getVida + scala.math.pow(10, atacante.roundsFajado).toInt))}
-        case (Genkidama, atacante, atacado) => {(atacante, atacado.cambiarVida(atacado.getVida - scala.math.pow(10, atacante.roundsFajado).toInt))}
-
-        case (_, _, _) => throw new NoPuedeHacerEseAtaqueException
-      }
+      ataque.ejecutar(atacante, atacado)
     }
   }
 

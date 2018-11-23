@@ -113,7 +113,7 @@ class DragonBallTest extends FunSuite {
   test("Genkidama con 2 rounds fajados"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
-    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))
+    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(new Genkidama)))
 
     assert(resultado.getAtacado().getVida == 400)
   }
@@ -121,7 +121,7 @@ class DragonBallTest extends FunSuite {
   test("Krillin se deja fajar 2 rounds y luego tira un genkidama a un androide"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val androide18SuperEnergico = androide18.copy(bateriaMaxima = 1000)
-    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))
+    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(new Genkidama)))
 
 
     assert(resultado.getAtacado().getVida == 200)
