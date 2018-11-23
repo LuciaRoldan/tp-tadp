@@ -90,16 +90,19 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
 
      }
 
-    def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque) ={
-      plan.foldLeft((this, oponente)) {
+    def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque) :ResultadoPelea ={
+      val contrincantes = plan.foldLeft((this, oponente)) {
         case((atacante, atacado), _) if atacante.estado == Muerto || atacado.estado == Muerto => (atacante, atacado)
         case((atacante, atacado), movimiento) => atacante.pelearRound(movimiento, atacado)
       }
+      return new ResultadoPelea(contrincantes)
     }
 
      def tiene7Esferas() ={
        this.inventario.contains(new EsferasDelDragon(7))
      }
+
+    def estaMuerto(): Boolean =  return this.estado == Muerto
   }
 
 

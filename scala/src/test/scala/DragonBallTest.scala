@@ -46,28 +46,28 @@ class DragonBallTest extends FunSuite {
   ////////////TESTS
 
   test("Funciona el resetear el fajamiento"){
-    val krillinNuevo = krillin.pelearContra(goku)(List(DejarseFajar, cargarKi))._1
-1
-    assert(krillinNuevo.roundsFajado == 0)
+    val resultado = krillin.pelearContra(goku)(List(DejarseFajar, cargarKi))
+
+    assert(resultado.getAtacante().roundsFajado == 0)
   }
 
   test("El arma roma deja inconciente a un Krillin"){
-    val krillinNuevo = goku.pelearContra(krillin)(List(new usarItem(ArmaRoma)))._2
+    val resultado = goku.pelearContra(krillin)(List(new usarItem(ArmaRoma)))
 
-    assert(krillinNuevo.estado == Inconsciente)
+    assert(resultado.getAtacado().estado == Inconsciente)
   }
 
   test("El arma roma no deja inconciente a un androide"){
-    val androideGolpeado = goku.pelearContra(androide18)(List(new usarItem(ArmaRoma)))._2
+    val resultado = goku.pelearContra(androide18)(List(new usarItem(ArmaRoma)))
 
-    assert(androideGolpeado.estado == Normal)
+    assert(resultado.getAtacado().estado == Normal)
   }
 
   test("El arma roma no deja inconciente a un ki muy alto"){
     val vegetaKicargado = vegeta.cambiarVida(1000)
-    val vegetaGolpeado = goku.pelearContra(vegetaKicargado)(List(new usarItem(ArmaRoma)))._2
+    val resultado = goku.pelearContra(vegetaKicargado)(List(new usarItem(ArmaRoma)))
 
-    assert(vegetaGolpeado.estado == Normal)
+    assert(resultado.getAtacado().estado == Normal)
   }
 
   test("El arma filosa reduce el ki del oponente en 1 por cada 100 del atacante") {
@@ -105,26 +105,26 @@ class DragonBallTest extends FunSuite {
   }
 
   test("Goku pelea contra Krillin y su ki baja"){
-    val krillinNuevo = goku.pelearContra(krillin)(List(new usarItem(ArmaFilosa), cargarKi))._2
+    val resultado = goku.pelearContra(krillin)(List(new usarItem(ArmaFilosa), cargarKi))
 
-    assert(krillin.ki > krillinNuevo.asInstanceOf[Humano].ki)
+    assert(krillin.ki > resultado.getAtacado().asInstanceOf[Humano].ki)
   }
 
   test("Genkidama con 2 rounds fajados"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
-    val gokuNuevo = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))._2
+    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))
 
-    assert(gokuNuevo.getVida == 400)
+    assert(resultado.getAtacado().getVida == 400)
   }
 
   test("Krillin se deja fajar 2 rounds y luego tira un genkidama a un androide"){
     val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
     val androide18SuperEnergico = androide18.copy(bateriaMaxima = 1000)
     val resultado = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(Genkidama)))
-    val androideNuevo = resultado._2
 
-    assert(androideNuevo.getVida == 200)
+
+    assert(resultado.getAtacado().getVida == 200)
   }
 
 
@@ -189,4 +189,18 @@ class DragonBallTest extends FunSuite {
     )
   }
 
-}
+  test("En un resultado con dos guerreros muertos no hay ganador"){
+    val gokuMuerto = Sayajin(estado = Muerto, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaRoma,ArmaFilosa,escopeta , new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(escopeta), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+    val resultado = new ResultadoPelea(gokuMuerto, gokuMuerto)
+
+    assert(resultado.hayGanador() == false)
+  }
+
+  test("En un resultado con dos guerreros muertos el ganador es None") {
+    val gokuMuerto = Sayajin(estado = Muerto, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaRoma, ArmaFilosa, escopeta, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(escopeta), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+    val resultado = new ResultadoPelea(gokuMuerto, gokuMuerto)
+
+    assert(resultado.getGanador() == None)
+  }
+
+  }
