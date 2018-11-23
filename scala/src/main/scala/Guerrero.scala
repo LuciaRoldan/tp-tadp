@@ -47,7 +47,7 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
     
 
     def contraatacar(enemigo: Guerrero): Contrincantes = {
-      val movimiento: Movimiento = this.movimientoMasEfectivoContra(enemigo)(diferenciaKiAtacante)
+      val movimiento: Movimiento = this.movimientoMasEfectivoContra(enemigo)(diferenciaKiAtacante).getOrElse(Movimiento.pedirAyudaADios)
       val (yoModificado, enemigoModificado) = this.hacerMovimiento(movimiento, (this, enemigo))
       printf("contraatacando")
       (enemigoModificado, yoModificado)
@@ -69,20 +69,21 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
       }
     }
 
-     def movimientoMasEfectivoContra(atacado: Guerrero) (criterio: Criterio) : Movimiento = {
+     def movimientoMasEfectivoContra(atacado: Guerrero) (criterio: Criterio) : Option[Movimiento] = {
        var movMasEfectivo = this.listaDeMovimientos.maxBy(movimiento => criterio((this, atacado), hacerMovimiento(movimiento, (this, atacado))))
-       if (criterio((this, atacado), hacerMovimiento(movMasEfectivo, (this, atacado))) < 0 && criterio != diferenciaKiAtacante){
-         movMasEfectivo = this.movimientoMasEfectivoContra(atacado)(diferenciaKiAtacante)
+       if (criterio((this, atacado), hacerMovimiento(movMasEfectivo, (this, atacado))) > 0){
+         return Some(movMasEfectivo)
+       }else{
+         return None
        }
-       movMasEfectivo
      }
 
      def planDeAtaqueContra(atacado :Guerrero, cantidadDeRounds :Int) (criterio: Criterio): PlanDeAtaque ={
        List.fill(cantidadDeRounds)(0).foldLeft((List(): List[Movimiento],(this, atacado))){
          case ((lista, contrincantes), _) =>
            (
-             lista :+ movimientoMasEfectivoContra(atacado)(criterio),
-             contrincantes._1.pelearRound(this.movimientoMasEfectivoContra(atacado)(criterio),contrincantes._2)
+             lista :+ movimientoMasEfectivoContra(atacado)(criterio).getOrElse(Movimiento.pedirAyudaADios),
+             contrincantes._1.pelearRound(this.movimientoMasEfectivoContra(atacado)(criterio).getOrElse(Movimiento.pedirAyudaADios),contrincantes._2)
              //hacerMovimiento(this.movimientoMasEfectivoContra(atacado)(criterio), contrincantes)
            )
          // en cada iteracion se suma el mejor movimiento a la lista vacia inicial de movimientos

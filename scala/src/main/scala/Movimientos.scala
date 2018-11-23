@@ -57,6 +57,12 @@ object Movimiento {
       }
     }
   }
+  
+  object pedirAyudaADios extends Movimiento{
+    def apply(contrincantes: Contrincantes): Contrincantes = {
+      contrincantes
+    }
+  }
 
   case object DejarseFajar extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
