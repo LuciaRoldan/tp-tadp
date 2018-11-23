@@ -12,6 +12,8 @@ trait Fusionable extends Biologico{
 abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: List[Item], val listaDeMovimientos: PlanDeAtaque, val roundsFajado :Int) {
 
   def copear(nuevoEstado :Estado = estado, nuevoNombre :String = nombre, nuevoInventario :List[Item] = inventario, nuevosRoundsFajado :Int = roundsFajado) :Guerrero
+  def recibirAtaque(ataque: Ataque, danio: Int): Guerrero
+
   def dejarseFajar():Guerrero = this.copear(nuevosRoundsFajado = this.roundsFajado +1)
 
   def resetearFajamiento():Guerrero = this.copear(nuevosRoundsFajado = 0)
@@ -118,8 +120,15 @@ abstract class Biologico(val ki: Int, val kiMaximo: Int, estado: Estado, nombre:
   def getVida(): Int ={
     this.ki
   }
+  override def recibirAtaque(ataque: Ataque, danio: Int): Guerrero ={
+    (ataque, danio) match{
+      case (ataque: AtaqueDeEnergia, danio) => this.cambiarVida(this.getVida() - danio)
+      case (ataque: AtaqueFisico, danio) => this.cambiarVida(this.getVida() - danio)
+    }
+  }
+  def getVidaMaxima() :Int = this.kiMaximo
 
-    def getVidaMaxima() :Int = this.kiMaximo
+
 }
 
 case class Androide(override val estado: Estado, override val nombre: String, override val inventario: List[Item], bateria: Int, bateriaMaxima :Int, override val listaDeMovimientos: PlanDeAtaque, override val roundsFajado :Int) extends Guerrero(estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int){
@@ -137,6 +146,12 @@ case class Androide(override val estado: Estado, override val nombre: String, ov
     }
   override def cambiarEstado(nuevoEstado: Estado):Androide = {
      this.copear(nuevoEstado)
+  }
+  override def recibirAtaque(ataque: Ataque, danio: Int): Guerrero ={
+    (ataque, danio) match{
+      case (ataque: AtaqueDeEnergia, danio) => this.cambiarVida(this.getVida() + danio)
+      case (ataque: AtaqueFisico, danio) => this.cambiarVida(this.getVida() - danio)
+    }
   }
     def getVidaMaxima() :Int = this.bateriaMaxima
   }
@@ -210,9 +225,19 @@ case class Namekusein (override val estado: Estado, override val ki: Int, overri
     this.copy(estado = nuevoEstado)
   }
 
+  override def recibirAtaque(ataque: Ataque, danio: Int): Guerrero ={
+    (ataque, danio) match{
+      case (ataque: Explotar, danio) => this.cambiarVida(math.max(this.getVida() - danio, 1))
+      case (ataque: AtaqueDeEnergia, danio) => this.cambiarVida(this.getVida() + danio)
+      case (ataque: AtaqueFisico, danio) => this.cambiarVida(this.getVida() - danio)
+    }
+  }
+
   override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item], nuevosRoundsFajado :Int): Namekusein =
       new Namekusein(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, listaDeMovimientos = listaDeMovimientos, roundsFajado = nuevosRoundsFajado)
   }
+
+
 
 
 case class Monstruo (override val estado: Estado, override val ki: Int, override val kiMaximo: Int, override val nombre: String, override val inventario: List[Item], override val listaDeMovimientos: PlanDeAtaque, val movimientosAdquiridos: PlanDeAtaque, val formaDeComer: FormaDeComer, override val roundsFajado :Int) extends Biologico(ki :Int, kiMaximo: Int, estado :Estado, nombre: String, inventario: List[Item], listaDeMovimientos: PlanDeAtaque, roundsFajado :Int){
@@ -224,6 +249,13 @@ case class Monstruo (override val estado: Estado, override val ki: Int, override
   override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item], nuevosRoundsFajado :Int): Monstruo =
       new Monstruo(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, listaDeMovimientos = listaDeMovimientos, movimientosAdquiridos = movimientosAdquiridos, formaDeComer = formaDeComer, roundsFajado = nuevosRoundsFajado)
 
+  override def recibirAtaque(ataque: Ataque, danio: Int): Guerrero ={
+    (ataque, danio) match{
+      case (ataque: Onda, danio) => this.cambiarVida(this.getVida - danio/2)
+      case (ataque: AtaqueDeEnergia, danio) => this.cambiarVida(this.getVida() + danio)
+      case (ataque: AtaqueFisico, danio) => this.cambiarVida(this.getVida() - danio)
+    }
+  }
   def cambiarMovimientosAdquiridos(nuevosMovimientos: PlanDeAtaque):Monstruo = {this.copy(movimientosAdquiridos = nuevosMovimientos)}
 }
 
