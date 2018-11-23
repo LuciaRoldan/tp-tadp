@@ -23,8 +23,9 @@ class MuchosGolpesNinja extends AtaqueFisico{
 class Explotar extends AtaqueFisico{
   def ejecutar(unAtacante :Guerrero, unAtacado :Guerrero): Contrincantes ={
     (unAtacante, unAtacado) match {
-    case (atacante: Monstruo, atacado) => (atacante.cambiarVida(0), atacado.recibirAtaque(this, atacante.getVida * 2))
     case (atacante: Androide, atacado) => (atacante.cambiarVida(0), atacado.recibirAtaque(this, atacante.getVida * 3))
+    case (atacante, atacado) => (atacante.cambiarVida(0), atacado.recibirAtaque(this, atacante.getVida * 2))
+
     }
   }
 }
@@ -33,7 +34,7 @@ case class Onda(energia: Int) extends AtaqueDeEnergia{
   def ejecutar(unAtacante :Guerrero, unAtacado :Guerrero): Contrincantes ={
     (unAtacante, unAtacado) match {
       case (atacante, atacado) if atacante.getVida() < energia =>  (atacante, atacado)
-      case (atacante, atacado) => (atacante.cambiarVida(atacante.getVida - energia), atacado.recibirAtaque(this,energia * 2))
+      case (atacante, atacado) => (atacante.cambiarVida(atacante.getVida - energia), atacado.recibirAtaque(this, energia * 2))
     }
   }
 }

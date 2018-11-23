@@ -15,7 +15,7 @@ class DragonBallTest extends FunSuite {
   val goku = Sayajin(estado = Normal, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaRoma,ArmaFilosa,escopeta , new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(escopeta), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
   val gokuConSoloFilosa = Sayajin(estado = Normal, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaFilosa), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val vegeta = Sayajin(estado = Normal, ki = 500, kiMaximo = 1000, nombre = "VEGETA", inventario = List(ArmaFilosa, FotoDeLaLuna), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa)), roundsFajado = 0)
-  val   krillin = Humano(estado = Normal, ki  = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+  val krillin = Humano(estado = Normal, ki  = 100, kiMaximo = 100, nombre = "KRILLIN", inventario = List(), listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val androide18 = Androide(estado = Normal,nombre = "ANDROIDE 18", inventario = List(ArmaFilosa), bateria = 100, bateriaMaxima = 100, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
   val majinBuu = Monstruo(estado = Normal, ki = 100, kiMaximo = 100, nombre = "MAJIN BUU", inventario = List(), listaDeMovimientos = List(new comerseAlOponente()), movimientosAdquiridos = List(), FormaDeComerDeMajinBuu, roundsFajado = 0)
   val piccolo = Namekusein(estado = Normal, ki = 100, kiMaximo = 1000, nombre = "PICCOLO", inventario = List(), listaDeMovimientos = List(new hacerMagia(new aumentarVidaPropiaYDisminuirLaDelEnemigo(30))), roundsFajado = 0)
@@ -110,24 +110,6 @@ class DragonBallTest extends FunSuite {
     assert(krillin.ki > resultado.getAtacado().asInstanceOf[Humano].ki)
   }
 
-  test("Genkidama con 2 rounds fajados"){
-    val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
-    val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
-    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(new Genkidama)))
-
-    assert(resultado.getAtacado().getVida == 400)
-  }
-
-  test("Krillin se deja fajar 2 rounds y luego tira un genkidama a un androide"){
-    val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
-    val androide18SuperEnergico = androide18.copy(bateriaMaxima = 1000)
-    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(new Genkidama)))
-
-
-    assert(resultado.getAtacado().getVida == 200)
-  }
-
-
   test("Vegeta se convierte en un mono"){
     val vegetaTransformado = vegeta.pelearRound(convertirseEnMono, krillin)._1
 
@@ -203,4 +185,45 @@ class DragonBallTest extends FunSuite {
     assert(resultado.getGanador() == None)
   }
 
+  test("A un Androide se le suma vida si le hacen un ataque de energia"){
+    val androideConMasBateriaMaxima = Androide(estado = Normal,nombre = "ANDROIDE 18", inventario = List(ArmaFilosa), bateria = 100, bateriaMaxima = 150, listaDeMovimientos = List(DejarseFajar), roundsFajado = 0)
+    val (gokuModif: Sayajin, androideModif: Androide) = goku.hacerMovimiento(new hacerAtaqueTurbina(Onda(10)), (goku, androideConMasBateriaMaxima))
+
+    assert(androideModif.getVida() == 120)
+    assert(gokuModif.getVida() == 90)
   }
+
+  test("Un humano muere si explota"){
+    val gokuConMenosKi = Sayajin(estado = Normal, ki = 30, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaRoma,ArmaFilosa,escopeta , new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(escopeta), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+    val (gokuModif: Sayajin, androideModif: Androide) = gokuConMenosKi.hacerMovimiento(new hacerAtaqueTurbina(new Explotar), (gokuConMenosKi, androide18))
+
+    assert(gokuModif.estado == Muerto)
+    assert(androideModif.getVida() == 40)
+  }
+
+  test("Un Sayayin ataca a otro con golpesNijas pero como su ki es menor se le baja a el") {
+    val (gokuModif: Sayajin, vegetaModif: Sayajin) = goku.hacerMovimiento(new hacerAtaqueTurbina(new MuchosGolpesNinja()), (goku, vegeta))
+
+    assert(gokuModif.getVida == 80)
+    assert(vegetaModif.getVida() == 500)
+  }
+
+  test("Genkidama con 2 rounds fajados"){
+    val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
+    val gokuConMasVidaParaVerQueSeLeResteBienElKi = gokuConSoloFilosa.cambiarKi(500)
+    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(gokuConMasVidaParaVerQueSeLeResteBienElKi)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(new Genkidama)))
+
+    assert(resultado.getAtacado().getVida == 400)
+  }
+
+  test("Krillin se deja fajar 2 rounds y luego tira un genkidama a un androide"){
+    val krillinConMasKiParaQueNoMuera = krillin.cambiarKi(1000)
+    val androide18SuperEnergico = androide18.copy(bateriaMaxima = 1000)
+    //el ki de Krillin es 1000
+    //el androide le hace nada de danio pq se deja fajar
+    //el androide tenia 100 de bateria entonces le hacen ataque de energia y se ke suma
+    val resultado = krillinConMasKiParaQueNoMuera.pelearContra(androide18SuperEnergico)(List(DejarseFajar, DejarseFajar, new hacerAtaqueTurbina(new Genkidama)))
+    assert(resultado.getAtacado().getVida == 200)
+  }
+
+}

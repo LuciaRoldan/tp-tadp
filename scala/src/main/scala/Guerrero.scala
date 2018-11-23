@@ -153,7 +153,7 @@ case class Androide(override val estado: Estado, override val nombre: String, ov
       case (ataque: AtaqueFisico, danio) => this.cambiarVida(this.getVida() - danio)
     }
   }
-    def getVidaMaxima() :Int = this.bateriaMaxima
+  def getVidaMaxima() :Int = this.bateriaMaxima
   }
 
 
