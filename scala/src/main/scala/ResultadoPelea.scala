@@ -1,6 +1,6 @@
 package DragonBall
 
-import DragonBall.Movimiento.Contrincantes
+import DragonBall.Movimiento.{Contrincantes, Movimiento}
 
 
 class ResultadoPelea(contrincantes :Contrincantes){
@@ -10,13 +10,36 @@ class ResultadoPelea(contrincantes :Contrincantes){
 
   def getGanador(): Option[Guerrero] = {
     (contrincantes._1.estado, contrincantes._2.estado) match{
-      case (Muerto, Muerto) => return None
-      case (Muerto,_) => return Some(contrincantes._2)
-      case (_,Muerto) => return Some(contrincantes._1)
-      case (_,_) => return None
+      case (Muerto, Muerto) =>  None
+      case (Muerto,_) =>  Some(contrincantes._2)
+      case (_,Muerto) =>  Some(contrincantes._1)
+      case (_,_) =>  None
     }
   }
 
   def getAtacante():Guerrero =  contrincantes._1
   def getAtacado():Guerrero = contrincantes._2
+}
+
+abstract class Resultado{
+  def getGanador() :Option[Guerrero]
+  def pelear(movimiento: Movimiento):Resultado
+}
+
+class PeleaFinalizada(triunfador: Guerrero) extends Resultado{
+  override def getGanador() :Option[Guerrero] = Some(triunfador)
+
+  override def pelear(movimiento: Movimiento): Resultado = this
+}
+
+class PeleaEnCurso(contrincantes: Contrincantes) extends Resultado{
+  override def getGanador() :Option[Guerrero] = None
+
+  override def pelear(movimiento: Movimiento): Resultado = contrincantes._1.pelearRound2(movimiento, contrincantes._2)
+}
+
+class PeleaFinalizadaSinGanador extends Resultado{
+  override def getGanador():Option[Guerrero] = None
+
+  override def pelear(movimiento: Movimiento): Resultado = this
 }

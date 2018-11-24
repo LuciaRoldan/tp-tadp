@@ -226,4 +226,18 @@ class DragonBallTest extends FunSuite {
     assert(resultado.getAtacado().getVida == 200)
   }
 
+  test("Pruebo los nuevos resultados"){
+    val gokuMuerto = Sayajin(estado = Muerto, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaRoma, ArmaFilosa, escopeta, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(escopeta), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+    val resultado = gokuMuerto.pelearContra2(gokuMuerto)(List(DejarseFajar))
+
+    assert(resultado.getGanador() == None)
+  }
+
+  test("Pruebo los nuevos resultados 2"){
+    val gokuMuerto = Sayajin(estado = Muerto, ki = 100, kiMaximo = 1000, nombre = "GOKU", inventario = List(ArmaRoma, ArmaFilosa, escopeta, new EsferasDelDragon(7)), nivelSS = 1, tieneCola = true, listaDeMovimientos = List(cargarKi, new usarItem(ArmaFilosa), new usarItem(escopeta), new hacerMagia(vaciarInventarioEnemigo)), roundsFajado = 0)
+    val resultado = goku.pelearContra2(gokuMuerto)(List(DejarseFajar))
+
+    assert(resultado.getGanador().isDefined)
+  }
+
 }
