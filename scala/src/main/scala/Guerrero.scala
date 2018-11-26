@@ -92,17 +92,20 @@ abstract class Guerrero(val estado: Estado, val nombre: String, val inventario: 
      }
 
      def planDeAtaqueContra(atacado :Guerrero, cantidadDeRounds :Int) (criterio: Criterio): PlanDeAtaque ={
-       List.fill(cantidadDeRounds)(0).foldLeft((List(): List[Movimiento],(this, atacado))){
-         case ((lista, contrincantes), _) =>
-           (
-             lista :+ movimientoMasEfectivoContra(atacado)(criterio).getOrElse(Movimiento.pedirAyudaADios),
-             contrincantes._1.pelearRound(this.movimientoMasEfectivoContra(atacado)(criterio).getOrElse(Movimiento.pedirAyudaADios),contrincantes._2)
-             //hacerMovimiento(this.movimientoMasEfectivoContra(atacado)(criterio), contrincantes)
-           )
+       List.fill(cantidadDeRounds)(0).foldLeft((List(): List[Movimiento], new PeleaEnCurso(this, atacado) : Resultado)){
+         case ((lista, resultado), _) =>
+           val movMasEfectivo: Option[Movimiento] = movimientoMasEfectivoContra(atacado)(criterio)
+           movMasEfectivo match{
+             case None => throw new NoSePuedeCrearElPlanDeAtaqueException
+             case Some(movimiento) => (
+               lista :+ movimiento,
+               resultado.pelear(movimiento)
+               //hacerMovimiento(this.movimientoMasEfectivoContra(atacado)(criterio), contrincantes)
+             )
+           }
          // en cada iteracion se suma el mejor movimiento a la lista vacia inicial de movimientos
          // y se calcula el estado de los guerreros despues de aplicar el mejor movimiento
        }._1 // retorna el primer elemento de la tupla (listaDeMejoresMovimientos, contrincantes)
-
      }
 
     def pelearContra(oponente: Guerrero)(plan: PlanDeAtaque) :ResultadoPelea ={
@@ -281,3 +284,5 @@ case class Mono (override val estado: Estado, override val ki: Int, override val
     override def copear(nuevoEstado: Estado, nuevoNombre: String, nuevoInventario: List[Item], nuevosRoundsFajado :Int): Mono =
       new Mono(estado = nuevoEstado, nombre = nuevoNombre, inventario = nuevoInventario, ki = ki, kiMaximo = kiMaximo, sayajin = sayajin, listaDeMovimientos = listaDeMovimientos, roundsFajado = nuevosRoundsFajado)
   }
+
+class NoSePuedeCrearElPlanDeAtaqueException extends Exception

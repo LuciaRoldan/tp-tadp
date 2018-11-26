@@ -29,23 +29,6 @@ object Movimiento {
     else -1
   }
 
-  /*object cambiarVida {
-    def apply(guerrero: Guerrero, vida: Int): Guerrero ={
-      guerrero match{
-        case guerrero: Biologico => guerrero.cambiarKi(vida)
-        case guerrero: Androide => guerrero.cambiarBateria(vida)
-      }
-    }
-  }
-
-  object getVida {
-    def apply(guerrero: Guerrero): Int ={
-      guerrero match{
-        case guerrero: Biologico => guerrero.ki
-        case guerrero: Androide => guerrero.bateria
-      }
-    }
-  }*/
 
   object cargarKi extends Movimiento{
     def apply(contrincantes: Contrincantes): Contrincantes = {
@@ -129,38 +112,6 @@ object Movimiento {
     }
   }
 
-  /*class hacerAtaque(ataque: Ataque) extends Movimiento{
-    override def apply(contrincantes: (Guerrero, Guerrero)): (Guerrero, Guerrero) = {
-      val (atacante, atacado) = contrincantes
-      (ataque, atacante, atacado) match{
-        case (MuchosGolpesNinja, atacante: Humano, atacado: Androide) => (atacante.cambiarKi(-10), atacado)
-        case (MuchosGolpesNinja, atacante: Biologico, atacado: Biologico) => if(atacado.ki < atacante.ki){(atacante, atacado.cambiarKi(atacado.ki - 20))}
-                                                                              else {(atacante.cambiarKi(atacante.ki - 20), atacado)}
-        case (MuchosGolpesNinja, atacante: Biologico, atacado: Androide) => if(atacado.bateria  < atacante.ki){(atacante, atacado.cambiarBateria(atacado.bateria - 20))}
-                                                                            else {(atacante.cambiarKi(atacante.ki - 20), atacado)}
-        case (MuchosGolpesNinja, atacante:Androide, atacado: Biologico) =>  if(atacado.ki  < atacante.bateria){(atacante, atacado.cambiarKi(atacado.ki - 20))}
-                                                                            else {(atacante.cambiarBateria(atacante.bateria - 20), atacado)}
-
-        case (Explotar, atacante: Monstruo, atacado: Namekusein) => (atacante.cambiarKi(0), atacado.cambiarKi(math.max(atacado.ki - atacante.ki*2, 1)))
-        case (Explotar, atacante: Monstruo, atacado: Androide) => (atacante.cambiarKi(0), atacado.cambiarBateria(atacado.bateria - atacante.ki*2))
-        case (Explotar, atacante: Monstruo, atacado: Biologico) => (atacante.cambiarKi(0), atacado.cambiarKi(atacado.ki - atacante.ki*2))
-        case (Explotar, atacante: Androide, atacado: Androide) => (atacante.cambiarBateria(0), atacado.cambiarBateria(atacado.bateria - atacante.bateria*3))
-        case (Explotar, atacante: Androide, atacado: Biologico) => (atacante.cambiarBateria(0), atacado.cambiarKi(atacado.ki - atacante.bateria*3))
-        case (Explotar, atacante: Androide, atacado: Androide) => throw new NoPuedeHacerEseAtaqueException
-
-        case (Onda(energia), atacante: Biologico , _) => if(atacante.ki < energia){(atacante, atacado)} else {
-              case (Onda(energia), atacante: Biologico, atacado: Monstruo) => {(atacante.cambiarKi(atacante.ki - energia), atacado.cambiarKi(atacado.ki - energia/2))}
-              case (Onda(energia), atacante: Biologico, atacado: Androide) => {(atacante.cambiarKi(atacante.ki - energia), atacado.cambiarBateria(atacado.bateria + energia*2))}
-              case (Onda(energia), atacante: Biologico, atacado: Biologico) => {(atacante.cambiarKi(atacante.ki - energia), atacado.cambiarKi(atacado.ki - energia*2))}
-              }
-        case (Onda(energia), atacante: Androide, _) => if(atacante.bateria < energia){(atacante, atacado)} else {
-              case (Onda(energia), atacante: Androide, atacado: Monstruo) => {(atacante.cambiarBateria(atacante.bateria - energia), atacado.cambiarKi(atacado.ki - energia/2))}
-              case (Onda(energia), atacante: Androide, atacado: Androide) => {(atacante.cambiarBateria(atacante.bateria - energia), atacado.cambiarBateria(atacado.bateria + energia*2))}
-              case (Onda(energia), atacante: Androide, atacado: Biologico) => {(atacante.cambiarBateria(atacante.bateria - energia), atacado.cambiarKi(atacado.ki - energia*2))}
-        }
-      }
-    }
-  }*/
 
 
   class hacerAtaqueTurbina(ataque: Ataque) extends Movimiento {
