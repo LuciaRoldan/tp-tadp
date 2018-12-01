@@ -8,10 +8,6 @@ class ProcMatcher
     @bindings = Hash.new
   end
 
-#  def agregarBindings(bindings)
-#    @bindings = @bindings.merge(bindings)
-#  end
-
   def agregar_bindings(bindings)
     @bindings = @bindings.merge(bindings)
   end
