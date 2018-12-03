@@ -7,3 +7,15 @@ class Object
   end
 
 end
+
+class Symbol
+
+  #def agregar_bindings_al_contexto(contexto, objeto_a_evaluarse)
+  #  contexto.define_singleton_method(self){objeto_a_evaluarse}
+  #end
+
+  #def call(x)
+  #  true
+  #end
+
+end
