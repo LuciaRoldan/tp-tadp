@@ -5,7 +5,7 @@ class Patron
     @matchers=matchers.map do
     |matcher| if matcher.is_a?(Symbol)
                 pm=ProcMatcher.new do |objeto_a_evaluarse|
-                  pm.agregar_bindings_de_listas([matcher], [objeto_a_evaluarse])
+                  pm.agregar_binding(matcher, objeto_a_evaluarse)
                   true
                 end
               else matcher

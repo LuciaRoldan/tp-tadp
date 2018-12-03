@@ -17,8 +17,12 @@ class ProcMatcher
     end
   end
 
+  def agregar_binding(simbolo, valor)
+    bindings[simbolo] = valor
+  end
+
   def call(objeto_a_evaluarse)
-    @bloque.call(objeto_a_evaluarse)
+    bloque.call(objeto_a_evaluarse)
   end
 
   def and (*matchers)
