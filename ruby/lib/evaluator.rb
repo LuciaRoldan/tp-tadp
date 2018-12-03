@@ -9,8 +9,8 @@ class Evaluator
 
     patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
 
-    if (patron != nil)
-      return patron.ejecutar_bloque()
+    if patron != nil
+      return patron.ejecutar_bloque_en_contexto
     end
 
     raise 'Ningun patron matchea. Agregar un otherwise'
@@ -42,7 +42,6 @@ class Evaluator
       tuplas = lista.zip(otraLista)
       tuplas.all? do |a, b|
         (a == b ||
-            #a.call(b)
             a.is_a?(Symbol) ||
             (a.is_a?(ProcMatcher)? a.call(b): false ))
       end &&
