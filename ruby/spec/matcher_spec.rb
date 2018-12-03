@@ -246,4 +246,10 @@ describe 'binding' do
     end).to eq(4)
   end
 
+  it 'Bindeo de arrays anidados' do
+    expect(matches?([1, 2, [4,5]])do
+      with(type(Array), list([:a, :b, list([:c, :d], false)], false)) { a + b + c + d }
+    end).to eq(12)
+  end
+
 end
