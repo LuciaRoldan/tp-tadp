@@ -4,7 +4,6 @@ class ProcMatcher
 
   def initialize(&bloque)
     @bloque = bloque
-    @lista = []
     @bindings = Hash.new
   end
 
@@ -19,7 +18,7 @@ class ProcMatcher
   end
 
   def call(objeto_a_evaluarse)
-    @bloqueDelWith.call(objeto_a_evaluarse)
+    @bloque.call(objeto_a_evaluarse)
   end
 
   def and (*matchers)
