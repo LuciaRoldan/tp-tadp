@@ -2,14 +2,6 @@ class Patron
 
   attr_accessor :matchers, :bloque_del_with
   def initialize(matchers, &bloque_del_with)
-    #@matchers=matchers.map do
-    #|matcher| if matcher.is_a?(Symbol)
-    #            SymbolMatcher.new(matcher) do |objeto_a_evaluarse|
-    #              true
-    #            end
-    #          else matcher
-    #          end
-    #end
     @matchers = matchers
     @bloque_del_with = bloque_del_with
   end
