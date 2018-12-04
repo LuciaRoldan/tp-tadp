@@ -13,6 +13,7 @@ class Symbol
   def bindear(objeto_a_evaluarse)
     hash = Hash.new
     hash[self] = objeto_a_evaluarse
+    puts('el hash a bindear en Symbol ', hash)
     hash
   end
 
