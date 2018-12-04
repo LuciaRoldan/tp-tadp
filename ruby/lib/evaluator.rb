@@ -9,7 +9,6 @@ class Evaluator
     patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
 
     if patron != nil
-
       return patron.ejecutar_bloque_en_contexto(objeto_a_evaluarse)
     end
 

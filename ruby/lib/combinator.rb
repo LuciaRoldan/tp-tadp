@@ -1,5 +1,5 @@
 class Combinator < ProcMatcher
-  #Porque un combinator entiende los mensajes and, or, not y call
+
   attr_accessor :matchers
 
   def initialize(matchers)
@@ -8,12 +8,6 @@ class Combinator < ProcMatcher
                 SymbolMatcher.new(matcher)
               else matcher
               end
-    end
-  end
-
-  def get_bindings(objeto_a_evaluarse)
-    @matchers.reduce(Hash.new) do |hash, matcher|
-      hash.merge(matcher.get_bindings(objeto_a_evaluarse))
     end
   end
 
