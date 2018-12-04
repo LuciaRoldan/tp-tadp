@@ -21,4 +21,8 @@ class Symbol
     true
   end
 
+  def is_bindeable
+    true
+  end
+
 end
