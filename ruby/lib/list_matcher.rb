@@ -16,8 +16,12 @@ class ListMatcher < ProcMatcher
       bindeado = Hash.new
       tuplas = lista_simbolos.zip(objeto_a_evaluar)
 
+
+
       tuplas.each do |a, b|
         if a.respond_to?('is_bindeable')
+          puts('en list_matcher bindeando', a, b)
+          puts(' ')
           bindeado.merge!(a.bindear(b))
         end
       end

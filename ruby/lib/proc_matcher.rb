@@ -13,7 +13,7 @@ class ProcMatcher
 
 
   def and (*matchers)
-    return AndCombinator.new(matchers.concat([self])) do
+    return AndCombinator.new(([self]).concat(matchers)) do
     |callArgument| matchers.all? {|matcher| matcher.call(callArgument)} && @bloque.call(callArgument)
     end
   end
@@ -46,13 +46,6 @@ class Combinator < ProcMatcher
     true
   end
 
-  def bindear(objeto_a_evaluar)
-    matchers.reduce(Hash.new) do |hash, matcher|
-      puts('bindeando ', matcher)
-      hash.merge!(matcher.bindear(objeto_a_evaluar))
-    end
-  end
-
 end
 
 class AndCombinator < Combinator
@@ -62,6 +55,15 @@ class AndCombinator < Combinator
   def initialize(matchers, &bloque)
     super()
     @matchers = matchers
+  end
+
+  def bindear(objeto_a_evaluar)
+    matchers.reduce(Hash.new) do |hash, matcher|
+      puts('bindeando ', matcher)
+      puts('me da ', matcher.bindear(objeto_a_evaluar))
+
+      hash.merge!(matcher.bindear(objeto_a_evaluar))
+    end
   end
 
 end
