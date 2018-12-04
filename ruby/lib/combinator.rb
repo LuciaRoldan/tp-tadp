@@ -9,7 +9,6 @@ class Combinator < ProcMatcher
               else matcher
               end
     end
-    super()
   end
 
   def get_bindings(objeto_a_evaluarse)

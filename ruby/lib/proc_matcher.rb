@@ -1,26 +1,29 @@
 class ProcMatcher
 
   attr_accessor :combinator
-  def initialize()
-    @combinator
-  end
+
 
   def call(objeto_a_evaluarse) end
 
   def and (*matchers)
-    combinator = AndCombinator.new(matchers.concat([self]))
+    @combinator = AndCombinator.new(matchers.concat([self]))
   end
 
   def or (*matchers)
-    combinator = OrCombinator.new(matchers.concat([self]))
+    @combinator = OrCombinator.new(matchers.concat([self]))
   end
 
   def not
-    combinator = NotCombinator.new(self)
+    @combinator = NotCombinator.new(self)
   end
 
   def get_bindings(objeto_a_evaluarse)
-    combinator.get_bindings(objeto_a_evaluarse)
+    if @combinator == nil
+     return Hash.new
+    else
+      return @combinator.get_bindings(objeto_a_evaluarse)
+    end
+
   end
 
 end
@@ -30,7 +33,6 @@ class ValMatcher < ProcMatcher
 
   def initialize(valor)
     @valor = valor
-    super()
   end
 
 
@@ -44,7 +46,7 @@ class TypeMatcher < ProcMatcher
 
   def initialize(clase)
     @clase = clase
-    super()
+
   end
 
   def call(objeto)
@@ -57,7 +59,7 @@ class DuckMatcher < ProcMatcher
 
   def initialize(mensajes)
     @mensajes = mensajes
-    super()
+
   end
 
   def call(objeto)
@@ -72,7 +74,7 @@ class SymbolMatcher < ProcMatcher
 
   def initialize(simbolo)
     @simbolo = simbolo
-    super()
+
   end
 
   def call(objeto)
@@ -92,7 +94,7 @@ class ListMatcher < ProcMatcher
   def initialize(lista, match_size)
     @match_size = match_size
     @lista = lista
-    super()
+
   end
 
   def call(otraLista)

@@ -4,7 +4,6 @@
     <list default="true" id="5f9a3160-90c0-4dec-a477-0a3ee446f191" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/ruby/lib/combinator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/combinator.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ruby/lib/proc_matcher.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/proc_matcher.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruby/spec/matcher_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/spec/matcher_spec.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,10 +15,11 @@
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@binding_Bindeo_de_array__grupo4_2018_2c.rcov" NAME="binding Bindeo de array: grupo4-2018-2c Coverage Results" MODIFIED="1538194166430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@list_Los_primeros_elementos_de_una_lista_son_iguales_a_los_primeros_elementos_de_si_misma__grupo4_2018_2c.rcov" NAME="list Los primeros elementos de una lista son iguales a los primeros elementos de si misma: grupo4-2018-2c Coverage Results" MODIFIED="1538195543835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@list_Una_lista_es_igual_a_si_misma__grupo4_2018_2c.rcov" NAME="list Una lista es igual a si misma: grupo4-2018-2c Coverage Results" MODIFIED="1543927814207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
-    <SUITE FILE_PATH="coverage/grupo4_2018_2c@binding_Bindeo_con_combinators__grupo4_2018_2c.rcov" NAME="binding Bindeo con combinators: grupo4-2018-2c Coverage Results" MODIFIED="1543935128462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
+    <SUITE FILE_PATH="coverage/grupo4_2018_2c@match_2_es_Numeric__grupo4_2018_2c.rcov" NAME="match 2 es Numeric: grupo4-2018-2c Coverage Results" MODIFIED="1543936208922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
+    <SUITE FILE_PATH="coverage/grupo4_2018_2c@binding_Bindeo_con_combinators__grupo4_2018_2c.rcov" NAME="binding Bindeo con combinators: grupo4-2018-2c Coverage Results" MODIFIED="1543936386778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@and_5_es_igual_que_5_y_es_de_tipo_Fixnum_y_entiende_el____grupo4_2018_2c.rcov" NAME="and 5 es igual que 5 y es de tipo Fixnum y entiende el +: grupo4-2018-2c Coverage Results" MODIFIED="1543933992954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@list__grupo4_2018_2c.rcov" NAME="list: grupo4-2018-2c Coverage Results" MODIFIED="1543927871823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
-    <SUITE FILE_PATH="coverage/grupo4_2018_2c@Run_spec__matcher_spec___grupo4_2018_2c.rcov" NAME="Run spec 'matcher_spec': grupo4-2018-2c Coverage Results" MODIFIED="1543935644218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
+    <SUITE FILE_PATH="coverage/grupo4_2018_2c@Run_spec__matcher_spec___grupo4_2018_2c.rcov" NAME="Run spec 'matcher_spec': grupo4-2018-2c Coverage Results" MODIFIED="1543938488562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@binding_2_no_es_string__grupo4_2018_2c.rcov" NAME="binding 2 no es string: grupo4-2018-2c Coverage Results" MODIFIED="1543930857893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@val_5_es_igual_a_5__grupo4_2018_2c.rcov" NAME="val 5 es igual a 5: grupo4-2018-2c Coverage Results" MODIFIED="1538005133630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo4-2018-2c" />
     <SUITE FILE_PATH="coverage/grupo4_2018_2c@proc_matcher.rcov" NAME="proc_matcher Coverage Results" MODIFIED="1538194179897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby/lib" MODULE_NAME="grupo4-2018-2c" />
@@ -55,12 +55,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="rb" value="3883" />
+          <entry key="rb" value="3952" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Ruby" value="3883" />
+          <entry key="Ruby" value="3952" />
         </counts>
       </usages-collector>
     </session>
@@ -70,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruby/spec/matcher_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="253" lean-forward="true" selection-start-line="253" selection-end-line="253" />
+            <state relative-caret-position="239">
+              <caret line="257" column="17" lean-forward="true" selection-start-line="257" selection-start-column="17" selection-end-line="257" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -97,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruby/lib/combinator.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="180">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -124,8 +124,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            <state relative-caret-position="2088">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
             </state>
           </provider>
         </entry>
@@ -146,8 +146,8 @@
         <option value="$PROJECT_DIR$/ruby/lib/evaluator.rb" />
         <option value="$PROJECT_DIR$/ruby/spec/spec_helper.rb" />
         <option value="$PROJECT_DIR$/ruby/lib/patron.rb" />
-        <option value="$PROJECT_DIR$/ruby/lib/combinator.rb" />
         <option value="$PROJECT_DIR$/ruby/spec/matcher_spec.rb" />
+        <option value="$PROJECT_DIR$/ruby/lib/combinator.rb" />
         <option value="$PROJECT_DIR$/ruby/lib/proc_matcher.rb" />
       </list>
     </option>
@@ -318,39 +318,6 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
       <method v="2" />
     </configuration>
-    <configuration name="and: grupo4-2018-2c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="grupo4-2018-2c" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/ruby" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/matcher_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="and" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <method v="2" />
-    </configuration>
     <configuration name="binding Bindeo con combinators: grupo4-2018-2c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="grupo4-2018-2c" />
@@ -384,20 +351,53 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
       <method v="2" />
     </configuration>
+    <configuration name="match 2 es Numeric: grupo4-2018-2c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="grupo4-2018-2c" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/ruby" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/matcher_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="match 2 es Numeric" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="RSpec.Run spec 'matcher_spec': grupo4-2018-2c" />
       <item itemvalue="RSpec.binding Bindeo con combinators: grupo4-2018-2c" />
       <item itemvalue="RSpec.and 5 es igual que 5 y es de tipo Fixnum y entiende el +: grupo4-2018-2c" />
-      <item itemvalue="RSpec.and: grupo4-2018-2c" />
       <item itemvalue="RSpec.and 5 es igual que string 5 y es de tipo Fixnum y entiende el +: grupo4-2018-2c" />
+      <item itemvalue="RSpec.match 2 es Numeric: grupo4-2018-2c" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="RSpec.Run spec 'matcher_spec': grupo4-2018-2c" />
         <item itemvalue="RSpec.binding Bindeo con combinators: grupo4-2018-2c" />
+        <item itemvalue="RSpec.match 2 es Numeric: grupo4-2018-2c" />
         <item itemvalue="RSpec.and 5 es igual que 5 y es de tipo Fixnum y entiende el +: grupo4-2018-2c" />
         <item itemvalue="RSpec.and 5 es igual que string 5 y es de tipo Fixnum y entiende el +: grupo4-2018-2c" />
-        <item itemvalue="RSpec.and: grupo4-2018-2c" />
       </list>
     </recent_temporary>
   </component>
@@ -416,56 +416,55 @@
       <workItem from="1538157483508" duration="239000" />
       <workItem from="1538187997563" duration="6660000" />
       <workItem from="1538603831910" duration="1189000" />
-      <workItem from="1543925010728" duration="10580000" />
+      <workItem from="1543925010728" duration="11947000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 42m 56s.xml">
+    <history-entry file="match_2_es_Numeric__grupo4-2018-2c - 2018.12.04 at 12h 10m 06s.xml">
+      <configuration name="match 2 es Numeric: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="match_2_es_Numeric__grupo4-2018-2c - 2018.12.04 at 12h 10m 09s.xml">
+      <configuration name="match 2 es Numeric: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.12.04 at 12h 10m 15s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 12h 10m 42s.xml">
       <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 43m 34s.xml">
+    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 12h 10m 46s.xml">
       <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 43m 49s.xml">
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.12.04 at 12h 10m 51s.xml">
+      <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 12h 10m 51s.xml">
       <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 43m 56s.xml">
+    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 12h 11m 04s.xml">
       <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 45m 45s.xml">
+    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 12h 13m 16s.xml">
       <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 46m 49s.xml">
-      <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 49m 49s.xml">
-      <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 50m 02s.xml">
-      <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="binding_Bindeo_con_combinators__grupo4-2018-2c - 2018.12.04 at 11h 52m 18s.xml">
-      <configuration name="binding Bindeo con combinators: grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.12.04 at 11h 54m 38s.xml">
+    <history-entry file="Run_spec_'matcher_spec'__grupo4-2018-2c - 2018.12.04 at 12h 48m 09s.xml">
       <configuration name="Run spec 'matcher_spec': grupo4-2018-2c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27772000" />
+    <option name="totallyTimeSpent" value="29139000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18836713" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32900432" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39935064" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32900432" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39935064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -496,18 +495,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb</url>
-          <line>114</line>
+          <line>116</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb</url>
-          <line>22</line>
-          <option name="timeStamp" value="54" />
+          <line>8</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb</url>
-          <line>10</line>
-          <option name="timeStamp" value="57" />
+          <line>23</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb</url>
+          <line>20</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -572,8 +576,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ruby/spec/matcher_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="253" lean-forward="true" selection-start-line="253" selection-end-line="253" />
+        <state relative-caret-position="239">
+          <caret line="257" column="17" lean-forward="true" selection-start-line="257" selection-start-column="17" selection-end-line="257" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -586,15 +590,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ruby/lib/combinator.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="180">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruby/lib/proc_matcher.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        <state relative-caret-position="2088">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
         </state>
       </provider>
     </entry>
