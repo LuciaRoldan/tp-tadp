@@ -255,7 +255,7 @@ describe 'binding' do
   it 'Bindeo con combinators' do
     expect(matches?([1,2,Object.new])do
       with(list([duck(:+).and(type(Fixnum), :x)], false)) { x }
-    end).to eq(3)
+    end).to eq(2)
   end
 
 end

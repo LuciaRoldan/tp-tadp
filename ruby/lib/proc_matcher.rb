@@ -42,10 +42,14 @@ class Combinator < ProcMatcher
     @bloque = bloque
   end
 
+  def is_bindeable
+    true
+  end
+
   def bindear(objeto_a_evaluar)
     matchers.reduce(Hash.new) do |hash, matcher|
       puts('bindeando ', matcher)
-      hash.merge!(matcher.bindear(objeto_a_evaluarse))
+      hash.merge!(matcher.bindear(objeto_a_evaluar))
     end
   end
 
