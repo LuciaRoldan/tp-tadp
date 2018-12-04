@@ -1,13 +1,13 @@
 class ValMatcher < ProcMatcher
 
-  attr_accessor :bloque, :bindings
+  attr_accessor :bloque
 
   def initialize(&bloque)
     @bloque = bloque
-    @bindings = Hash.new
   end
 
   def bindear(objeto_a_evaluar)
+    Hash.new
   end
 
 end

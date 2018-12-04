@@ -8,6 +8,7 @@ class DuckMatcher < ProcMatcher
   end
 
   def bindear(objeto_a_evaluar)
+    Hash.new
   end
 
 end

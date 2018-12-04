@@ -7,3 +7,17 @@ class Object
   end
 
 end
+
+class Symbol
+
+  def bindear(objeto_a_evaluarse)
+    hash = Hash.new
+    hash[self] = objeto_a_evaluarse
+    hash
+  end
+
+  def call(x)
+    true
+  end
+
+end
