@@ -3,12 +3,9 @@ class Combinator < ProcMatcher
   attr_accessor :matchers
 
   def initialize(matchers)
-    @matchers = matchers.map do
-    |matcher| if matcher.is_a?(Symbol)
-                SymbolMatcher.new(matcher)
-              else matcher
-              end
-    end
+    @matchers = matchers.map { |matcher|
+      (matcher.is_a?(Symbol))? SymbolMatcher.new(matcher) :matcher
+    }
   end
 
 end

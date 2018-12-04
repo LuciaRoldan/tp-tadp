@@ -1,8 +1,5 @@
 class ProcMatcher
 
-  attr_accessor :combinator
-
-
   def call(objeto_a_evaluarse) end
 
   def and (*matchers)
@@ -84,13 +81,14 @@ class ListMatcher < ProcMatcher
 
   def initialize(lista, match_size)
     @match_size = match_size
-    @lista = lista
+    @lista = lista.map do |elem|
+      (elem.is_a?(Symbol))? SymbolMatcher.new(elem) : (elem.is_a?(ProcMatcher))? elem : ValMatcher.new(elem)
+    end
   end
 
   def call(otraLista)
     tuplas = @lista.zip(otraLista)
-    tuplas.all? do
-                  |a, b| (a == b || a.is_a?(Symbol) || (a.is_a?(ProcMatcher)? a.call(b): false ))
+    tuplas.all? do |a, b| a.call(b)
     end &&
         otraLista.is_a?(Array) &&
         ((@match_size)? (otraLista.length == lista.length) : true )
@@ -98,9 +96,8 @@ class ListMatcher < ProcMatcher
 
   def get_bindings(otraLista)
 
-    @lista.zip(otraLista) # Genero una lista de tuplas [(1,1), (:a,1), (:b,2)]
-    .select { |a, _| a.is_a?(Symbol) } # Dejo solo las tuplas que tengan un simbolo como primer elemento [(:a,1), (:b,2)]
-    .reduce(Hash.new) { |hash, (a,b)| hash.merge({a => b})} # Genero un hash con las tuplas filtradas {a => 1, b => 2}
+    @lista.zip(otraLista)
+    .reduce(Hash.new) { |hash, (a,b)| hash.merge(a.get_bindings(b))}
 
   end
 end
