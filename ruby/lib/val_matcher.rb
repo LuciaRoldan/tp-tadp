@@ -1,4 +1,4 @@
-class Matcher
+class ValMatcher < ProcMatcher
 
   attr_accessor :bloque, :bindings
 
@@ -7,8 +7,7 @@ class Matcher
     @bindings = Hash.new
   end
 
-  def call(objeto_a_evaluarse)
-    bloque.call(objeto_a_evaluarse)
+  def bindear(objeto_a_evaluar)
   end
 
 end

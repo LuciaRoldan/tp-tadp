@@ -26,7 +26,7 @@ class Evaluator
 
 
   def val(objeto)
-    ProcMatcher.new { |otroObjeto| objeto == otroObjeto }
+    ValMatcher.new { |otroObjeto| objeto == otroObjeto }
   end
 
   def type(clase)

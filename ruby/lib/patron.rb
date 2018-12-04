@@ -4,8 +4,7 @@ class Patron
   def initialize(matchers, &bloque_del_with)
     @matchers=matchers.map do
     |matcher| if matcher.is_a?(Symbol)
-                pm=ProcMatcher.new do |objeto_a_evaluarse|
-                  pm.agregar_binding(matcher, objeto_a_evaluarse)
+                SymbolMatcher.new(matcher) do |objeto_a_evaluarse|
                   true
                 end
               else matcher
