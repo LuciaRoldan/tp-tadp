@@ -51,7 +51,7 @@ class Evaluator
   end
 
   def duck ( *mensajes )
-    ProcMatcher.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
+    DuckMatcher.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
   end
 
 end
