@@ -7,3 +7,9 @@ class Object
   end
 
 end
+
+class Symbol
+  def if (&condicion)
+    SymbolCondicionadoMatcher.new(self, condicion)
+  end
+end

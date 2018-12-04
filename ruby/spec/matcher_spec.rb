@@ -252,13 +252,26 @@ describe 'binding' do
     end).to eq(12)
   end
 
-  it 'Bindeo con combinators' do
-    expect(matches?([1,2,Object.new])do
-      with(list([duck(:+).and(type(Fixnum), :x)], false)) { x }
-    end).to eq(3)
+  #it 'Bindeo con combinators' do
+   # expect(matches?([1,2,Object.new])do
+    #  with(list([duck(:+).and(type(Fixnum), :x)], false)) { x }
+    #end).to eq(3)
+  #end
+
+  it 'if ' do
+    expect(matches?(10)do
+      with(:a_number.if do odd? end) { a_number }
+      with(:a_number.if do even? end) { a_number * 2 }
+      with(:a_number.if do nil? end) { a_number / 2 }
+    end).to eq(20)
   end
 
-
+  it 'if ' do
+    expect(matches?([2,2,3])do
+      with(list([:uno.if do odd? end, :dos, :tres])) { uno + dos + tres }
+      otherwise { 1 }
+    end).to eq(1)
+  end
 
 
 end

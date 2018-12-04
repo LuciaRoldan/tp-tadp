@@ -60,8 +60,6 @@ end
 
 class SymbolMatcher < ProcMatcher
 
-  attr_accessor :bindings
-
   def initialize(simbolo)
     @simbolo = simbolo
   end
@@ -76,8 +74,24 @@ class SymbolMatcher < ProcMatcher
 
 end
 
+class SymbolCondicionadoMatcher < ProcMatcher
+  def initialize(simbolo, condicion)
+    @simbolo = simbolo
+    @condicion = condicion
+  end
+
+  def call (objeto)
+    objeto.instance_eval(&@condicion)
+  end
+
+  def get_bindings(objeto_a_evaluarse)
+    {@simbolo => objeto_a_evaluarse}
+  end
+
+end
+
 class ListMatcher < ProcMatcher
-  attr_accessor :lista, :match_size, :bindings
+  attr_accessor :lista, :match_size
 
   def initialize(lista, match_size)
     @match_size = match_size
