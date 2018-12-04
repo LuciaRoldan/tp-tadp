@@ -26,30 +26,20 @@ class Evaluator
 
 
   def val(objeto)
-    ValMatcher.new { |otroObjeto| objeto == otroObjeto }
+    ValMatcher.new(objeto)
   end
 
   def type(clase)
-    TypeMatcher.new { |objeto| objeto.is_a?(clase) }
+    TypeMatcher.new(clase)
   end
 
 
   def list(lista, match_size = true)
-    ListMatcher.new(lista) do |otraLista|
-      #pm.agregar_bindings_de_listas(lista, otraLista)
-      tuplas = lista.zip(otraLista)
-      tuplas.all? do |a, b|
-        (a == b ||
-            a.is_a?(Symbol) ||
-            (a.is_a?(ProcMatcher)? a.call(b): false ))
-      end &&
-          otraLista.is_a?(Array) &&
-          ((match_size)? (otraLista.length == lista.length) : true )
-    end
+    ListMatcher.new(lista, match_size)
   end
 
   def duck (*mensajes)
-    DuckMatcher.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
+    DuckMatcher.new(mensajes)
   end
 
 end

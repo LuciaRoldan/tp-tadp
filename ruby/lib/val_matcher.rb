@@ -1,9 +1,13 @@
 class ValMatcher < ProcMatcher
 
-  attr_accessor :bloque
+  attr_accessor :objeto
 
-  def initialize(&bloque)
-    @bloque = bloque
+  def initialize(objeto)
+    @objeto = objeto
+  end
+
+  def call(otroObjeto)
+    objeto == otroObjeto
   end
 
   def bindear(objeto_a_evaluar)

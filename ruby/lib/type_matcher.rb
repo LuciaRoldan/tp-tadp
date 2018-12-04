@@ -1,8 +1,12 @@
 class TypeMatcher < ProcMatcher
-  attr_accessor :bloque
+  attr_accessor :clase
 
-  def initialize(&bloque)
-    @bloque = bloque
+  def initialize(clase)
+    @clase = clase
+  end
+
+  def call(objeto)
+    objeto.is_a?(clase)
   end
 
   def bindear(objeto_a_evaluar)
