@@ -48,37 +48,37 @@ describe 'list' do
 
   it 'Una lista es igual a si misma' do
     proc = matcher.list([1, 2, 3, 4], true)
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(true)
+    expect(proc.call(an_array)).to eq(true)
   end
 
   it 'Una lista es igual a si misma' do
     proc = matcher.list([1, 2, 3, 4], false)
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(true)
+    expect(proc.call(an_array)).to eq(true)
   end
 
   it 'Los primeros elementos de una lista son iguales a los primeros elementos de si misma' do
     proc = matcher.list([1, 2, 3], true)
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
+    expect(proc.call(an_array)).to eq(false)
   end
 
   it 'Los primeros elementos de una lista es distinta a si misma' do
     proc = matcher.list([1, 2, 3], false)
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(true)
+    expect(proc.call(an_array)).to eq(true)
   end
 
   it 'La lista desordenada es distinta a la lista' do
     proc = matcher.list([2, 1, 3, 4], true)
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
+    expect(proc.call(an_array)).to eq(false)
   end
 
   it 'La lista desordenada es distinta a la lista' do
     proc = matcher.list([2, 1, 3, 4], false)
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
+    expect(proc.call(an_array)).to eq(false)
   end
 
   it 'Si no se especifica march_size se considera true' do
     proc = matcher.list([1, 2, 3])
-    expect(proc.instance_exec(an_array, &proc.bloque)).to eq(false)
+    expect(proc.call(an_array)).to eq(false)
   end
 
 end

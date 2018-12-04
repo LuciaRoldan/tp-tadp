@@ -6,11 +6,11 @@ class Evaluator
   end
 
   def evaluar(objeto_a_evaluarse)
-
     patron = @patrones.find do |patron| patron.matchea(objeto_a_evaluarse) end
 
     if patron != nil
-      return patron.ejecutar_bloque_en_contexto
+
+      return patron.ejecutar_bloque_en_contexto(objeto_a_evaluarse)
     end
 
     raise 'Ningun patron matchea. Agregar un otherwise'
@@ -25,33 +25,21 @@ class Evaluator
   end
 
 
-  def val(objeto)
-    ProcMatcher.new { |otroObjeto| objeto == otroObjeto }
+  def val(valor)
+    ValMatcher.new valor
   end
 
   def type(clase)
-    ProcMatcher.new { |objeto| objeto.is_a?(clase) }
+    TypeMatcher.new clase
   end
 
 
   def list(lista, match_size = true)
-    pm = ProcMatcher.new do |otraLista|
-
-      pm.agregar_bindings_de_listas(lista, otraLista)
-
-      tuplas = lista.zip(otraLista)
-      tuplas.all? do |a, b|
-        (a == b ||
-            a.is_a?(Symbol) ||
-            (a.is_a?(ProcMatcher)? a.call(b): false ))
-      end &&
-          otraLista.is_a?(Array) &&
-          ((match_size)? (otraLista.length == lista.length) : true )
-    end
+    ListMatcher.new lista, match_size
   end
 
   def duck ( *mensajes )
-    ProcMatcher.new {|objeto| mensajes.all? { |mensaje| objeto.respond_to?(mensaje)  } }
+    DuckMatcher.new mensajes
   end
 
 end
