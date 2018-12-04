@@ -1,21 +1,26 @@
 class ProcMatcher
 
+  attr_accessor :combinator
+  def initialize()
+    @combinator
+  end
+
   def call(objeto_a_evaluarse) end
 
   def and (*matchers)
-    AndCombinator.new(matchers.concat([self]))
+    combinator = AndCombinator.new(matchers.concat([self]))
   end
 
   def or (*matchers)
-    OrCombinator.new(matchers.concat([self]))
+    combinator = OrCombinator.new(matchers.concat([self]))
   end
 
   def not
-    NotCombinator.new(self)
+    combinator = NotCombinator.new(self)
   end
 
-  def get_bindings(_)
-    Hash.new
+  def get_bindings(objeto_a_evaluarse)
+    combinator.get_bindings(objeto_a_evaluarse)
   end
 
 end
@@ -25,6 +30,7 @@ class ValMatcher < ProcMatcher
 
   def initialize(valor)
     @valor = valor
+    super()
   end
 
 
@@ -38,6 +44,7 @@ class TypeMatcher < ProcMatcher
 
   def initialize(clase)
     @clase = clase
+    super()
   end
 
   def call(objeto)
@@ -50,6 +57,7 @@ class DuckMatcher < ProcMatcher
 
   def initialize(mensajes)
     @mensajes = mensajes
+    super()
   end
 
   def call(objeto)
@@ -64,6 +72,7 @@ class SymbolMatcher < ProcMatcher
 
   def initialize(simbolo)
     @simbolo = simbolo
+    super()
   end
 
   def call(objeto)
@@ -71,7 +80,8 @@ class SymbolMatcher < ProcMatcher
   end
 
   def get_bindings(objeto_a_evaluarse)
-   {@simbolo => objeto_a_evaluarse} #Esto es un Hash de un elemento
+    binding_del_symbol = {@simbolo => objeto_a_evaluarse}
+    super.merge(binding_del_symbol)
   end
 
 end
@@ -82,6 +92,7 @@ class ListMatcher < ProcMatcher
   def initialize(lista, match_size)
     @match_size = match_size
     @lista = lista
+    super()
   end
 
   def call(otraLista)
@@ -95,9 +106,12 @@ class ListMatcher < ProcMatcher
 
   def get_bindings(otraLista)
 
-    @lista.zip(otraLista) # Genero una lista de tuplas [(1,1), (:a,1), (:b,2)]
+    bindings_del_list = @lista.zip(otraLista) # Genero una lista de tuplas [(1,1), (:a,1), (:b,2)]
     .select { |a, _| a.is_a?(Symbol) } # Dejo solo las tuplas que tengan un simbolo como primer elemento [(:a,1), (:b,2)]
     .reduce(Hash.new) { |hash, (a,b)| hash.merge({a => b})} # Genero un hash con las tuplas filtradas {a => 1, b => 2}
 
+    bindings_de_los_combinators = super
+
+    bindings_de_los_combinators.merge(bindings_del_list)
   end
 end

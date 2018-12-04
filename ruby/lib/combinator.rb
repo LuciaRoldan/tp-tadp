@@ -3,7 +3,19 @@ class Combinator < ProcMatcher
   attr_accessor :matchers
 
   def initialize(matchers)
-    @matchers = matchers
+    @matchers = matchers.map do
+    |matcher| if matcher.is_a?(Symbol)
+                SymbolMatcher.new(matcher)
+              else matcher
+              end
+    end
+    super()
+  end
+
+  def get_bindings(objeto_a_evaluarse)
+    @matchers.reduce(Hash.new) do |hash, matcher|
+      hash.merge(matcher.get_bindings(objeto_a_evaluarse))
+    end
   end
 
 end
