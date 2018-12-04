@@ -1,6 +1,6 @@
 class ProcMatcher
 
-  attr_accessor :bloque, :bindings, :lista
+  attr_accessor :bloque, :bindings
 
   def initialize(&bloque)
     @bloque = bloque

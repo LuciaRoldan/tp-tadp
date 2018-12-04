@@ -30,7 +30,7 @@ class Evaluator
   end
 
   def type(clase)
-    ProcMatcher.new { |objeto| objeto.is_a?(clase) }
+    TypeMatcher.new { |objeto| objeto.is_a?(clase) }
   end
 
 
